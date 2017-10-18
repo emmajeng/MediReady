@@ -162,11 +162,68 @@ header.masthead {
       margin-bottom: 50px;
       font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       text-transform: uppercase; } }
+      
+/* FAQ Masthead */
+
+header.masthead1 {
+  text-align: center;
+  color: white;
+  background-image: url("../img/faq-doctor.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+  header.masthead1 .intro-text {
+    padding-top: 150px;
+    padding-bottom: 100px; }
+    header.masthead1 .intro-text .intro-lead-in {
+      font-size: 22px;
+      font-style: italic;
+      line-height: 22px;
+      margin-bottom: 25px;
+      font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    header.masthead1 .intro-text .intro-heading {
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 50px;
+      margin-bottom: 25px;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-transform: uppercase; }
+
+@media (min-width: 768px) {
+  header.masthead1 .intro-text {
+    padding-top: 300px;
+    padding-bottom: 200px; }
+    header.masthead1 .intro-text .intro-lead-in {
+      font-size: 40px;
+      font-style: italic;
+      line-height: 40px;
+      margin-bottom: 25px;
+      font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    header.masthead1 .intro-text .intro-heading {
+      font-size: 75px;
+      font-weight: 700;
+      line-height: 75px;
+      margin-bottom: 50px;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-transform: uppercase; } }
+
+/* FAQ Masthead */
 
 .service-heading {
   margin: 15px 0;
   text-transform: none; }
 
+/* FAQ heading */
+
+.faq-heading {
+  margin: 15px 0;
+  text-transform: none; }
+
+/* FAQ heading */
 
 section#contact {
   background-color: #006064;
@@ -259,6 +316,10 @@ ul.social-buttons {
   }
 }
 
+.btn-xl
+{
+  margin: 2em;
+}
 
 .btn-xl {
   font-size: 18px;
@@ -315,6 +376,37 @@ ul.social-buttons {
     .top-service{
       padding-bottom:3em;
     }
+    
+    /* FAQ Headers etc */
+    
+    .faq{
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
+      -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
+      box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
+      padding:2em;
+    }
+    
+    @media (max-width:768px){
+      .faq{
+        margin:1em;
+      }
+    }
+
+    .faq:hover{
+      -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .7);
+      -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .7);
+      box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .7);
+      transition: 0.5s;
+    }
+
+    .top-faq{
+      padding-bottom:3em;
+    }
+    
+    /* FAQ Headers etc*/
 
     #footer{
       background-color: #222222;
