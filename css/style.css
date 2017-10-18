@@ -248,6 +248,17 @@ ul.social-buttons {
     ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
       background-color: #4DD0E1; }
 
+.btn-mrg {
+  margin: 2em;
+}
+
+@media (max-width:500px)
+{
+  .btn-mrg {
+    margin: 1em;
+  }
+}
+
 
 .btn-xl {
   font-size: 18px;
@@ -286,6 +297,12 @@ ul.social-buttons {
       -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
       box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
       padding:2em;
+    }
+    
+    @media (max-width:768px){
+      .service{
+        margin:1em;
+      }
     }
 
     .service:hover{
