@@ -115,9 +115,67 @@ body {
       background-color: #222222; }
       #mainNav.navbar-shrink .navbar-brand {
         font-size: 1.25em;
-        padding: 12px 0; } }
+        padding: 12px 0; }
+
+  }
 
 
+  /*session navbar*/
+
+  #mainNav-session {
+    background-color: #222222; }
+    #mainNav-session .navbar-toggler {
+        border:0;
+       }
+    #mainNav-session .navbar-toggler:hover {
+        outline:0;
+      }
+
+    #mainNav-session .navbar-toggler:active {
+        outline:0;
+        border:0;
+      }
+    #mainNav-session .navbar-brand {
+      color: #84FFFF;
+      font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; }
+      #mainNav-session .navbar-brand.active, #mainNav-session .navbar-brand:active, #mainNav-session .navbar-brand:focus, #mainNav-session .navbar-brand:hover {
+        color: #84FFFF; }
+    #mainNav-session .navbar-nav .nav-item .nav-link {
+      font-size: 90%;
+      font-weight: 400;
+      padding: 0.75em 0;
+      letter-spacing: 1px;
+      color: white;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-transform: uppercase; }
+      #mainNav-session .navbar-nav .nav-item .nav-link.active, #mainNav-session .navbar-nav .nav-item .nav-link:hover {
+        color: #84FFFF; }
+
+  @media (min-width: 992px) {
+    #mainNav-session {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+      -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+      transition: padding-top 0.3s, padding-bottom 0.3s;
+      border: none;
+      background-color: #222222; }
+      #mainNav-session .navbar-brand {
+        font-size: 1.75em;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s; }
+      #mainNav-session .navbar-nav .nav-item .nav-link {
+        padding: 1.1em 1em !important; }
+      #mainNav-session.navbar-shrink {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: #222222; }
+        #mainNav-session.navbar-shrink .navbar-brand {
+          font-size: 1.25em;
+          padding: 12px 0; }
+
+    }
 
 header.masthead {
   text-align: center;
