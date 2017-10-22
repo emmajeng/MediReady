@@ -640,3 +640,22 @@ ul.social-buttons {
         font-size: 18px;
       }
     }
+
+    /*dashboard*/
+
+    .dashboard-container{
+      margin: 0 auto;
+      width:60%;
+    }
+
+    #tab-buttons{
+      margin-top: 6em;
+    }
+
+    .tab-1, .tab-2{
+      display:none;
+    }
+
+    #tab-contents > div.active{
+      display:block;
+    }

@@ -20,7 +20,8 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+
 
   </head>
 
@@ -35,16 +36,52 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="">Account</a>
+              <a class="nav-link" href="">Account</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="">Sign Out</a>
+              <a class="nav-link" href="">Sign Out</a>
             </li>
 
           </ul>
         </div>
       </div>
     </nav>
+
+    <!--Tabs for Patient Dashboard-->
+    <div class="dashboard-container">
+      <div id="tab-buttons">
+        <button onclick="setTabContents('tab-1')">tab 1</button>
+        <button onclick="setTabContents('tab-2')">tab 2</button>
+      </div>
+      <div id="tab-contents">
+        <div class="tab-1">
+          <p>
+            tab 1
+          </p>
+        </div>
+        <div class="tab-2">
+          <p>
+            tab 2
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      function setTabContents(){
+        document.getElementById("tab-1");
+        var c = "active"
+        removeClass(c);
+        addClass(c);
+      }
+
+    </script>
+
+
+
+
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -61,3 +98,5 @@
     <!-- Custom scripts for this template -->
     <script src="js/agency.js"></script>
   </body>
+
+</html>
