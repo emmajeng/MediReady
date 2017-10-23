@@ -151,6 +151,10 @@ body {
       #mainNav-session .navbar-nav .nav-item .nav-link.active, #mainNav-session .navbar-nav .nav-item .nav-link:hover {
         color: #84FFFF; }
 
+      button.navbar-toggler{
+        outline:none;
+      }
+
   @media (min-width: 992px) {
     #mainNav-session {
       padding-top: 10px;
@@ -647,10 +651,34 @@ ul.social-buttons {
       margin: 0 auto;
       width:60%;
       padding-bottom:50px;
+      border: 2px solid;
+      margin-top: 7em;
     }
 
     #tab-buttons{
-      margin-top: 6em;
+      width:100%;
+    }
+
+    #tab-buttons > button.tab-1, button.tab-2{
+      width:49.999%;
+      height:60px;
+      background-color: #4DD0E1;
+      border: none;
+      outline:none;
+      color:white;
+      font-size: 20px;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    #tab-buttons > button.active{
+      width:50.001%;
+      background-color: #18FFFF;
+      border: 1px solid white;
+      outline:none;
+    }
+
+    #chem-select{
+      float:right;
     }
 
     #tab-contents > div.tab-1, div.tab-2{
