@@ -7,7 +7,7 @@ if (isset($_SESSION['userSession']) != "") {
 
 //if they click on the signup button
 if (isset($_POST['btn-signup'])) {
-    
+
     //connects to DB
     require_once 'config.php';
     //get user type from drop down
@@ -27,7 +27,7 @@ if (isset($_POST['btn-signup'])) {
         $patient_city  = strip_tags($_POST['patient_city']);
         $patient_county  = strip_tags($_POST['patient_county']);
         $patient_password = strip_tags($POST['patient_password']);
-        
+
         //Sending the input to variables so it can be sent to the db
         $patient_fname  = $DBcon->real_escape_string($patient_fname);
         $patient_lname  = $DBcon->real_escape_string($patient_lname);
@@ -38,7 +38,7 @@ if (isset($_POST['btn-signup'])) {
         $patient_city  = $DBcon->real_escape_string($patient_city);
         $patient_county = $DBcon->real_escape_string($patient_county);
         $patient_password = $DBcon->real_escape_string($patient_password);
-        
+
         //loops through patient table and counts the emails matching
         $check_email = $DBcon->query("SELECT patient_email FROM patient_table WHERE email='$patient_email'");
         $count       = $check_email->num_rows;
@@ -49,7 +49,7 @@ if (isset($_POST['btn-signup'])) {
             if ($DBcon->query($query)) {
                 $msg = "successful patient";
             }
-            
+
             else{
                 $msg = "unsuccessful patient";
             }
@@ -60,9 +60,9 @@ if (isset($_POST['btn-signup'])) {
             $msg = "email taken";
         }
     }
-    
+
     else if($selected_val == 'Doctor'){
-        
+
         //POST code for doctor details
         $doctor_fname  = strip_tags($_POST['doctor_fname']);
         $doctor_lname  = strip_tags($_POST['doctor_lname']);
@@ -72,7 +72,7 @@ if (isset($_POST['btn-signup'])) {
         $doctor_phone  = strip_tags($_POST['doctor_phone']);
         $doctor_email  = strip_tags($_POST['doctor_email']);
         $doctor_password = strip_tags($POST['doctor_password']);
-        
+
         //Sending the input to variables so it can be sent to the db
         $doctor_fname  = $DBcon->real_escape_string($doctor_fname);
         $doctor_lname  = $DBcon->real_escape_string($doctor_lname);
@@ -82,7 +82,7 @@ if (isset($_POST['btn-signup'])) {
         $doctor_phone = $DBcon->real_escape_string($doctor_phone);
         $doctor_email  = $DBcon->real_escape_string($doctor_email);
         $doctor_password  = $DBcon->real_escape_string($doctor_password);
-        
+
         //loops through doctor table and counts the emails matching
         $check_email = $DBcon->query("SELECT email FROM doctor_table WHERE email='$email'");
         $count       = $check_email->num_rows;
@@ -95,9 +95,9 @@ if (isset($_POST['btn-signup'])) {
             //put code here
         }
     }
-    
+
     else if($selected_val == 'Chemist'){
-        
+
         //POST code for chemist details
         $chemist_store_name  = strip_tags($_POST['chemist_store_name']);
         $chemist_address_line_one  = strip_tags($_POST['chemist_address_line_one']);
@@ -106,7 +106,7 @@ if (isset($_POST['btn-signup'])) {
         $chemist_phone  = strip_tags($_POST['chemist_phone']);
         $chemist_email  = strip_tags($_POST['chemist_email']);
         $chemist_password = strip_tags($POST['chemist_password']);
-        
+
         //Sending the input to variables so it can be sent to the db
         $chemist_store_name  = $DBcon->real_escape_string($chemist_store_name);
         $chemist_address_line_one  = $DBcon->real_escape_string($chemist_address_line_one);
@@ -115,7 +115,7 @@ if (isset($_POST['btn-signup'])) {
         $chemist_phone  = $DBcon->real_escape_string($chemist_phone);
         $chemist_phone = $DBcon->real_escape_string($chemist_phone);
         $chemist_password = $DBcon->real_escape_string($chemist_password);
-        
+
         //loops through chemist table and counts the emails matching
         $check_email = $DBcon->query("SELECT email FROM chemist_table WHERE email='$email'");
         $count       = $check_email->num_rows;
@@ -128,9 +128,9 @@ if (isset($_POST['btn-signup'])) {
             //put code here
         }
     }
-    
+
     else if($selected_val == 'Delivery Man'){
-        
+
         //POST code for delivery man details
         $driver_fname  = strip_tags($_POST['driver_fname']);
         $driver_lname  = strip_tags($_POST['driver_lname']);
@@ -138,7 +138,7 @@ if (isset($_POST['btn-signup'])) {
         $driver_city  = strip_tags($_POST['driver_city']);
         $driver_county  = strip_tags($_POST['driver_county']);
         $driver_password = strip_tags($POST['driver_password']);
-        
+
         //Sending the input to variables so it can be sent to the db
         $driver_fname  = $DBcon->real_escape_string($driver_fname);
         $driver_lname  = $DBcon->real_escape_string($driver_lname);
@@ -146,7 +146,7 @@ if (isset($_POST['btn-signup'])) {
         $driver_city  = $DBcon->real_escape_string($driver_city);
         $driver_county  = $DBcon->real_escape_string($driver_county);
         $driver_password  = $DBcon->real_escape_string($driver_password);
-        
+
         //loops through driver table and counts the emails matching
         $check_email = $DBcon->query("SELECT email FROM driver_table WHERE email='$email'");
         $count       = $check_email->num_rows;
@@ -159,10 +159,13 @@ if (isset($_POST['btn-signup'])) {
             //put code here
         }
     }
-    
+
     else{
         //send out error message no user type selected
     }
+
+    header('Location: ' . $_SERVER['../sign-up.html']);
+
 }
-    
+
 ?>
