@@ -1,12 +1,9 @@
 <?php
 //start session
-session_start();
-if (isset($_SESSION['userSession']) != "") {
-    header("Location: index.php");
-}
+ require_once 'config.php';
 
 //if they click on the signup button
-if (isset($_POST['btn-signup'])) {
+if (isset($_POST['btn-signUp'])) {
 
     //connects to DB
     require_once 'config.php';
@@ -14,6 +11,7 @@ if (isset($_POST['btn-signup'])) {
     $user_types = array('Patient', 'Doctor', 'Chemist', 'Delivery Man');
     $selected_key = $_POST['user_type'];
     $selected_val = $user_types[$_POST['user_type']];
+    echo "hi";
 
     //checking what user type in if statement
     if($selected_val == 'Patient'){
@@ -164,7 +162,7 @@ if (isset($_POST['btn-signup'])) {
         //send out error message no user type selected
     }
 
-    header('Location: ' . $_SERVER['../sign-up.html']);
+    header('Location:../sign-up.php');
 
 }
 
