@@ -4,7 +4,7 @@
     // then click the URL that is emitted to the Output tab of the console.
 
     $servername = '127.0.0.1';
-    $username = 'gordons';
+    $username = 'root';
     $password = "";
     $database = "c9";
     $dbport = 3306;
