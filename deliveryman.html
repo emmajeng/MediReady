@@ -47,121 +47,64 @@
       </div>
     </nav>
     </div>
-    
+
   <!--Tabs for Patient Dashboard-->
     <div class="dashboard-container">
       <div id="tab-buttons">
-        <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active" >Map</button>
-        <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2" >Directions</button>
+        <button onclick="setTabContents('tab-1')" id="map" class="tab-1 active" >Map</button>
+        <button onclick="setTabContents('tab-2')" id="directions" class="tab-2" >Directions</button>
       </div>
       <div id="tab-contents">
         <div class="tab-1 active">
-          <h4>
-             <!-- Google Map insert -->
+          <!-- Google Map insert -->
           <div id="googleMap"></div>
-          
-          <!-- Google Map function and get location -->
-          <script>
-            function myMap() {
-            var mapProp= {
-                center:new google.maps.LatLng(51.508742,-0.120850),
-                zoom:5,
-            };
-              var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-            }
-          </script>
-          
-          </h4>
         </div>
         <div class="tab-2">
           <h4>
-            Patient will select chemist here
+            Directions will be shown for the driver here
           </h4>
         </div>
       </div>
     </div>
 
-    <script language="javascript" type="text/javascript">
-      function removeClass(el, className) {
-        if (el.classList) {
-          el.classList.remove(className);
-        } else {
-            el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-        }
-      }
+    <div class="table-title">
+      <h3>Orders</h3>
+    </div>
 
-      function addClass(el, className) {
-        if (el.classList) {
-            el.classList.add(className);
-        } else {
-            el.className += ' ' + className;
-        }
-      }
+    <!-- Orders Table -->
+    <div class="dashboard-container bottom-container">
+      <table class="table-fill">
+        <thead>
+        <tr>
+        <th class="text-left">Orders</th>
+        <th class="text-left">Address</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+          <tr>
+          <td class="text-left">January</td>
+          <td class="text-left">$ 50,000.00</td>
+          </tr>
+          <tr>
+          <td class="text-left">February</td>
+          <td class="text-left">$ 10,000.00</td>
+          </tr>
+          <tr>
+          <td class="text-left">March</td>
+          <td class="text-left">$ 85,000.00</td>
+          </tr>
+          <tr>
+          <td class="text-left">April</td>
+          <td class="text-left">$ 56,000.00</td>
+          </tr>
+          <tr>
+          <td class="text-left">May</td>
+          <td class="text-left">$ 98,000.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      var buttons = document.getElementById('tab-buttons');
-      var content = document.getElementById('tab-contents');
-      var currentTab = 'tab-1';
-
-      function setTabContents(tabClicked){
-        if(tabClicked === currentTab) { return; }
-
-        removeClass(buttons.querySelectorAll('.active')[0], 'active');
-        removeClass(content.querySelectorAll('.active')[0], 'active');
-
-        addClass(buttons.getElementsByClassName(tabClicked)[0], 'active');
-        addClass(content.getElementsByClassName(tabClicked)[0], 'active');
-
-        currentTab = tabClicked;
-
-      }
-
-    </script>
-
-
-
-  <!-- API Key for Map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3u7zBjNuRP74J7XOKA0nGAQyNeAY2_vc&callback=myMap"></script>
-  
-  <!-- Orders Table -->
-  
-  <div class="table-title">
-    <h3>Orders</h3>
-  </div>
-  
-  <table class="table-fill">
-    <thead>
-    <tr>
-    <th class="text-left">Month</th>
-    <th class="text-left">Sales</th>
-    </tr>
-    </thead>
-    <tbody class="table-hover">
-      <tr>
-      <td class="text-left">January</td>
-      <td class="text-left">$ 50,000.00</td>
-      </tr>
-      <tr>
-      <td class="text-left">February</td>
-      <td class="text-left">$ 10,000.00</td>
-      </tr>
-      <tr>
-      <td class="text-left">March</td>
-      <td class="text-left">$ 85,000.00</td>
-      </tr>
-      <tr>
-      <td class="text-left">April</td>
-      <td class="text-left">$ 56,000.00</td>
-      </tr>
-      <tr>
-      <td class="text-left">May</td>
-      <td class="text-left">$ 98,000.00</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <!-- dashboard container ends -->
-  </div>
-  
   <!-- Footer Section -->
   <footer id="footer">
     <div class="container">
@@ -208,7 +151,7 @@
       </div>
     </div>
   </footer>
-  
+
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
@@ -223,6 +166,15 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/agency.js"></script>
+
+    <!--Link to JS Tab file-->
+    <script language="javascript" type="text/javascript" src="js/tab.js"></script>
+
+    <!-- Google Map function and get location -->
+    <script language="javascript" type="text/javascript" src="js/map.js"></script>
+
+    <!-- API Key for Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3u7zBjNuRP74J7XOKA0nGAQyNeAY2_vc&callback=myMap"></script>
   </body>
 
 </html>

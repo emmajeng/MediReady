@@ -654,6 +654,11 @@ ul.social-buttons {
       -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
       box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
       margin-top: 7em;
+      margin-bottom:3em
+    }
+
+    .bottom-container{
+      margin-top:2em;
     }
 
     #tab-buttons{
@@ -678,7 +683,7 @@ ul.social-buttons {
       outline:none;
     }
 
-    #chem-select{
+    #chem-select,#directions{
       float:right;
     }
 
@@ -728,7 +733,6 @@ div.table-title {
   border-collapse: collapse;
   height: 320px;
   margin: auto;
-  max-width: 600px;
   padding:5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -736,9 +740,8 @@ div.table-title {
 }
 
 th {
-  color:#D5DDE5;;
-  background:#1b1e24;
-  border-bottom:4px solid #9ea7af;
+  color:white;;
+  background:#4DD0E1;
   border-right: 1px solid #343a45;
   font-size:23px;
   font-weight: 100;
@@ -767,9 +770,8 @@ tr {
 }
 
 tr:hover td {
-  background:#4E5066;
-  color:#FFFFFF;
-  border-top: 1px solid #22262e;
+  background:#84FFFF;
+  color:black;
 }
 
 tr:first-child {
@@ -781,11 +783,11 @@ tr:last-child {
 }
 
 tr:nth-child(odd) td {
-  background:#EBEBEB;
+  background:#E0F7FA;
 }
 
 tr:nth-child(odd):hover td {
-  background:#4E5066;
+  background:#84FFFF;
 }
 
 tr:last-child td:first-child {
