@@ -23,6 +23,9 @@
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
   </head>
 
@@ -67,53 +70,40 @@
           
           <div id = "make_prescription">
             
+            <!-- form method = "post" action = "submitting.php" -->
+            <form method = "post">
+              
+              <div class = "form-group fieldGroup">
+                
+                <div class = "input-group">
+                  
+                  <input type = "text" name = "medication[]" class = "form-control" placeholder = "Medication" />
+                  
+                  <input type = "text" name = "amount[]" class = "form-control" placeholder = "Amount" />
+                  
+                  <div class = "input-group-addon">
+                    
+                    <a href = "javascript:void(0)" class ="btn btn-success addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true">Add</span> </a> 
+                    
+                  </div>
+                  
+                </div>
+                
+              </div>
+            </form>
+            <!-- tell javascript to grab this -->
+            <div class="form-group fieldGroupCopy" style="display: none;">
+              <div class="input-group">
+                <input type="text" name="medication[]" class="form-control" placeholder="Medication"/>
+                <input type="text" name="amount[]" class="form-control" placeholder="Amount"/>
+              <div class="input-group-addon">
+                <a href="javascript:void(0)" class="btn btn-danger remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</a>
+              </div>
+              </div>
+            </div>
             
-
-            <form id="prescription-form" class="form-horizontal">
-              <div class="form-group">
-              <div class="col-xs-6">
-                <input type="text" class="form-control" name="prescription[]" placeholder="Medication" />
-              </div>
-              <div class="col-xs-4 MiligramsContainer">
-                <div class="input-group input-append" id="mg">
-                  <span class="input-group-addon add-on">Mg</span>
-                  <input type="text" class="form-control" name="amount[]" placeholder="Amount" />
-                </div>
-              </div>
-               <div class="col-xs-1">
-                    <button type="button" class="btn btn-default addon"><i class="fa fa-add"></i></button>
-                  </div>
-              </div><!-- end grouped form -->
-
-                <!-- Show and hide this part of the form by invoking javascript -->
-                <div class="form-group hide" id="hidden-prescription">
-                  <div class="col-xs-6 col-xs-offset-1">
-                    <input type="text" class="form-control" name="prescription[]" placeholder="Medication" />
-                  </div>
-                  <div class="col-xs-4 MiligramsContainer">
-                    <div class="input-group input-append">
-                      <span class="input-group-addon add-on">Mg</span>
-                        <input type="text" class="form-control" name="amount[]" placeholder="Amount" />
-                    </div>
-                  </div>
-                  <div class="col-xs-1">
-                    <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
-                  </div>
-                </div>
-          </form>
-
+            
           </div>
-          
-          <!-- Hidden from view - javascript invokes this -->
-        
-        <script>
-        /* global $ */
-
-       
-        </script>
-          
-          
-        </div>
         <div class="tab-2">
           <h4>
             Patient will select chemist here
@@ -121,6 +111,30 @@
         </div>
       </div>
     </div>
+    
+    <script>
+      
+      $(document).ready(function(){
+        // limit
+        var max = 20;
+        
+        // add
+        $(".addMore").click(function(){
+          if($('body').find('.fieldGroup').length < max){
+            var htmlF = '<div class = "form-group fieldGroup">' + $(".fieldGroupCopy").html()+'</div>';
+            $('body').find('.fieldGroup:last').after(htmlF);
+          }else{
+            alert('Too many items! ' + max);
+          }
+        });
+        
+        // remove
+        $('body').on("click",".remove",function(){
+          $(this).parents(".fieldGroup").remove();
+        });
+      });
+      
+    </script>
     
   <!-- Footer Section -->
   <footer id="footer">
@@ -173,6 +187,7 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
 
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
