@@ -48,50 +48,77 @@
     </nav>
     </div>
     
-   <!--Tabs for Patient Dashboard-->
+  <!--Tabs for Patient Dashboard-->
     <div class="dashboard-container">
       <div id="tab-buttons">
-        <button onclick="setTabContents('tab-1')">Map</button>
-        <button onclick="setTabContents('tab-2')">Directions</button>
+        <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active" >New Orders</button>
+        <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2" >Select Chemist</button>
       </div>
       <div id="tab-contents">
-        <div class="tab-1">
-          <p>
-            tab 1
-          </p>
+        <div class="tab-1 active">
+          <h4>
+             <!-- Google Map insert -->
+          <div id="googleMap"></div>
+          
+          <!-- Google Map function and get location -->
+          <script>
+            function myMap() {
+            var mapProp= {
+                center:new google.maps.LatLng(51.508742,-0.120850),
+                zoom:5,
+            };
+              var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            }
+          </script>
+          
+          </h4>
         </div>
         <div class="tab-2">
-          <p>
-            tab 2
-          </p>
+          <h4>
+            Patient will select chemist here
+          </h4>
         </div>
       </div>
-    
-    <script>
+    </div>
 
-      function setTabContents(){
-        document.getElementById("tab-1");
-        var c = "active"
-        removeClass(c);
-        addClass(c);
+    <script language="javascript" type="text/javascript">
+      function removeClass(el, className) {
+        if (el.classList) {
+          el.classList.remove(className);
+        } else {
+            el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        }
+      }
+
+      function addClass(el, className) {
+        if (el.classList) {
+            el.classList.add(className);
+        } else {
+            el.className += ' ' + className;
+        }
+      }
+
+      var buttons = document.getElementById('tab-buttons');
+      var content = document.getElementById('tab-contents');
+      var currentTab = 'tab-1';
+
+      function setTabContents(tabClicked){
+        if(tabClicked === currentTab) { return; }
+
+        removeClass(buttons.querySelectorAll('.active')[0], 'active');
+        removeClass(content.querySelectorAll('.active')[0], 'active');
+
+        addClass(buttons.getElementsByClassName(tabClicked)[0], 'active');
+        addClass(content.getElementsByClassName(tabClicked)[0], 'active');
+
+        currentTab = tabClicked;
+
       }
 
     </script>
 
-  <!-- Google Map insert -->
-  <div id="googleMap"></div>
-  
-  <!-- Google Map function and get location -->
-  <script>
-    function myMap() {
-    var mapProp= {
-        center:new google.maps.LatLng(51.508742,-0.120850),
-        zoom:5,
-    };
-      var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    }
-  </script>
-  
+
+
   <!-- API Key for Map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3u7zBjNuRP74J7XOKA0nGAQyNeAY2_vc&callback=myMap"></script>
   
