@@ -3,7 +3,7 @@
 // Database Settings
 
 $Host = "127.0.0.1";
-$User = "gordons";
+$User = "root";
 $Pass = "";
 $Name = "c9";
 
