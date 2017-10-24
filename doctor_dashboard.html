@@ -113,14 +113,15 @@
                 </div>
               </div>
             </div>
-
-
+          </div>
           </div>
           <div class="tab-2">
             <h4>
               hello world
             </h4>
             <div id="choose-chemist">
+              
+              
 
 
             </div>
@@ -128,54 +129,47 @@
         </div>
       </div>
     </div>
+  <script>
+    $(document).ready(function() {
+      // limit
+      var max = 7;
 
-    <script>
-      $(document).ready(function() {
-        // limit
-        var max = 7;
-
-        // add
-        $(".addMore").click(function() {
-          if ($('body').find('.fieldGroup').length < max) {
-            var htmlF = '<div class = "form-group fieldGroup">' + $(".fieldGroupCopy").html() + '</div>';
-            $('body').find('.fieldGroup:last').after(htmlF);
-          }
-          else {
-            alert('Too many items! ' + max);
-          }
-        });
-
-        // remove
-        $('body').on("click", ".remove", function() {
-          $(this).parents(".fieldGroup").remove();
-        });
-
-        var options = {
-          url: "data/Auto-complete/medication/medication.xml",
-
-          dataType: "xml",
-          xmlElementName: "medication",
-
-          getValue: function(element) {
-            return $(element).find("name").text();
-          },
-
-          list: {
-            match: {
-              enabled: true
-            }
-          }
-        };
-        /* global $ */
-        $("#medInput").easyAutocomplete(options);
-
-
-
+      // add
+      $(".addMore").click(function() {
+        if ($('body').find('.fieldGroup').length < max) {
+          var htmlF = '<div class = "form-group fieldGroup">' + $(".fieldGroupCopy").html() + '</div>';
+          $('body').find('.fieldGroup:last').after(htmlF);
+        }
+        else {
+          alert('Too many items! ' + max);
+        }
       });
-    </script>
-  </div>
-  </div>
 
+      // remove
+      $('body').on("click", ".remove", function() {
+        $(this).parents(".fieldGroup").remove();
+      });
+
+      var options = {
+        url: "data/Auto-complete/medication/medication.xml",
+
+        dataType: "xml",
+        xmlElementName: "medication",
+
+        getValue: function(element) {
+          return $(element).find("name").text();
+        },
+
+        list: {
+          match: {
+            enabled: true
+          }
+        }
+      };
+      /* global $ */
+      $("#medInput").easyAutocomplete(options);
+    });
+  </script>
   <!-- Footer Section -->
   <footer id="footer">
     <div class="container">
