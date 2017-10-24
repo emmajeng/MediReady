@@ -25,7 +25,7 @@
 
   </head>
 
-  <body id="page-to">
+  <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">

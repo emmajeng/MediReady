@@ -69,9 +69,9 @@
   <div class="dashboard-container">
     <div id="tab-buttons">
       <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active">Make Prescription</button>
-      <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2">Select Chemist</button>
+      <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2">Select Client</button>
     </div>
-    <div id="wrapper-tabs" style="padding: 12px;">
+    <div id="wrapper-tabs">
       <div id="tab-contents">
         <div class="tab-1 active">
           <h4>
@@ -89,14 +89,10 @@
                 <div class="input-group">
 
                   <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
-
-
                   <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
 
                   <div class="input-group-addon">
-
-                    <a href="javascript:void(0)" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true">Add</span> </a>
-
+                    <a href="javascript:void(0)" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true"><img height=25 width=25 src="img/plus.png" /></span> </a>
                   </div>
 
                 </div>
@@ -109,7 +105,7 @@
                 <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
                 <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
                 <div class="input-group-addon">
-                  <a href="javascript:void(0)" class="btn btn-danger btn-block remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</a>
+                  <a href="javascript:void(0)" class="btn btn-danger btn-block remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"><img id="remove-img" height=7 width=25 src="img/remove.png" /></span></a>
                 </div>
               </div>
             </div>
@@ -120,8 +116,8 @@
               hello world
             </h4>
             <div id="choose-chemist">
-              
-              
+
+
 
 
             </div>
@@ -171,7 +167,7 @@
     });
   </script>
   <!-- Footer Section -->
-  <footer id="footer">
+  <footer id="footer" class="padded-footer">
     <div class="container">
       <div class="row">
         <div class="footer-links col-md-4">

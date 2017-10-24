@@ -339,7 +339,7 @@ section#contact {
 
 footer {
   padding: 25px 0;
-  text-align: center; 
+  text-align: center;
 }
   footer span.copyright {
     font-size: 90%;
@@ -841,7 +841,7 @@ td.text-right {
 /* This is styling for the doctor dashbaord */
 #wrapper-tabs{
   padding: 10px;
-  
+
 }
 
 /* end doctor */
@@ -855,6 +855,16 @@ td.text-right {
   color: grey;
 }
 
+#remove-img{
+  margin-top: .6em;
+  margin-bottom: .6em;
+}
+
+
+
+#medInput{
+  width:14%;
+}
 #tabs-doctor{
   margin: 20px 0 0 0;
 }
@@ -879,4 +889,8 @@ td.text-right {
 
 #form-sign-up{
   margin-top: 7em;
+}
+
+footer.padded-footer{
+  margin-top:9.1em;
 }
