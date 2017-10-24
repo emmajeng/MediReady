@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Doctor - Dashboard</title>
+  <title>Doctor - Dashboard</title>
 
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-    <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-  </head>
 
-  <body>
-    <div id="page-top">
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Auto complete JS -->
+  <script src="vendor/autocomplete/jquery.easy-autocomplete.min.js"></script>
+
+  <!-- Auto complete CSS -->
+  <link rel="stylesheet" href="vendor/autocomplete/easy-autocomplete.min.css">
+
+
+</head>
+
+<body>
+  <div id="page-top">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
@@ -51,91 +57,123 @@
         </div>
       </div>
     </nav>
-    </div>
+  </div>
 
   <!-- Doctor Dashboard content -->
-  
-      <!--Tabs for Patient Dashboard-->
-    <div class="dashboard-container">
-      <div id="tab-buttons">
-        <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active" >Make Prescription</button>
-        <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2" >Select Chemist</button>
-      </div>
+
+  <!-- Java script for auto complete -->
+  <!-- -->
+
+
+  <!--Tabs for Patient Dashboard-->
+  <div class="dashboard-container">
+    <div id="tab-buttons">
+      <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active">Make Prescription</button>
+      <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2">Select Chemist</button>
+    </div>
+    <div id="wrapper-tabs" style="padding: 12px;">
       <div id="tab-contents">
         <div class="tab-1 active">
           <h4>
-           <!-- new orders will show here -->
-           
+            <!-- new orders will show here -->
+
           </h4>
-          
-          <div id = "make_prescription">
-            
+
+          <div id="make_prescription">
+
             <!-- form method = "post" action = "submitting.php" -->
-            <form method = "post">
-              
-              <div class = "form-group fieldGroup">
-                
-                <div class = "input-group">
-                  
-                  <input type = "text" name = "medication[]" class = "form-control" placeholder = "Medication" />
-                  
-                  <input type = "text" name = "amount[]" class = "form-control" placeholder = "Amount" />
-                  
-                  <div class = "input-group-addon">
-                    
-                    <a href = "javascript:void(0)" class ="btn btn-success addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true">Add</span> </a> 
-                    
+            <form method="post">
+
+              <div class="form-group fieldGroup">
+
+                <div class="input-group">
+
+                  <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
+
+
+                  <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
+
+                  <div class="input-group-addon">
+
+                    <a href="javascript:void(0)" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true">Add</span> </a>
+
                   </div>
-                  
+
                 </div>
-                
+
               </div>
             </form>
             <!-- tell javascript to grab this -->
             <div class="form-group fieldGroupCopy" style="display: none;">
               <div class="input-group">
-                <input type="text" name="medication[]" class="form-control" placeholder="Medication"/>
-                <input type="text" name="amount[]" class="form-control" placeholder="Amount"/>
-              <div class="input-group-addon">
-                <a href="javascript:void(0)" class="btn btn-danger remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</a>
-              </div>
+                <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
+                <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
+                <div class="input-group-addon">
+                  <a href="javascript:void(0)" class="btn btn-danger btn-block remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</a>
+                </div>
               </div>
             </div>
-            
-            
+
+
           </div>
-        <div class="tab-2">
-          <h4>
-            Patient will select chemist here
-          </h4>
+          <div class="tab-2">
+            <h4>
+              hello world
+            </h4>
+            <div id="choose-chemist">
+
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    
+
     <script>
-      
-      $(document).ready(function(){
+      $(document).ready(function() {
         // limit
-        var max = 20;
-        
+        var max = 7;
+
         // add
-        $(".addMore").click(function(){
-          if($('body').find('.fieldGroup').length < max){
-            var htmlF = '<div class = "form-group fieldGroup">' + $(".fieldGroupCopy").html()+'</div>';
+        $(".addMore").click(function() {
+          if ($('body').find('.fieldGroup').length < max) {
+            var htmlF = '<div class = "form-group fieldGroup">' + $(".fieldGroupCopy").html() + '</div>';
             $('body').find('.fieldGroup:last').after(htmlF);
-          }else{
+          }
+          else {
             alert('Too many items! ' + max);
           }
         });
-        
+
         // remove
-        $('body').on("click",".remove",function(){
+        $('body').on("click", ".remove", function() {
           $(this).parents(".fieldGroup").remove();
         });
+
+        var options = {
+          url: "data/Auto-complete/medication/medication.xml",
+
+          dataType: "xml",
+          xmlElementName: "medication",
+
+          getValue: function(element) {
+            return $(element).find("name").text();
+          },
+
+          list: {
+            match: {
+              enabled: true
+            }
+          }
+        };
+        /* global $ */
+        $("#medInput").easyAutocomplete(options);
+
+
+
       });
-      
     </script>
-    
+  </div>
   <!-- Footer Section -->
   <footer id="footer">
     <div class="container">
@@ -183,24 +221,24 @@
     </div>
   </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Contact form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/agency.js"></script>
+  <!-- Contact form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
 
-    <!--Link to JS Tab file-->
-    <script language="javascript" type="text/javascript" src="js/tab.js"></script>
-  </body>
+  <!-- Custom scripts for this template -->
+  <script src="js/agency.js"></script>
+
+  <!--Link to JS Tab file-->
+  <script language="javascript" type="text/javascript" src="js/tab.js"></script>
+</body>
 
 </html>

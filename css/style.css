@@ -838,9 +838,12 @@ td.text-right {
 }
 
 /* This is styling for the doctor dashbaord */
+#wrapper-tabs{
+  padding: 10px;
+  
+}
 
-/* Style our doctor dashboard tabs */
-
+/* end doctor */
 #container-doctor{
   text-align: center;
 }

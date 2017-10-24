@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list-medication>
+	<medication>
+		<name>Paracetamol</name>
+	</medication>
+	<medication>
+		<name>Ibuprofen</name>
+	</medication>
+	<medication>
+		<name>Morphine</name>
+	</medication>
+	<medication>
+		<name>Panadol</name>
+	</medication>
+	<medication>
+		<name>Famotidine</name>
+	</medication>
+</list-medication>
