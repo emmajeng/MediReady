@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
   <head>
 
     <meta charset="utf-8">
@@ -22,10 +21,12 @@
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
 
-
   </head>
 
   <body>
+    <?php
+          include('lib/signUp.php');
+        ?>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
@@ -33,10 +34,10 @@
       </div>
     </nav>
 
-
+    
     <form id="form-sign-up" method="post">
       <div class="form-group">
-        <select>
+        <select name="user-type">
           <option value=0>Patient</option>
           <option value=1>Doctor</option>
           <option value=2>Chemist</option>
@@ -44,44 +45,48 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" class="form-control" id="patient_email">
+        <label for="patient_fname">First Name:</label>
+        <input type="text" class="form-control" name="patient_fname">
       </div>
       <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="patient_password">
+        <label for="patient_lname">Last Name:</label>
+        <input type="text" class="form-control" name="patient_lname">
       </div>
       <div class="form-group">
-        <label for="fn">First Name:</label>
-        <input type="text" class="form-control" id="patient_fname">
+        <label for="patient_email">Email address:</label>
+        <input type="email" class="form-control" name="patient_email">
       </div>
       <div class="form-group">
-        <label for="ln">Last Name:</label>
-        <input type="text" class="form-control" id="patient_lname">
+        <label for="patient_pwd">Password:</label>
+        <input type="password" class="form-control" name="patient_pwd">
       </div>
       <div class="form-group">
-        <label for="pnum">Phone Number:</label>
-        <input type="text" class="form-control" id="patient_patient">
+        <label for="patient_phone">Phone Number:</label>
+        <input type="text" class="form-control" name="patient_phone">
       </div>
       <div class="form-group">
-        <label for="adline1">Address Line One:</label>
-        <input type="text" class="form-control" id="patient_address_line_one">
+        <label for="patient_address_line_one">Address Line One:</label>
+        <input type="text" class="form-control" name="patient_address_line_one">
       </div>
       <div class="form-group">
-        <label for="adline2">Address Line Two:</label>
-        <input type="text" class="form-control" id="patient_address_line_two">
+        <label for="patient_address_line_two">Address Line Two:</label>
+        <input type="text" class="form-control" name="patient_address_line_two">
       </div>
       <div class="form-group">
-        <label for="pcity">City:</label>
-        <input type="text" class="form-control" id="patient_city">
+        <label for="patient_city">City:</label>
+        <input type="text" class="form-control" name="patient_city">
       </div>
       <div class="form-group">
-        <label for="pcounty">County:</label>
-        <input type="text" class="form-control" id="patient_county">
+        <label for="patient_county">County:</label>
+        <input type="text" class="form-control" name="patient_county">
       </div>
       <button type="submit" class="btn-signUp" name="btn-signUp">Submit</button>
     </form>
-        <?php
-          include('lib/signUp.php');
-        ?>
+    
+    <?php
+        if (isset($msg)) {
+          echo $msg;
+        }
+    ?>
   </body>
+</html>

@@ -12,5 +12,3 @@ $DBcon = new MySQLi($Host,$User,$Pass,$Name);
 
 ?>
 
-
-

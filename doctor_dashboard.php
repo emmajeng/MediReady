@@ -3,13 +3,13 @@
   // Will change so that it connects from config.php
   // Also Need to add require sign.php
   // database connection testing for now
+  
   $connectToMysql = mysqli_connect("localhost","root","","c9");
   
   //query
   $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
   
   // store result
-  
   $storedResult = mysqli_query($connectToMysql, $query);
 ?>
 

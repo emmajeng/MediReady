@@ -1,169 +1,212 @@
-<?php
+<?php 
 //start session
- require_once 'config.php';
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+require_once 'config.php';
 
 //if they click on the signup button
-if (isset($_POST['btn-signUp'])) {
-
-    //connects to DB
-    require_once 'config.php';
-    //get user type from drop down
+if (isset($_POST['btn-signUp'])) 
+{
+    
+    //taking in the user type dropdown through an array
     $user_types = array('Patient', 'Doctor', 'Chemist', 'Delivery Man');
-    $selected_key = $_POST['user_type'];
-    $selected_val = $user_types[$_POST['user_type']];
-    echo "hi";
-
-    //checking what user type in if statement
+    $selected_key = $_POST['user-type'];
+    $selected_val = $user_types[$_POST['user-type']];
     if($selected_val == 'Patient'){
+        
         //POST code for patient details
         $patient_fname  = strip_tags($_POST['patient_fname']);
         $patient_lname  = strip_tags($_POST['patient_lname']);
         $patient_email  = strip_tags($_POST['patient_email']);
+        $patient_pwd = strip_tags($_POST['patient_pwd']);
         $patient_phone  = strip_tags($_POST['patient_phone']);
         $patient_address_line_one  = strip_tags($_POST['patient_address_line_one']);
         $patient_address_line_two = strip_tags($_POST['patient_address_line_two']);
         $patient_city  = strip_tags($_POST['patient_city']);
         $patient_county  = strip_tags($_POST['patient_county']);
-        $patient_password = strip_tags($POST['patient_password']);
 
         //Sending the input to variables so it can be sent to the db
         $patient_fname  = $DBcon->real_escape_string($patient_fname);
         $patient_lname  = $DBcon->real_escape_string($patient_lname);
         $patient_email  = $DBcon->real_escape_string($patient_email);
+        $patient_pwd = $DBcon->real_escape_string($patient_pwd);
         $patient_phone  = $DBcon->real_escape_string($patient_phone);
         $patient_address_line_one  = $DBcon->real_escape_string($patient_address_line_one);
         $patient_address_line_two = $DBcon->real_escape_string($patient_address_line_two);
         $patient_city  = $DBcon->real_escape_string($patient_city);
         $patient_county = $DBcon->real_escape_string($patient_county);
-        $patient_password = $DBcon->real_escape_string($patient_password);
-
-        //loops through patient table and counts the emails matching
-        $check_email = $DBcon->query("SELECT patient_email FROM patient_table WHERE email='$patient_email'");
+        
+        
+        //setting a query to a variable to use
+        $check_email = $DBcon->query("SELECT patient_email FROM patient_table WHERE patient_email='$patient_email'");
+        //loops through the rows of the table to run the query to count the emails matching and setting to a counter
         $count       = $check_email->num_rows;
-        //if the the emails mathching is equal to 0
+        //if the the emails mathching counter is equal to 0 lets run query to add account
         if ($count == 0) {
-            //if email is not taken do insert query
-            $query = "INSERT INTO patient_table(patient_fname,patient_lname,patient_email,patient_phone,patient_address_line_one,patient_address_line_two,patient_city,patient_county,patient_password') VALUES('$patient_fname','$patient_lname','$patient_email','$patient_phone','$patient_address_line_one','$patient_address_line_two','$patient_city','$patient_county','$patient_password')";
-            if ($DBcon->query($query)) {
-                $msg = "successful patient";
-            }
-
-            else{
-                $msg = "unsuccessful patient";
-            }
+            //if email is not taken insert query
+            $query = "INSERT INTO patient_table( patient_fname, patient_lname, patient_email, patient_phone, patient_address_line_one, patient_address_line_two, patient_city, patient_county, patient_password ) 
+            
+            VALUES (
+                '$patient_fname',  '$patient_lname',  '$patient_email', '$patient_phone',  '$patient_address_line_one',  '$patient_address_line_two',  '$patient_city',  '$patient_county',  '$patient_pwd'
+            )";
+            //send query to DB
+            $DBcon->query($query);
+            //send out to user that their account was successfully created
+            $msg = "Successful registration";
         }
+        
         //else send error email already taken
         else{
-            //put code here
-            $msg = "email taken";
+            $msg = "Email is taken";
         }
     }
-
+    
+         
     else if($selected_val == 'Doctor'){
-
+        //If the doctor is selected
+            
         //POST code for doctor details
         $doctor_fname  = strip_tags($_POST['doctor_fname']);
         $doctor_lname  = strip_tags($_POST['doctor_lname']);
+        $doctor_email  = strip_tags($_POST['doctor_email']);
+        $doctor_password = strip_tags($_POST['doctor_password']);
+        $doctor_phone  = strip_tags($_POST['doctor_phone']);
         $doctor_address_line_one  = strip_tags($_POST['doctor_address_line_one']);
+        $doctor_address_line_two = strip_tags($_POST['doctor_address_line_two']);
         $doctor_city  = strip_tags($_POST['doctor_city']);
         $doctor_county  = strip_tags($_POST['doctor_county']);
-        $doctor_phone  = strip_tags($_POST['doctor_phone']);
-        $doctor_email  = strip_tags($_POST['doctor_email']);
-        $doctor_password = strip_tags($POST['doctor_password']);
-
+    
         //Sending the input to variables so it can be sent to the db
         $doctor_fname  = $DBcon->real_escape_string($doctor_fname);
         $doctor_lname  = $DBcon->real_escape_string($doctor_lname);
-        $doctor_address_line_one  = $DBcon->real_escape_string($doctor_address_line_one);
-        $doctor_city  = $DBcon->real_escape_string($doctor_city);
-        $doctor_county  = $DBcon->real_escape_string($doctor_county);
-        $doctor_phone = $DBcon->real_escape_string($doctor_phone);
         $doctor_email  = $DBcon->real_escape_string($doctor_email);
-        $doctor_password  = $DBcon->real_escape_string($doctor_password);
-
-        //loops through doctor table and counts the emails matching
-        $check_email = $DBcon->query("SELECT email FROM doctor_table WHERE email='$email'");
+        $doctor_password = $DBcon->real_escape_string($doctor_password); 
+        $doctor_phone  = $DBcon->real_escape_string($doctor_phone);
+        $doctor_address_line_one  = $DBcon->real_escape_string($doctor_address_line_one);
+        $doctor_address_line_two = $DBcon->real_escape_string($doctor_address_line_two);
+        $doctor_city  = $DBcon->real_escape_string($doctor_city);
+        $doctor_county = $DBcon->real_escape_string($doctor_county);
+        
+       
+        //setting a query to a variable to use
+        $check_email = $DBcon->query("SELECT doctor_email FROM doctor_table WHERE doctor_email='$doctor_email'");
+        //loops through the rows of the table to run the query to count the emails matching and setting to a counter
         $count       = $check_email->num_rows;
+        
         //if the the emails mathching is equal to 0
         if ($count == 0) {
-            //if email is not taken do insert query
+            //if email is not taken insert query
+            $query = "INSERT INTO doctor_table( doctor_fname, doctor_lname, doctor_address_line_one, doctor_address_line_two, doctor_city, doctor_county, doctor_phone, doctor_email, doctor_password ) 
+            
+            VALUES (
+                '$doctor_fname',  '$doctor_lname',  '$doctor_address_line_one', '$doctor_address_line_two',  '$doctor_city',  '$doctor_county',  '$doctor_phone',  '$doctor_email',  '$doctor_password'
+            )";
+            //send query to DB
+            $DBcon->query($query);
+            //send out to user that their account was successfully created
+            $msg = "Successful registration";
         }
         //else send error email already taken
         else{
-            //put code here
+            //If email is a match say this email has already been taking
+            $msg = "Email is taken";
         }
+               
     }
-
+    
     else if($selected_val == 'Chemist'){
-
+        //If the chemist is selected
+        $msg = "Chemist";
         //POST code for chemist details
         $chemist_store_name  = strip_tags($_POST['chemist_store_name']);
+        $chemist_email  = strip_tags($_POST['chemist_email']);
+        $chemist_password = strip_tags($_POST['chemist_password']);
+        $chemist_phone  = strip_tags($_POST['chemist_phone']);
         $chemist_address_line_one  = strip_tags($_POST['chemist_address_line_one']);
+        $chemist_address_line_two = strip_tags($_POST['chemist_address_line_two']);
         $chemist_city  = strip_tags($_POST['chemist_city']);
         $chemist_county  = strip_tags($_POST['chemist_county']);
-        $chemist_phone  = strip_tags($_POST['chemist_phone']);
-        $chemist_email  = strip_tags($_POST['chemist_email']);
-        $chemist_password = strip_tags($POST['chemist_password']);
 
         //Sending the input to variables so it can be sent to the db
         $chemist_store_name  = $DBcon->real_escape_string($chemist_store_name);
-        $chemist_address_line_one  = $DBcon->real_escape_string($chemist_address_line_one);
-        $chemist_city  = $DBcon->real_escape_string($chemist_city);
-        $chemist_county  = $DBcon->real_escape_string($chemist_county);
-        $chemist_phone  = $DBcon->real_escape_string($chemist_phone);
-        $chemist_phone = $DBcon->real_escape_string($chemist_phone);
+        $chemsit_email  = $DBcon->real_escape_string($chemsit_email);
         $chemist_password = $DBcon->real_escape_string($chemist_password);
-
-        //loops through chemist table and counts the emails matching
-        $check_email = $DBcon->query("SELECT email FROM chemist_table WHERE email='$email'");
+        $chemist_phone  = $DBcon->real_escape_string($chemsit_phone);
+        $chemist_address_line_one  = $DBcon->real_escape_string($chemsit_address_line_one);
+        $chemist_address_line_two = $DBcon->real_escape_string($chemsit_address_line_two);
+        $chemist_city  = $DBcon->real_escape_string($chemist_city);
+        $chemist_county = $DBcon->real_escape_string($chemist_county);
+        
+        //setting a query to a variable to use
+        $check_email = $DBcon->query("SELECT chemist_email FROM chemist_table WHERE chemist_email='$chemist_email'");
+        //loops through the rows of the table to run the query to count the emails matching and setting to a counter
         $count       = $check_email->num_rows;
         //if the the emails mathching is equal to 0
         if ($count == 0) {
-            //if email is not taken do insert query
+            //if email is not taken insert query
+            $query = "INSERT INTO chemist_table( chemist_store_name, chemist_email, chemist_phone, chemist_address_line_one, chemist_address_line_two, chemist_city, chemist_county, chemist_password ) 
+            
+            VALUES (
+                '$chemist_store_name',  '$chemist_email', '$chemist_phone', '$chemist_address_line_one', '$chemist_address_line_two',  '$chemist_city',  '$chemist_county', '$chemist_password', 
+            )";
+            //send query to DB
+            $DBcon->query($query);
+            //send out to user that their account was successfully created
+            $msg = "Successful registration";
+            
         }
         //else send error email already taken
         else{
-            //put code here
+            //If email is a match say this email has already been taking
+            $msg = "Email is taken";
         }
+            
     }
-
+    
     else if($selected_val == 'Delivery Man'){
-
-        //POST code for delivery man details
+        //If the driver is selected
+            
+        //POST code for deliveryman details
         $driver_fname  = strip_tags($_POST['driver_fname']);
         $driver_lname  = strip_tags($_POST['driver_lname']);
+        $driver_email = strip_tags($_POST['driver_email']);
+        $driver_password = strip_tags($_POST['driver_password']);
         $driver_address  = strip_tags($_POST['driver_address']);
         $driver_city  = strip_tags($_POST['driver_city']);
         $driver_county  = strip_tags($_POST['driver_county']);
-        $driver_password = strip_tags($POST['driver_password']);
-
+    
         //Sending the input to variables so it can be sent to the db
         $driver_fname  = $DBcon->real_escape_string($driver_fname);
         $driver_lname  = $DBcon->real_escape_string($driver_lname);
         $driver_address  = $DBcon->real_escape_string($driver_address);
         $driver_city  = $DBcon->real_escape_string($driver_city);
         $driver_county  = $DBcon->real_escape_string($driver_county);
-        $driver_password  = $DBcon->real_escape_string($driver_password);
-
-        //loops through driver table and counts the emails matching
-        $check_email = $DBcon->query("SELECT email FROM driver_table WHERE email='$email'");
+        $driver_password = $DBcon->real_escape_string($driver_password);
+        $driver_email = $DBcon->real_escape_string($driver_email);
+            
+        $check_email = $DBcon->query("SELECT driver_email FROM driver_table WHERE driver_email='$driver_email'");
         $count       = $check_email->num_rows;
-        //if the the emails mathching is equal to 0
+            
+        //if the the emails matching is equal to 0
         if ($count == 0) {
-            //if email is not taken do insert query
+            //if email is not taken insert query
+            $query = "INSERT INTO driver_table( driver_fname, driver_lname, driver_address, driver_city, driver_county, driver_password, driver_email) 
+            VALUES (
+                '$driver_fname',  '$driver_lname',  '$driver_address', '$driver_city',  '$driver_county',  '$driver_password', '$driver_email'
+            )";
+            //send query to DB  
+            $DBcon->query($query);
+            //send out to user that their account was successfully created
+            $msg = "Successful registration";
+                
         }
-        //else send error email already taken
+        //else send error that the email already taken
         else{
-            //put code here
-        }
+                    
+            //If email is a match say this email has already been taking
+            $msg = "Email is taken";
+        }           
     }
-
-    else{
-        //send out error message no user type selected
-    }
-
-    header('Location:../sign-up.php');
-
 }
-
 ?>

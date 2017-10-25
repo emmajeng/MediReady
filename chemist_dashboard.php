@@ -138,7 +138,7 @@
 
             if ($result->num_rows > 0)
             {
-                echo "<table class="table-fill"><tr><th>ID</th><th>Name</th></tr>";
+                echo '<table class="table-fill"><tr><th>ID</th><th>Name</th></tr>';
 
                 // output data of each row
                 while($row = $result->fetch_assoc())
