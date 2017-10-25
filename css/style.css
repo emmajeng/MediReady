@@ -18,7 +18,43 @@ a {
     color: #84FFFF;
     text-decoration: none; }
 
+.helpTabs 
+{
+  font-size: 18px;
+  font-weight: 700;
+  padding: 20px 40px;
+  border-radius: 3px;
+  color: white;
+  border-color: #4DD0E1;
+  background-color: #4DD0E1;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase; 
+  
+}
 
+  .helpTabs:hover 
+  {
+    color: white;
+    border-color: #18FFFF;
+    background-color: #18FFFF; 
+    
+  }
+
+    .helpTabs.active.focus, 
+    .helpTabs.active:focus, 
+    .helpTabs.active:hover, 
+    .helpTabs:active.focus, 
+    .helpTabs:active:focus, 
+    .helpTabs:active:hover,
+    .open > .helpTabs.dropdown-toggle.focus,
+    .open > .helpTabs.dropdown-toggle:focus,
+    .open > .helpTabs.dropdown-toggle:hover 
+    {
+      color: #4DD0E1;
+      border-color: #18FFFF;
+      background-color: #F5F5F5; 
+      
+    }
 
 h1,
 h2,
@@ -893,4 +929,50 @@ td.text-right {
 
 footer.padded-footer{
   margin-top:9.1em;
+}
+
+
+
+/* Help page style elements */ 
+
+
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 27px;
+    width: 25%;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 100px;
+}
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
 }
