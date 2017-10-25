@@ -54,10 +54,10 @@
         <div class="row">
             <div class="col-md-12">
                 <form>
-                    <input type="text" name="search" placeholder="Search..">
+                    <input type="text" id="search" name="search" placeholder="Search..">
                 </form>
             </div>
-                
+
             <div class="col-lg-12 text-center">
                 <table class="table-fill">
                     <thead>
@@ -116,42 +116,42 @@
 
 <section id="chemist2">
     <div class="container">
-        
+
         <?php
             $servername = '127.0.0.1';
             $username = 'root';
             $password = "";
             $dname = "c9";
             $dbport = 3306;
-            
+
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
-            
+
             // Check connection
-            if ($conn->connect_error) 
+            if ($conn->connect_error)
             {
                 die("Connection failed: " . $conn->connect_error);
-            } 
-            
+            }
+
             $sql = "SELECT patient_id, patient_fname, patient_fname, FROM patient_table";
             $result = $conn->query($sql);
-            
-            if ($result->num_rows > 0) 
+
+            if ($result->num_rows > 0)
             {
                 echo "<table class="table-fill"><tr><th>ID</th><th>Name</th></tr>";
-                
+
                 // output data of each row
-                while($row = $result->fetch_assoc()) 
+                while($row = $result->fetch_assoc())
                 {
                     echo "<tr><td>" . $row["patient_id"]. "</td><td>" . $row["patient_fname"]. " " . $row["patient_fname"]. "</td></tr>";
                 }
                 echo "</table>";
-            } 
-            else 
+            }
+            else
             {
                 echo "0 results";
             }
-            
+
             $conn->close();
             ?>
     </div>
