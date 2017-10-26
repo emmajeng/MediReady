@@ -17,10 +17,10 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-    
+
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
-    
+
 
 
   </head>
@@ -35,8 +35,8 @@
         <a class="" href="index.html"><img height=35 width=210 src="img/MediReady.png" /></a>
       </div>
     </nav>
-      
-    <form id="form-sign-up" method="post">
+
+
       <div class="form-group" onchange="formChange()">
         <select name="user-type" id="user-type">
           <option value=0>Please choose user type</option>
@@ -46,7 +46,8 @@
           <option value=4>Delivery Man</option>
         </select>
       </div>
-      
+
+    <form id="patient-sign-up" method="post">
       <!--Patient Sign Up Section-->
       <h3>Patient</h3>
       <div class="form-group">
@@ -85,8 +86,10 @@
           <label for="patient_county">County:</label>
           <input type="text" class="form-control" name="patient_county" id="patient_county">
         </div>
-        
+        <button type="submit" class="patient-signUp" name="patient-signUp">Submit</button>
+      </form>
         <!--Doctor Sign Up Section-->
+      <form id="doctor-sign-up" method="post">
         <h3>Doctor</h3>
           <div class="form-group">
           <label for="doctor_fname">First Name:</label>
@@ -124,8 +127,10 @@
           <label for="doctor_county">County:</label>
           <input type="text" class="form-control" name="doctor_county" id="doctor_county">
         </div>
-        
-        
+        <button type="submit" class="doctor-signUp" name="doctor-signUp">Submit</button>
+      </form>
+
+      <form id="chemist-sign-up" method="post">
         <!--Chemist Sign Up Section-->
         <h3>Chemist</h3>
         <div class="form-group">
@@ -160,7 +165,8 @@
           <label for="chemist_county">County:</label>
           <input type="text" class="form-control" name="chemist_county" id="chemist_county">
         </div>
-        
+        <button type="submit" class="chemist-signUp" name="chemist-signUp">Submit</button>
+      </form>
         <!--Driver Sign Up Section-->
         <h3>Driver</h3>
         <div class="form-group">
@@ -199,27 +205,28 @@
           <label for="driver_county">County:</label>
           <input type="text" class="form-control" name="driver_county" id="driver_county">
         </div>
-        
-        <!--Button to send sign up-->
-        <button type="submit" class="btn-signUp" name="btn-signUp">Submit</button>
+        <button type="submit" class="driver-signUp" name="driver-signUp">Submit</button>
       </form>
-      
+
+        <!--Button to send sign up-->
+        
+
 
       <script>
       /*
-      TO-DO : 
+      TO-DO :
         Move this code to a seperate JS file
       */
-            
+
       function formChange(){
-        
+
         //get user type
         var getDropdown = document.getElementById('user-type');
         //get drop down?
         var optValue = getDropdown.options[getDropdown.selectedIndex].text;
-        
+
         if(optValue == "Patient"){
-       
+
           // Spit out code for patient sign up
           document.getElementById("patient_fname").required = true;
           document.getElementById("patient_lname").required = true;
@@ -230,7 +237,7 @@
           document.getElementById("patient_city").required = true;
           document.getElementById("patient_county").required = true;
           document.getElementById("patient_password").required = true;
-          
+
 
           document.getElementById("doctor_fname").required = false;
           document.getElementById("doctor_lname").required = false;
@@ -241,7 +248,7 @@
           document.getElementById("doctor_city").required = false;
           document.getElementById("doctor_county").required = false;
           document.getElementById("doctor_password").required = false;
-      
+
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
@@ -249,8 +256,8 @@
           document.getElementById("chemist_address_line_two").required = false;
           document.getElementById("chemist_city").required = false;
           document.getElementById("chemist_county").required = false;
-          document.getElementById("chemist_password").required = false;   
-        
+          document.getElementById("chemist_password").required = false;
+
           document.getElementById("driver_fname").required = false;
           document.getElementById("driver_fname").required = false;
           document.getElementById("driver_email").required = false;
@@ -259,10 +266,10 @@
           document.getElementById("driver_address_line_two").required = false;
           document.getElementById("driver_city").required = false;
           document.getElementById("driver_county").required = false;
-          document.getElementById("driver_password").required = false;    
-          
+          document.getElementById("driver_password").required = false;
+
         }
-        
+
         else if(optValue == "Doctor"){
           // Spit out code for doctor sign up
           document.getElementById("doctor_fname").required = true;
@@ -274,7 +281,7 @@
           document.getElementById("doctor_city").required = true;
           document.getElementById("doctor_county").required = true;
           document.getElementById("doctor_password").required = true;
-          
+
           document.getElementById("patient_fname").required = false;
           document.getElementById("patient_lname").required = false;
           document.getElementById("patient_email").required = false;
@@ -284,7 +291,7 @@
           document.getElementById("patient_city").required = false;
           document.getElementById("patient_county").required = false;
           document.getElementById("patient_password").required = false;
-      
+
           document.getElementById("driver_fname").required = false;
           document.getElementById("driver_fname").required = false;
           document.getElementById("driver_email").required = false;
@@ -293,8 +300,8 @@
           document.getElementById("driver_address_line_two").required = false;
           document.getElementById("driver_city").required = false;
           document.getElementById("driver_county").required = false;
-          document.getElementById("driver_password").required = false;    
-       
+          document.getElementById("driver_password").required = false;
+
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
@@ -302,8 +309,8 @@
           document.getElementById("chemist_address_line_two").required = false;
           document.getElementById("chemist_city").required = false;
           document.getElementById("chemist_county").required = false;
-          document.getElementById("chemist_password").required = false;   
-  
+          document.getElementById("chemist_password").required = false;
+
         }
 
         else if(optValue == "Delivery Man"){
@@ -317,7 +324,7 @@
           document.getElementById("driver_city").required = true;
           document.getElementById("driver_county").required = true;
           document.getElementById("driver_password").required = true;
-          
+
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
@@ -326,7 +333,7 @@
           document.getElementById("chemist_city").required = false;
           document.getElementById("chemist_county").required = false;
           document.getElementById("chemist_password").required = false;
-          
+
           document.getElementById("patient_fname").required = false;
           document.getElementById("patient_lname").required = false;
           document.getElementById("patient_email").required = false;
@@ -336,7 +343,7 @@
           document.getElementById("patient_city").required = false;
           document.getElementById("patient_county").required = false;
           document.getElementById("patient_password").required = false;
-          
+
           document.getElementById("doctor_fname").required = false;
           document.getElementById("doctor_lname").required = false;
           document.getElementById("doctor_email").required = false;
@@ -357,7 +364,7 @@
           document.getElementById("chemist_city").required = true;
           document.getElementById("chemist_county").required = true;
           document.getElementById("chemist_password").required = true;
-          
+
           document.getElementById("driver_fname").required = false;
           document.getElementById("driver_lname").required = false;
           document.getElementById("driver_email").required = false;
@@ -367,7 +374,7 @@
           document.getElementById("driver_city").required = false;
           document.getElementById("driver_county").required = false;
           document.getElementById("driver_password").required = false;
-          
+
           document.getElementById("patient_fname").required = false;
           document.getElementById("patient_lname").required = false;
           document.getElementById("patient_email").required = false;
@@ -377,7 +384,7 @@
           document.getElementById("patient_city").required = false;
           document.getElementById("patient_county").required = false;
           document.getElementById("patient_password").required = false;
-          
+
           document.getElementById("doctor_fname").required = false;
           document.getElementById("doctor_lname").required = false;
           document.getElementById("doctor_email").required = false;
@@ -387,15 +394,15 @@
           document.getElementById("doctor_city").required = false;
           document.getElementById("doctor_county").required = false;
           document.getElementById("doctor_password").required = false;
-          
+
         }
-        
+
         else{
           //no required fields
         }
-          
+
         //console.log(optValue);
-        
+
       }
       </script>
     <?php
