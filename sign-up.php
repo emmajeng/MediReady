@@ -37,7 +37,7 @@
     </nav>
 
 
-      <div class="form-group" onchange="formChange()">
+      <div id="user-dropdown" class="form-group" onchange="formChange()">
         <select name="user-type" id="user-type">
           <option value=0>Please choose user type</option>
           <option value=1>Patient</option>
@@ -167,6 +167,8 @@
         </div>
         <button type="submit" class="chemist-signUp" name="chemist-signUp">Submit</button>
       </form>
+      
+      <form id="driver-sign-up" method="post">
         <!--Driver Sign Up Section-->
         <h3>Driver</h3>
         <div class="form-group">

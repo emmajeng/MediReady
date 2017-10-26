@@ -56,7 +56,7 @@ if (isset($_POST['patient-signUp']))
 
 }
 
-if (isset($_POST['doctor-signUp']))
+else if (isset($_POST['doctor-signUp']))
 {
 
   //POST code for doctor details
@@ -108,7 +108,7 @@ if (isset($_POST['doctor-signUp']))
 
 }
 
-if (isset($_POST['chemist-signUp']))
+else if (isset($_POST['chemist-signUp']))
 {
 
   $chemist_store_name  = strip_tags($_POST['chemist_store_name']);
@@ -137,10 +137,10 @@ if (isset($_POST['chemist-signUp']))
   //if the the emails mathching is equal to 0
   if ($count == 0) {
       //if email is not taken insert query
-      $query = "INSERT INTO chemist_table( chemist_store_name, chemist_email, chemist_phone, chemist_address_line_one, chemist_address_line_two, chemist_city, chemist_county, chemist_password )
+      $query = "INSERT INTO chemist_table( chemist_store_name, chemist_address_line_one, chemist_address_line_two, chemist_city, chemist_county, chemist_phone, chemist_email, chemist_password )
 
       VALUES (
-          '$chemist_store_name',  '$chemist_email', '$chemist_phone', '$chemist_address_line_one', '$chemist_address_line_two',  '$chemist_city',  '$chemist_county', '$chemist_password',
+          '$chemist_store_name',  '$chemist_address_line_one', '$chemist_address_line_two', '$chemist_city',  '$chemist_city', '$chemist_county',  '$chemist_phone', '$chemist_password',
       )";
       //send query to DB
       $DBcon->query($query);
@@ -157,24 +157,27 @@ if (isset($_POST['chemist-signUp']))
 
 }
 
-if (isset($_POST['driver-signUp']))
+else if (isset($_POST['driver-signUp']))
 {
 
   $driver_fname  = strip_tags($_POST['driver_fname']);
   $driver_lname  = strip_tags($_POST['driver_lname']);
   $driver_email = strip_tags($_POST['driver_email']);
-  $driver_password = strip_tags($_POST['driver_password']);
+  $driver_password = strip_tags($_POST['driver_pwd']);
   $driver_address  = strip_tags($_POST['driver_address']);
   $driver_city  = strip_tags($_POST['driver_city']);
   $driver_county  = strip_tags($_POST['driver_county']);
+  $driver_password = strip_tags($_POST['driver_phone']);
 
   //Sending the input to variables so it can be sent to the db
   $driver_fname  = $DBcon->real_escape_string($driver_fname);
   $driver_lname  = $DBcon->real_escape_string($driver_lname);
-  $driver_address  = $DBcon->real_escape_string($driver_address);
+  $driver_address_line_one  = $DBcon->real_escape_string($driver_address_line_one);
+  $driver_address_line_two  = $DBcon->real_escape_string($driver_address_line_two);
   $driver_city  = $DBcon->real_escape_string($driver_city);
   $driver_county  = $DBcon->real_escape_string($driver_county);
   $driver_password = $DBcon->real_escape_string($driver_password);
+  $driver_phone = $DBcon->real_escape_string($driver_phone);
   $driver_email = $DBcon->real_escape_string($driver_email);
 
   $check_email = $DBcon->query("SELECT driver_email FROM driver_table WHERE driver_email='$driver_email'");
@@ -183,9 +186,9 @@ if (isset($_POST['driver-signUp']))
   //if the the emails matching is equal to 0
   if ($count == 0) {
       //if email is not taken insert query
-      $query = "INSERT INTO driver_table( driver_fname, driver_lname, driver_address, driver_city, driver_county, driver_password, driver_email)
+      $query = "INSERT INTO driver_table( driver_fname, driver_lname, driver_address_line_one, driver_address_line_two, driver_city, driver_county, driver_email, driver_phone, driver_password)
       VALUES (
-          '$driver_fname',  '$driver_lname',  '$driver_address', '$driver_city',  '$driver_county',  '$driver_password', '$driver_email'
+          '$driver_fname',  '$driver_lname',  '$driver_address_line_one', '$driver_address_line_two', '$driver_city',  '$driver_county', '$driver_email', '$driver_phone', '$driver_password'
       )";
       //send query to DB
       $DBcon->query($query);
@@ -201,4 +204,9 @@ if (isset($_POST['driver-signUp']))
   }
 
 }
+
+else{
+  $msg = "please select User Type";
+}
+
 ?>
