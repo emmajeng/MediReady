@@ -3,12 +3,12 @@
   // Will change so that it connects from config.php
   // Also Need to add require sign.php
   // database connection testing for now
-  
+
   $connectToMysql = mysqli_connect("localhost","root","","c9");
-  
+
   //query
   $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
-  
+
   // store result
   $storedResult = mysqli_query($connectToMysql, $query);
 ?>
@@ -46,7 +46,7 @@
 
   <!-- Auto complete CSS -->
   <link rel="stylesheet" href="vendor/autocomplete/easy-autocomplete.min.css">
-  
+
   <!-- Bootgrid -->
   <script src="vendor/bootgrid/jquery.bootgrid.min.js"></script>
   <link rel="stylesheet" href="vendor/bootgrid/jquery.bootgrid.css" type="text/css" />
@@ -103,7 +103,7 @@
 
                   <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
                   <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
-          
+
                   <div class="input-group-addon">
                     <a href="javascript:void(0)" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true"><img height=25 width=25 src="img/plus.png" /></span> </a>
                   </div>
@@ -128,39 +128,39 @@
           <h4>
           </h4>
           <div id="choose-client">
-            
-            
+
+
             <!-- Make table that pulls from database -->
-            
+
             <div class = "table-responsive">
-              
+
               <table id = "patient_table" class="table table-striped table-bordered">
                  <thead>
                    <tr>
                      <!-- leave empty for now -->
 
                    </tr>
-    
+
                  </thead>
                  <tbody>
-                 <?php 
- 
+                 <?php
+
                   while($row = mysqli_fetch_array($storedResult))
                   {
 
                     echo '
-                    <tr> 
+                    <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
                       <td><button type="button" class="btn btn-success">Select</button></td>
                     </tr>
-                    
+
                     ';
                   }
                  ?>
                  </tbody>
               </table>
-              
+
             </div>
           </div>
         </div>
