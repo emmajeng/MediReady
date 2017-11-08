@@ -152,7 +152,7 @@
                     <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" class="btn btn-success">Select</button></td>
+                      <td><button type="button" class="btn btn-outline-success">Select</button></td>
                     </tr>
 
                     ';
