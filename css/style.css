@@ -892,3 +892,17 @@ td.text-right {
   margin-top: 7em;
 }
 
+/* modal */
+.modal-body{
+  background-color: #F5F5F5;
+}
+.modal-header{
+  background-color: #222222;
+}
+button.close{
+  outline: none;
+  color: #ffffff;
+}
+button.close:hover{
+  color: #4DD0E1;
+}

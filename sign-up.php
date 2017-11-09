@@ -150,12 +150,12 @@
           <input type="text" class="form-control" name="chemist_phone" id="chemist_phone">
         </div>
         <div class="form-group">
-          <label for="chemist_address_line_one">Address Line One:</label>
-          <input type="text" class="form-control" name="chemist_address_line_one" id="chemist_address_line_one">
+          <label for="chemist_al1">Address Line One:</label>
+          <input type="text" class="form-control" name="chemist_al1" id="chemist_al1">
         </div>
         <div class="form-group">
-          <label for="chemist_address_line_two">Address Line Two:</label>
-          <input type="text" class="form-control" name="chemist_address_line_two" id="chemist_address_line_two">
+          <label for="chemist_al2">Address Line Two:</label>
+          <input type="text" class="form-control" name="chemist_al2" id="chemist_al2">
         </div>
         <div class="form-group">
           <label for="chemist_city">City:</label>
@@ -254,8 +254,8 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("chemist_address_line_one").required = false;
-          document.getElementById("chemist_address_line_two").required = false;
+          document.getElementById("chemist_al1").required = false;
+          document.getElementById("chemist_al2").required = false;
           document.getElementById("chemist_city").required = false;
           document.getElementById("chemist_county").required = false;
           document.getElementById("chemist_password").required = false;
@@ -307,8 +307,8 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("chemist_address_line_one").required = false;
-          document.getElementById("chemist_address_line_two").required = false;
+          document.getElementById("chemist_al1").required = false;
+          document.getElementById("chemist_al2").required = false;
           document.getElementById("chemist_city").required = false;
           document.getElementById("chemist_county").required = false;
           document.getElementById("chemist_password").required = false;
@@ -330,8 +330,8 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("chemist_address_line_one").required = false;
-          document.getElementById("chemist_address_line_two").required = false;
+          document.getElementById("chemist_al1").required = false;
+          document.getElementById("chemist_al2").required = false;
           document.getElementById("chemist_city").required = false;
           document.getElementById("chemist_county").required = false;
           document.getElementById("chemist_password").required = false;
@@ -361,8 +361,8 @@
           document.getElementById("chemist_store_name").required = true;
           document.getElementById("chemist_email").required = true;
           document.getElementById("chemist_phone").required = true;
-          document.getElementById("chemist_address_line_one").required = true;
-          document.getElementById("chemist_address_line_two").required = true;
+          document.getElementById("chemist_al1").required = true;
+          document.getElementById("chemist_al2").required = true;
           document.getElementById("chemist_city").required = true;
           document.getElementById("chemist_county").required = true;
           document.getElementById("chemist_password").required = true;

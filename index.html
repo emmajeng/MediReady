@@ -20,10 +20,15 @@
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
+  
 
 </head>
 
 <body id="page-top">
+  
+  <script>
+    
+  </script>
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -38,13 +43,47 @@
       <div class="intro-text">
         <div class="intro-lead-in">Get Started with MediReady</div>
         <div class="intro-heading">Fast, Simple, Reliable</div>
-        <button class="btn btn-xl btn-mrg">Sign In</button>
+        <button class="btn btn-xl btn-mrg" data-toggle="modal" data-target="#modal">Sign In</button>
         <a href="/../sign-up.php">
         <button class="btn btn-xl btn-mrg">Sign Up</button>
+        
         </a>
       </div>
     </div>
   </header>
+  
+  <!-- modal -->
+  <div class="modal fade" id="modal" role="dialog">
+    
+    <div class = "modal-dialog">
+      
+      <!-- content of modal -->
+      <div class= "modal-content">
+        <div class = "modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2>Log in</h2>
+        </div>
+        <div class="modal-body">
+	        <form class="form-signin" action="" method="">
+	          <div class = "input-group">
+              <input type="text" class="form-control" placeholder="Email" required autofocus>
+            </div>
+            <div class="input-group">
+              <input type="password" class="form-control" placeholder="Password" required>
+            </div>
+          </form>          
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
+
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  
+ 
 
   <!-- About Section -->
   <section id="about-section">
@@ -224,6 +263,8 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/agency.js"></script>
+  
+
 
 </body>
 
