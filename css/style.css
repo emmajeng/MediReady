@@ -904,5 +904,23 @@ button.close{
   color: #ffffff;
 }
 button.close:hover{
-  color: #4DD0E1;
+  color: #84FFFF;
+}
+.btn-block{
+  background-color: #4DD0E1;
+  color: white;
+}
+.btn-block:hover{
+  background-color: #84FFFF;
+}
+.modal-footer{
+  background-color: #F5F5F5;
+}
+.modal-dialog{
+    vertical-align: middle;
+    margin-top: 16em;
+
+}
+.modal-grouping{
+  margin-top: 1em;
 }
