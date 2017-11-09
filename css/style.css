@@ -413,7 +413,8 @@ ul.social-buttons {
     .open > .btn-xl.dropdown-toggle:hover {
       color: #4DD0E1;
       border-color: #18FFFF;
-      background-color: #F5F5F5; }
+      background-color: #F5F5F5;
+    }
 
 
     #about-section{
@@ -909,6 +910,8 @@ button.close:hover{
 .btn-block{
   background-color: #4DD0E1;
   color: white;
+  outline: none;
+
 }
 .btn-block:hover{
   background-color: #84FFFF;
@@ -924,3 +927,9 @@ button.close:hover{
 .modal-grouping{
   margin-top: 1em;
 }
+
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
