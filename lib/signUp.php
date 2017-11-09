@@ -115,8 +115,8 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_email  = strip_tags($_POST['chemist_email']);
   $chemist_password = strip_tags($_POST['chemist_password']);
   $chemist_phone  = strip_tags($_POST['chemist_phone']);
-  $chemist_address_line_one  = strip_tags($_POST['chemist_address_line_one']);
-  $chemist_address_line_two = strip_tags($_POST['chemist_address_line_two']);
+  $chemist_al1  = strip_tags($_POST['chemist_al1']);
+  $chemist_al2 = strip_tags($_POST['chemist_al2']);
   $chemist_city  = strip_tags($_POST['chemist_city']);
   $chemist_county  = strip_tags($_POST['chemist_county']);
 
@@ -124,9 +124,9 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_store_name  = $DBcon->real_escape_string($chemist_store_name);
   $chemsit_email  = $DBcon->real_escape_string($chemsit_email);
   $chemist_password = $DBcon->real_escape_string($chemist_password);
-  $chemist_phone  = $DBcon->real_escape_string($chemsit_phone);
-  $chemist_address_line_one  = $DBcon->real_escape_string($chemsit_address_line_one);
-  $chemist_address_line_two = $DBcon->real_escape_string($chemsit_address_line_two);
+  $chemist_phone  = $DBcon->real_escape_string($chemist_phone);
+  $chemist_al1  = $DBcon->real_escape_string($chemist_al1);
+  $chemist_al2 = $DBcon->real_escape_string($chemist_al2);
   $chemist_city  = $DBcon->real_escape_string($chemist_city);
   $chemist_county = $DBcon->real_escape_string($chemist_county);
 
@@ -140,7 +140,7 @@ else if (isset($_POST['chemist-signUp']))
       $query = "INSERT INTO chemist_table( chemist_store_name, chemist_address_line_one, chemist_address_line_two, chemist_city, chemist_county, chemist_phone, chemist_email, chemist_password )
 
       VALUES (
-          '$chemist_store_name',  '$chemist_address_line_one', '$chemist_address_line_two', '$chemist_city',  '$chemist_city', '$chemist_county',  '$chemist_phone', '$chemist_password',
+          '$chemist_store_name',  '$chemist_al1', '$chemist_al2', '$chemist_city', '$chemist_county',  '$chemist_phone', '$chemist_email', '$chemist_password'
       )";
       //send query to DB
       $DBcon->query($query);
