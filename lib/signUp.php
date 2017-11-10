@@ -206,7 +206,6 @@ else if (isset($_POST['driver-signUp']))
 }
 
 else{
-  $msg = "please select User Type";
 }
 
 ?>
