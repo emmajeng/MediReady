@@ -888,9 +888,59 @@ td.text-right {
   display: block;
 }
 
+/* Form Sign Up*/
 
 #form-sign-up, #user-dropdown{
   margin-top: 7em;
+}
+
+#user-dropdown{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#user-type{
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
+}
+
+.reg-form{
+  display: none;
+  width:60%;
+  margin: 0 auto;
+}
+
+.reg-form.form-group{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h3.form-title{
+  color:#4DD0E1;
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
+  margin-bottom: 1em;
+}
+
+.chemist-signUp, .doctor-signUp, .driver-signUp, .patient-signUp{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0.5em;
+  width: 30%;
+  color:white;
+  background-color: #4DD0E1;
+  border:none;
+  font-size:20px;
+  outline:none;
+}
+
+.chemist-signUp:hover, .doctor-signUp:hover, .driver-signUp:hover, .patient-signUp:hover{
+  background-color: #84FFFF;
 }
 
 /* modal */
