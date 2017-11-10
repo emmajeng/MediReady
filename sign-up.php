@@ -47,9 +47,9 @@
         </select>
       </div>
 
-    <form id="patient-sign-up" method="post">
+    <form id="patient-sign-up" class="reg-form" method="post">
       <!--Patient Sign Up Section-->
-      <h3>Patient</h3>
+      <h3 class="form-title">Patient</h3>
       <div class="form-group">
           <label for="patient_fname">First Name:</label>
           <input type="text" class="form-control" name="patient_fname" id="patient_fname">
@@ -89,8 +89,8 @@
         <button type="submit" class="patient-signUp" name="patient-signUp">Submit</button>
       </form>
         <!--Doctor Sign Up Section-->
-      <form id="doctor-sign-up" method="post">
-        <h3>Doctor</h3>
+      <form id="doctor-sign-up" class="reg-form" method="post">
+        <h3 class="form-title">Doctor</h3>
           <div class="form-group">
           <label for="doctor_fname">First Name:</label>
           <input type="text" class="form-control" name="doctor_fname" id="doctor_fname">
@@ -130,9 +130,9 @@
         <button type="submit" class="doctor-signUp" name="doctor-signUp">Submit</button>
       </form>
 
-      <form id="chemist-sign-up" method="post">
+      <form id="chemist-sign-up" class="reg-form" method="post">
         <!--Chemist Sign Up Section-->
-        <h3>Chemist</h3>
+        <h3 class="form-title">Chemist</h3>
         <div class="form-group">
           <label for="chemist_store_name">Store Name:</label>
           <input type="text" class="form-control" name="chemist_store_name" id="chemist_store_name">
@@ -168,9 +168,9 @@
         <button type="submit" class="chemist-signUp" name="chemist-signUp">Submit</button>
       </form>
       
-      <form id="driver-sign-up" method="post">
+      <form id="driver-sign-up" class="reg-form" method="post">
         <!--Driver Sign Up Section-->
-        <h3>Driver</h3>
+        <h3 class="form-title">Driver</h3>
         <div class="form-group">
           <label for="driver_fname">First Name:</label>
           <input type="text" class="form-control" name="driver_fname" id="driver_fname">
@@ -209,7 +209,6 @@
         </div>
         <button type="submit" class="driver-signUp" name="driver-signUp">Submit</button>
       </form>
-
         <!--Button to send sign up-->
         
 
@@ -269,7 +268,12 @@
           document.getElementById("driver_city").required = false;
           document.getElementById("driver_county").required = false;
           document.getElementById("driver_password").required = false;
-
+          
+          document.getElementById("patient-sign-up").style.display = 'block';
+          document.getElementById("chemist-sign-up").style.display = 'none';
+          document.getElementById("doctor-sign-up").style.display = 'none';
+          document.getElementById("driver-sign-up").style.display = 'none';
+          
         }
 
         else if(optValue == "Doctor"){
@@ -312,6 +316,11 @@
           document.getElementById("chemist_city").required = false;
           document.getElementById("chemist_county").required = false;
           document.getElementById("chemist_password").required = false;
+          
+          document.getElementById("patient-sign-up").style.display = 'none';
+          document.getElementById("chemist-sign-up").style.display = 'none';
+          document.getElementById("doctor-sign-up").style.display = 'block';
+          document.getElementById("driver-sign-up").style.display = 'none';
 
         }
 
@@ -355,6 +364,11 @@
           document.getElementById("doctor_city").required = false;
           document.getElementById("doctor_county").required = false;
           document.getElementById("doctor_password").required = false;
+          
+          document.getElementById("patient-sign-up").style.display = 'none';
+          document.getElementById("chemist-sign-up").style.display = 'none';
+          document.getElementById("doctor-sign-up").style.display = 'none';
+          document.getElementById("driver-sign-up").style.display = 'block';
         }
         else if(optValue == "Chemist"){
           // Spit out code for chemist sign up
@@ -396,6 +410,11 @@
           document.getElementById("doctor_city").required = false;
           document.getElementById("doctor_county").required = false;
           document.getElementById("doctor_password").required = false;
+          
+          document.getElementById("patient-sign-up").style.display = 'none';
+          document.getElementById("chemist-sign-up").style.display = 'block';
+          document.getElementById("doctor-sign-up").style.display = 'none';
+          document.getElementById("driver-sign-up").style.display = 'none';
 
         }
 
