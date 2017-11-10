@@ -1,7 +1,7 @@
 <?php 
 /* Main page with two forms: sign up and log in */
-  require 'lib/config.php';
-  session_start();
+    require ('lib/config.php');
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -30,17 +30,20 @@
   
   
   <?php 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-  {
-      if (isset($_POST['signin'])) 
-      { 
-        //user logging in
-        require 'lib/signIn.php';
-      }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+{
+    if (isset($_POST['signin'])) 
+    { 
+      //user logging in
+      require 'lib/signin.php';
+    }
+    elseif (isset($_POST['register'])) { //user registering
+        
+        header("location: sign-up.php");
+        
+    }
 }
 ?>
-
-
 
 
 
@@ -82,29 +85,32 @@
       <div class= "modal-content">
         <div class = "modal-header">
           <a class="" href="index.html"><img height=35 width=210 src="img/MediReady.png" /></a>
-
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+        
         <div class="modal-body">
-	        <form class="form-signin" action="" method="">
+	        <form class="form-signin" action="" method="post">
+	          
 	          <div class = "modal-grouping">
-              <input type="text" class="form-control" id="signin_email" placeholder="Email*" required autofocus>
+              <input type="email" class="form-control" name="signin_email" placeholder="Email*" required autofocus>
             </div>
+            
             <div class="modal-grouping">
-              <input type="password" class="form-control" id="signin_password" placeholder="Password*" required>
+              <input type="password" class="form-control" name="signin_password" placeholder="Password*" required>
             </div>
+            
+            <p class="forgot"><a href="forgotpassword.php">Forgot Password?</a></p>
+            
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-lg btn-default btn-block" name="signin" value="Sign In" />
+            </div>
+            
           </form>       
-          <p class="forgot"><a href="forgotpassword.php">Forgot Password?</a></p>
         </div>
-        <div class="modal-footer">
-          <input type="submit" class="btn btn-lg btn-default btn-block" name="signin" id="signin_btn" value="Sign In" />
-        </div>
-      </div>
-      
+        
     </div>
-    
   </div>
-  
+</div>
  
 
   <!-- About Section -->
