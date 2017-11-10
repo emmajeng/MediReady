@@ -1,3 +1,19 @@
+<?php
+/* Displays user information and some useful messages */
+session_start();
+
+// Check if user is logged in using the session variable
+if ( $_SESSION['logged_in'] != 1 ) {
+  $_SESSION['message'] = "You must log in before viewing dashboard";
+  header("location: index.php");    
+}
+else {
+    // Makes it easier to read
+    $_SESSION['store_name'] = $user['chemist_store_name'];
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,6 +68,9 @@
     <section id="chemist-dash">
     <div class="container">
         <div class="row">
+          <div class="col-md-12">
+                <h2> Dashboard - <?= $store_name ?> </h2>
+            </div>
             <div class="col-md-12">
                 <form>
                     <input type="text" id="search" name="search" placeholder="Search..">
@@ -71,42 +90,50 @@
                           <td class="text-left" >2333444</td>
                           <td class="text-left">Christopher Kambayi</td>
                       </tr>
-                      <tr>
-                          <td class="text-left">22445545</td>
-                          <td class="text-left">Ross Delaney</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">3445334</td>
-                          <td class="text-left">Emma English</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">734564</td>
-                          <td class="text-left">Jordan May</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">2334574</td>
-                          <td class="text-left">Jane Doe</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">7465622</td>
-                          <td class="text-left">Becky Hill</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">253526</td>
-                          <td class="text-left">Six Lack</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">1246734</td>
-                          <td class="text-left">Kung Fu Kenny</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">8448372</td>
-                          <td class="text-left">Puff Daddy</td>
-                      </tr>
-                      <tr>
-                          <td class="text-left">87463839</td>
-                          <td class="text-left">Lara Croft</td>
-                      </tr>
+                      
+                      <?php
+                      require_once 'lib/config.php';
+          
+                      // Create connection
+                      // Check connection
+                      if ($DBcon->connect_error)
+                      {
+                          die("Connection failed: " . $DBcon->connect_error);
+                      }
+          
+                      $sql = "SELECT * FROM chemist_table";
+                      $result = $DBcon->query($sql);
+          
+                      if ($result->num_rows > 0)
+                      {
+                          // output data of each row
+                          while($row = $result->fetch_assoc())
+                          {
+                              echo "<tr>";
+                                echo "<td>" . $row["chemist_id"]. "</td>";
+                                echo "<td>" . $row["chemist_store_name"]. "</td>";
+                                //echo "<td>" . $row["patient_fname"]. "</td>";
+                              echo "</tr>";
+                          }
+                          //echo "</table>";
+                      }
+                      else
+                      {
+                        echo "<tr>";
+                          echo "<td>No</td>";
+                          echo "<td>Results</td>";
+                        echo "</tr>";
+                        
+                        echo "<tr>";
+                          echo "<td>Still</td>";
+                          echo "<td>Results</td>";
+                        echo "</tr>";
+                      }
+          
+                      $DBcon->close();
+                    ?>
+          
+          
                     </tbody>
               </table>
             </div>
@@ -117,43 +144,7 @@
 <section id="chemist2">
     <div class="container">
 
-        <?php
-            $servername = '127.0.0.1';
-            $username = 'root';
-            $password = "";
-            $dname = "c9";
-            $dbport = 3306;
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error)
-            {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "SELECT patient_id, patient_fname, patient_fname, FROM patient_table";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0)
-            {
-                echo '<table class="table-fill"><tr><th>ID</th><th>Name</th></tr>';
-
-                // output data of each row
-                while($row = $result->fetch_assoc())
-                {
-                    echo "<tr><td>" . $row["patient_id"]. "</td><td>" . $row["patient_fname"]. " " . $row["patient_fname"]. "</td></tr>";
-                }
-                echo "</table>";
-            }
-            else
-            {
-                echo "0 results";
-            }
-
-            $conn->close();
-            ?>
+      
     </div>
 </section>
 
