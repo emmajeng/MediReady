@@ -14,8 +14,11 @@ else {
 }
 ?>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fc677c2e82996a8acefa45f523ee2f6a1434e53b
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,8 +136,11 @@ else {
                       }
           
                       $DBcon->close();
+<<<<<<< HEAD
                       echo "</tbody>";
                       echo "</table>";
+=======
+>>>>>>> fc677c2e82996a8acefa45f523ee2f6a1434e53b
                     ?>
           
           
