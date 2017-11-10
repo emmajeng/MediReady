@@ -1,4 +1,4 @@
-f/*!
+/*!
  * Start Bootstrap - Agency v4.0.0-beta (http://startbootstrap.com/template-overviews/agency)
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-agency/blob/master/LICENSE)
@@ -340,7 +340,7 @@ section#contact {
 footer {
   padding: 25px 0;
   text-align: center;
-    
+
 }
   footer span.copyright {
     font-size: 90%;
@@ -898,19 +898,48 @@ td.text-right {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0em;
+  padding:1em;
 }
 
-#user-type{
-  margin-bottom: 2em;
+select#user-type{
   margin-left: auto;
   margin-right: auto;
   display:block;
+  margin-bottom:2em;
+  background-image: url('../img/dropdown.svg');
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 80%;
+  -webkit-appearance: button;
+  -webkit-border-radius: 2px;
+  border-bottom: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-size: inherit;
+  box-sizing: border-box;
+  padding: 0.2em;
+  background-position: 100% center;
+  background-repeat: no-repeat;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  height:38px;
 }
 
 .reg-form{
   display: none;
   width:60%;
-  margin: 0 auto;
+  padding-bottom: 2em;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top:2.5em;
 }
 
 .reg-form.form-group{
@@ -918,12 +947,14 @@ td.text-right {
   margin-right: auto;
 }
 
-h3.form-title{
-  color:#4DD0E1;
-  text-align: center;
-  font-weight: 500;
-  font-size: 30px;
-  margin-bottom: 1em;
+
+h2.form-title{
+    color: #4DD0E1;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+    margin-bottom: 1em;
+    padding-top: 1em;
 }
 
 .chemist-signUp, .doctor-signUp, .driver-signUp, .patient-signUp{
@@ -941,6 +972,26 @@ h3.form-title{
 
 .chemist-signUp:hover, .doctor-signUp:hover, .driver-signUp:hover, .patient-signUp:hover{
   background-color: #84FFFF;
+}
+
+.form-drop{
+  background-color: #F5F5F5;
+}
+
+.form-head{
+  background-color: #212121;
+  padding-top:1em;
+}
+
+.form-container{
+  width:60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8em;
+  margin-bottom: 2em;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25);
 }
 
 /* modal */
@@ -966,14 +1017,16 @@ button.close:hover{
 .btn-block:hover{
   background-color: #84FFFF;
 }
+
 .modal-footer{
   background-color: #F5F5F5;
 }
+
 .modal-dialog{
     vertical-align: middle;
     margin-top: 16em;
-
 }
+
 .modal-grouping{
   margin-top: 1em;
 }
@@ -983,3 +1036,6 @@ button.close:hover{
   box-shadow: none !important;
 }
 
+body#form-background{
+   background-color:#EDE7F6;
+}

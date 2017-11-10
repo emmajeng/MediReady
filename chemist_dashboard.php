@@ -5,7 +5,7 @@ session_start();
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
   $_SESSION['message'] = "You must log in before viewing dashboard";
-  header("location: index.php");    
+  header("location: index.php");
 }
 else {
     // Makes it easier to read
@@ -13,12 +13,6 @@ else {
 
 }
 ?>
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fc677c2e82996a8acefa45f523ee2f6a1434e53b
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,20 +89,20 @@ else {
                           <td class="text-left" >2333444</td>
                           <td class="text-left">Christopher Kambayi</td>
                       </tr>
-                      
+
                       <?php
                       require_once 'lib/config.php';
-          
+
                       // Create connection
                       // Check connection
                       if ($DBcon->connect_error)
                       {
                           die("Connection failed: " . $DBcon->connect_error);
                       }
-          
+
                       $sql = "SELECT * FROM chemist_table";
                       $result = $DBcon->query($sql);
-          
+
                       if ($result->num_rows > 0)
                       {
                           // output data of each row
@@ -128,22 +122,21 @@ else {
                           echo "<td>No</td>";
                           echo "<td>Results</td>";
                         echo "</tr>";
-                        
+
                         echo "<tr>";
                           echo "<td>Still</td>";
                           echo "<td>Results</td>";
                         echo "</tr>";
                       }
-          
+
                       $DBcon->close();
-<<<<<<< HEAD
+                      
                       echo "</tbody>";
                       echo "</table>";
-=======
->>>>>>> fc677c2e82996a8acefa45f523ee2f6a1434e53b
+
                     ?>
-          
-          
+
+
                     </tbody>
               </table>
             </div>
@@ -154,7 +147,7 @@ else {
 <section id="chemist2">
     <div class="container">
 
-      
+
     </div>
 </section>
 
