@@ -114,7 +114,6 @@
                 </div>
 
               </div>
-            </form>
             <!-- tell javascript to grab this -->
             <div class="form-group fieldGroupCopy" style="display: none;">
               <div class="input-group">
@@ -127,6 +126,8 @@
             </div>
           </div>
         </div>
+        </form>
+
         <div class="tab-2">
           <h4>
           </h4>
@@ -182,36 +183,8 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
-            <div class="modal-body">
-                <p>You sure you want to send the prescription?</p>
-                <div class="patient-details">
-                
-                  <?php
-                    /* Echo patient information */
-                    /*
-                    $query = "SELECT * FROM patient_table WHERE patient_id = '".$_POST["patient_id"]."'";  
-                    $output .= '  
-                    <div class="table-responsive">  
-                    <table class="table table-bordered">';  
-                    while($row = mysqli_fetch_array($queryModal))  
-                    {  
-                      echo '  
-                          <tr>  
-                            <td>Patient Name: </td>  
-                            <td>'.$row["patient_fname"].'</td>  
-                          </tr>  
-                          <tr>  
-                          <td>Patient Last name</td>  
-                          <td>'.$row["patient_lname"].'</td>  
-                          </tr>  
-                    ';  
-                    }  
-                  
-                  */
-                  ?>
-   
-                </div>
-
+            <div class="modal-body" id="patient_details">
+               
             </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
@@ -234,12 +207,12 @@
            if(patient_id != '')  
            {  
                 $.ajax({  
-                     url:"lib/send-prescription-doctor.php",  
+                     url:"lib/show-patient-modal.php",  
                      method:"POST",  
                      data:{patient_id:patient_id},  
                      success:function(data){  
-                          $('#patient-details').html(data);  
-                          $('#myModal').modal('show');  
+                          $('#patient_details').html(data);  
+                          //$('#myModal').modal('show');  
                      }  
                 });  
            }            
