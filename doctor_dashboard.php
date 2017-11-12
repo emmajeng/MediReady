@@ -156,7 +156,7 @@
                     <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-outline-success view-patient" data-toggle="modal" data-target="#myModal">Select</button></td>
+                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-primary btn-lg btn-block view-patient" data-toggle="modal" data-target="#myModal">Select</button></td>
                     </tr>
 
                     ';
@@ -202,7 +202,7 @@
     /* Insert data into modal grab id and send to php file */
     $(document).on('click', '.view-patient', function(){  
            var patient_id = $(this).attr("id");
-            alert(patient_id);
+           // alert(patient_id);
 
            if(patient_id != '')  
            {  
