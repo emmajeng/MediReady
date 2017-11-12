@@ -44,7 +44,7 @@ else {
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
-        <a class="" href="index.html"><img height=35 width=210 src="img/MediReady.png" /></a>
+        <a class="" href="index.php"><img height=35 width=210 src="img/MediReady.png" /></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <img height=25 width=25 src="img/cog.png" />
         </button>
