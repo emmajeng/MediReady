@@ -152,7 +152,7 @@
                     <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" class="btn btn-outline-success">Select</button></td>
+                      <td><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Select</button></td>
                     </tr>
 
                     ';
@@ -164,6 +164,32 @@
             </div>
           </div>
         </div>
+        <!-- end tab -->
+        <!-- When select is pressed bring up modal -->
+        <style>
+          .modal-title{
+            color: #fff;
+          }
+        </style>
+        <div id="myModal" class="modal fade">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Confirm Prescription</h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+            <div class="modal-body">
+                <p>You sure you want to send the prescription?</p>
+                <p>Details</p>
+            </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
