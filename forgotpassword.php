@@ -79,7 +79,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="" href="index.html"><img height=35 width=210 src="img/MediReady.png" /></a>
+      <a class="" href="index.php"><img height=35 width=210 src="img/MediReady.png" /></a>
     </div>
   </nav>
 
