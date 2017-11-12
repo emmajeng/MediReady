@@ -11,6 +11,9 @@
 
   // store result
   $storedResult = mysqli_query($connectToMysql, $query);
+  
+
+  
 ?>
 
 <!DOCTYPE html>
@@ -152,7 +155,7 @@
                     <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Select</button></td>
+                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-outline-success view-patient" data-toggle="modal" data-target="#myModal">Select</button></td>
                     </tr>
 
                     ';
@@ -181,7 +184,34 @@
               </div>
             <div class="modal-body">
                 <p>You sure you want to send the prescription?</p>
-                <p>Details</p>
+                <div class="patient-details">
+                
+                  <?php
+                    /* Echo patient information */
+                    /*
+                    $query = "SELECT * FROM patient_table WHERE patient_id = '".$_POST["patient_id"]."'";  
+                    $output .= '  
+                    <div class="table-responsive">  
+                    <table class="table table-bordered">';  
+                    while($row = mysqli_fetch_array($queryModal))  
+                    {  
+                      echo '  
+                          <tr>  
+                            <td>Patient Name: </td>  
+                            <td>'.$row["patient_fname"].'</td>  
+                          </tr>  
+                          <tr>  
+                          <td>Patient Last name</td>  
+                          <td>'.$row["patient_lname"].'</td>  
+                          </tr>  
+                    ';  
+                    }  
+                  
+                  */
+                  ?>
+   
+                </div>
+
             </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
@@ -193,6 +223,29 @@
       </div>
     </div>
   </div>
+  <script>
+  /* remove url - problem with closing modal */
+  /* global $ */
+    /* Insert data into modal grab id and send to php file */
+    $(document).on('click', '.view-patient', function(){  
+           var patient_id = $(this).attr("id");
+            alert(patient_id);
+
+           if(patient_id != '')  
+           {  
+                $.ajax({  
+                     url:"lib/send-prescription-doctor.php",  
+                     method:"POST",  
+                     data:{patient_id:patient_id},  
+                     success:function(data){  
+                          $('#patient-details').html(data);  
+                          $('#myModal').modal('show');  
+                     }  
+                });  
+           }            
+      });
+    
+  </script>
   <script>
     /* global $ */
     $(document).ready(function() {
