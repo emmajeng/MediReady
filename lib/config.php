@@ -30,6 +30,6 @@ $servername = '127.0.0.1';
     if ($DBcon->connect_error) {
         die("Connection failed: " . $DBcon->connect_error);
     } 
-    echo "Connected successfully (".$DBcon->host_info.")";
+    //echo "Connected successfully (".$DBcon->host_info.")";
 ?>
 

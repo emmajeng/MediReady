@@ -76,7 +76,6 @@
             <li class="nav-item">
               <a class="nav-link" href="">Sign Out</a>
             </li>
-
           </ul>
         </div>
       </div>
@@ -98,12 +97,12 @@
           <div id="make_prescription">
 
             <!-- form method = "post" action = "submitting.php" -->
-            <form method="post">
+            <form method="get" id="sendingPrescription" action="lib/send-prescription-doctor-dashboard.php">
 
               <div class="form-group fieldGroup">
 
                 <div class="input-group">
-
+            
                   <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
                   <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
 
@@ -156,7 +155,7 @@
                     <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-primary btn-lg btn-block view-patient" data-toggle="modal" data-target="#myModal">Select</button></td>
+                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-primary btn-lg btn-block view-patient" data-toggle="modal" data-target="#myModal" >Select</button></td>
                     </tr>
 
                     ';
@@ -186,9 +185,10 @@
             <div class="modal-body" id="patient_details">
                
             </div>
+            <!--
               <div class="modal-footer">
-                  <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
-              </div>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" form="sendingPrescription">Send</button>
+              </div>-->
             </div>
           </div>
         </div>

@@ -1,6 +1,9 @@
 <!-- PHP display info on modal in doctor dashboard -->
 
 <?php  
+
+include('send-prescription-doctor-dashboard.php');
+       
 require_once 'config.php';
  if(isset($_POST["patient_id"]))  
  {  
@@ -30,11 +33,21 @@ require_once 'config.php';
                 </tr>  
          
            ';  
-      }  
+        
       $output .= '  
            </table>  
-      </div>  
-      ';  
+      </div>
+      <form method="post" action="lib/send-prescription-doctor-dashboard.php">
+      <div class="hide-drop">
+        <input name="patient_id" value="'.$row["patient_id"].'"/>
+      </div>
+
+       <div class="modal-footer">
+        <button type="submit"  class="btn btn-primary btn-lg btn-block" name="btn-send">Send</button>
+       </div>
+       </form>
+      ';
+      }
       echo $output;  
  }  
  ?>

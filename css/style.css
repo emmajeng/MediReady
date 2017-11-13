@@ -1040,3 +1040,7 @@ button.close:hover{
 body#form-background{
    background-color:#EDE7F6;
 }
+
+.hide-drop{
+  display:none;
+}
