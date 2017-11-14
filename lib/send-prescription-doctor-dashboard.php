@@ -10,6 +10,11 @@ $id = $_POST['patient_id'];
 echo $id;
 }
 
+$med = $_POST['medInput']; // create variables of your form elements
+$amount = $_POST['medAmount']; 
+
+echo $med;
+echo $amount;
 /* This file takes the inputs from the fields and sends it to our table */
 
 /* grab medication and their amounts */
