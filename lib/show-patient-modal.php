@@ -46,8 +46,6 @@ require_once 'config.php';
         <button type="submit"  class="btn btn-primary btn-lg btn-block" name="btn-send" >Send</button>
        </div>
        </form>
-       <button type="submit"  class="btn btn-primary btn-lg btn-block" name="btn-send" form="sendingPrescription" >Send</button>
-
       ';
       }
       echo $output;  
