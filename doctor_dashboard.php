@@ -97,7 +97,7 @@
           <div id="make_prescription">
 
             <!-- form method = "post" action = "submitting.php" -->
-            <form method="get" id="sendingPrescription" action="lib/send-prescription-doctor-dashboard.php">
+            <form method="post" id="sendingPrescription" action="lib/send-prescription-doctor-dashboard.php">
 
               <div class="form-group fieldGroup">
 

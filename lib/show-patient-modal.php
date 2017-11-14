@@ -1,10 +1,12 @@
 <!-- PHP display info on modal in doctor dashboard -->
 
 <?php  
-
+/*
 include('send-prescription-doctor-dashboard.php');
-       
+ */      
 require_once 'config.php';
+/* GLOBAL VARIABLE FOR PATIENT ID */
+$gPatientID = $_POST["patient_id"];
  if(isset($_POST["patient_id"]))  
  {  
       $output = '';  
