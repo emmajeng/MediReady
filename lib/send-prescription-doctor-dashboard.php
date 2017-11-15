@@ -6,7 +6,6 @@ include 'show-patient-modal.php';
 echo "Welcome ", $gPatientID, "!";
 */
 
-
 /* get the patient id */
 
 if (isset($_POST['btn-send']))
