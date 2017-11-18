@@ -39,15 +39,11 @@ $gPatientID = $_POST["patient_id"];
       $output .= '  
            </table>  
       </div>
-      <form method="post" action="lib/send-prescription-doctor-dashboard.php">
       <div class="hide-drop">
         <input name="patient_id" value="'.$row["patient_id"].'"/>
       </div>
-
-       <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary btn-lg btn-block" name="btn-send" >Send</button>
-       </div>
-       </form>
+      
+       
       ';
       }
       echo $output;  
