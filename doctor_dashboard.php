@@ -11,9 +11,6 @@
 
   // store result
   $storedResult = mysqli_query($connectToMysql, $query);
-  
-
-  
 ?>
 
 <!DOCTYPE html>
@@ -76,6 +73,7 @@
             <li class="nav-item">
               <a class="nav-link" href="">Sign Out</a>
             </li>
+
           </ul>
         </div>
       </div>
@@ -97,12 +95,12 @@
           <div id="make_prescription">
 
             <!-- form method = "post" action = "submitting.php" -->
-            <form method="post" id="sendingPrescription" action="lib/send-prescription-doctor-dashboard.php">
+            <form method="post">
 
               <div class="form-group fieldGroup">
 
                 <div class="input-group">
-            
+
                   <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
                   <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
 
@@ -113,6 +111,7 @@
                 </div>
 
               </div>
+            </form>
             <!-- tell javascript to grab this -->
             <div class="form-group fieldGroupCopy" style="display: none;">
               <div class="input-group">
@@ -125,8 +124,6 @@
             </div>
           </div>
         </div>
-        </form>
-
         <div class="tab-2">
           <h4>
           </h4>
@@ -155,7 +152,7 @@
                     <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-primary btn-lg btn-block view-patient" data-toggle="modal" data-target="#myModal" >Select</button></td>
+                      <td><button type="button" class="btn btn-outline-success">Select</button></td>
                     </tr>
 
                     ';
@@ -167,58 +164,9 @@
             </div>
           </div>
         </div>
-        <!-- end tab -->
-        <!-- When select is pressed bring up modal -->
-        <style>
-          .modal-title{
-            color: #fff;
-          }
-        </style>
-        <div id="myModal" class="modal fade">
-          <div class="modal-dialog ">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Confirm Prescription</h4>
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              </div>
-            <div class="modal-body" id="patient_details">
-               
-            </div>
-            <!--
-              <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" form="sendingPrescription">Send</button>
-              </div>-->
-            </div>
-          </div>
-        </div>
-        
       </div>
     </div>
   </div>
-  <script>
-  /* remove url - problem with closing modal */
-  /* global $ */
-    /* Insert data into modal grab id and send to php file */
-    $(document).on('click', '.view-patient', function(){  
-           var patient_id = $(this).attr("id");
-           // alert(patient_id);
-
-           if(patient_id != '')  
-           {  
-                $.ajax({  
-                     url:"lib/show-patient-modal.php",  
-                     method:"POST",  
-                     data:{patient_id:patient_id},  
-                     success:function(data){  
-                          $('#patient_details').html(data);  
-                          //$('#myModal').modal('show');  
-                     }  
-                });  
-           }            
-      });
-    
-  </script>
   <script>
     /* global $ */
     $(document).ready(function() {
