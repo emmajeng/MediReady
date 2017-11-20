@@ -11,6 +11,9 @@
 
   // store result
   $storedResult = mysqli_query($connectToMysql, $query);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +56,7 @@
 
 
 
+
 </head>
 
 <body>
@@ -73,7 +77,6 @@
             <li class="nav-item">
               <a class="nav-link" href="">Sign Out</a>
             </li>
-
           </ul>
         </div>
       </div>
@@ -95,14 +98,14 @@
           <div id="make_prescription">
 
             <!-- form method = "post" action = "submitting.php" -->
-            <form method="post">
+            <form method="post" action="lib/send-prescription-doctor-dashboard.php" novalidate>
 
               <div class="form-group fieldGroup">
 
                 <div class="input-group">
 
-                  <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
-                  <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
+                  <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" required />
+                  <input id="amtInput" type="text" name="amount[]" class="form-control" placeholder="Amount" required/>
 
                   <div class="input-group-addon">
                     <a href="javascript:void(0)" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true"><img height=25 width=25 src="img/plus.png" /></span> </a>
@@ -111,12 +114,12 @@
                 </div>
 
               </div>
-            </form>
-            <!-- tell javascript to grab this -->
+
+            <!-- tell javascript to grab this-->
             <div class="form-group fieldGroupCopy" style="display: none;">
               <div class="input-group">
-                <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" />
-                <input type="text" name="amount[]" class="form-control" placeholder="Amount" />
+                <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" required/>
+                <input id="amtInput" type="text" name="amount[]" class="form-control" placeholder="Amount" />
                 <div class="input-group-addon">
                   <a href="javascript:void(0)" class="btn btn-danger btn-block remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"><img id="remove-img" height=7 width=25 src="img/remove.png" /></span></a>
                 </div>
@@ -124,6 +127,11 @@
             </div>
           </div>
         </div>
+        <div class="hide-drop">
+          <input id="patient_id" name="patient_id" value=""/>
+        </div>
+
+
         <div class="tab-2">
           <h4>
           </h4>
@@ -137,7 +145,7 @@
               <table id = "patient_table" class="table table-striped table-bordered">
                  <thead>
                    <tr>
-                     <!-- leave empty for now -->
+
 
                    </tr>
 
@@ -152,8 +160,9 @@
                     <tr>
                       <td>' .$row["patient_fname"].'</td>
                       <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" class="btn btn-outline-success">Select</button></td>
+                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-primary btn-lg btn-block view-patient" data-toggle="modal" data-target="#myModal" >Select</button></td>
                     </tr>
+
 
                     ';
                   }
@@ -161,12 +170,73 @@
                  </tbody>
               </table>
 
+
+
             </div>
           </div>
         </div>
+        <!-- end tab -->
+        <!-- When select is pressed bring up modal -->
+
+        <div id="myModal" class="modal fade">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Confirm Prescription</h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+            <div class="modal-body" id="patient_details">
+
+            </div>
+
+
+
+
+
+              <div class="modal-footer">
+                  <button type="submit"  class="btn btn-primary btn-lg btn-block" name="btn-sendMed" >Send</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+  <script>
+
+
+  /* remove url - problem with closing modal */
+  /* global $ */
+    /* Insert data into modal grab id and send to php file */
+
+    $(document).on('click', '.view-patient', function(){
+           var patient_id = $(this).attr("id");
+           document.getElementById("patient_id").value = patient_id;
+           //alert(patient_id);
+
+           if(patient_id != '')
+           {
+                $.ajax({
+                     url:"lib/show-patient-modal.php",
+                     method:"POST",
+                     data:{patient_id:patient_id},
+                     success:function(data){
+                          $('#patient_details').html(data);
+                          //$('#myModal').modal('show');
+
+                     }
+                });
+           }
+
+      });
+
+
+  </script>
+
+
   <script>
     /* global $ */
     $(document).ready(function() {
@@ -236,6 +306,7 @@
       </div>
     </div>
   </footer>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
