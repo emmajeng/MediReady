@@ -53,6 +53,10 @@
   <!-- Bootgrid -->
   <script src="vendor/bootgrid/jquery.bootgrid.min.js"></script>
   <link rel="stylesheet" href="vendor/bootgrid/jquery.bootgrid.css" type="text/css" />
+  
+  <!-- auto complete form -->
+  <link href='data/Autocomplete-medication/autocomplete-lhc_jQueryUI.min.css' rel="stylesheet">
+ 
 
 
 
@@ -104,11 +108,11 @@
 
                 <div class="input-group">
 
-                  <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" required />
-                  <input id="amtInput" type="text" name="amount[]" class="form-control" placeholder="Amount" required/>
+                  <input id="medInput" type="text" name="medication[]" class="form-control drugs" placeholder="Medication" required />
+                  <input id="amtInput" type="text" name="amount[]" class="form-control drug-amt" placeholder="Amount" required/>
 
                   <div class="input-group-addon">
-                    <a href="javascript:void(0)" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true"><img height=25 width=25 src="img/plus.png" /></span> </a>
+                    <a href="javascript:void(0)" onclick="drug_fields()" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true"><img height=25 width=25 src="img/plus.png" /></span> </a>
                   </div>
 
                 </div>
@@ -118,8 +122,8 @@
             <!-- tell javascript to grab this-->
             <div class="form-group fieldGroupCopy" style="display: none;">
               <div class="input-group">
-                <input id="medInput" type="text" name="medication[]" class="form-control" placeholder="Medication" required/>
-                <input id="amtInput" type="text" name="amount[]" class="form-control" placeholder="Amount" />
+                <input id="medInput" type="text" name="medication[]" class="form-control drugs" placeholder="Medication" required/>
+                <input id="amtInput" type="text" name="amount[]" class="form-control drug-amt" placeholder="Amount" />
                 <div class="input-group-addon">
                   <a href="javascript:void(0)" class="btn btn-danger btn-block remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"><img id="remove-img" height=7 width=25 src="img/remove.png" /></span></a>
                 </div>
@@ -130,6 +134,26 @@
         <div class="hide-drop">
           <input id="patient_id" name="patient_id" value=""/>
         </div>
+        
+         <!-- auto complete js -->
+        <script src='data/Autocomplete-medication/autocomplete-lhc_jQuery.min.js'></script>
+        <script>
+          /* This javascript auto completes our form from : https://clin-table-search.lhc.nlm.nih.gov/apidoc/rxterms/v3/doc.html  */
+          /* global $ */
+          /* global Def */
+        /*
+              new Def.Autocompleter.Prefetch('amtInput', []);
+              new Def.Autocompleter.Search('medInput','https://clin-table-search.lhc.nlm.nih.gov/api/rxterms/v3/search?ef=STRENGTHS_AND_FORMS');
+              Def.Autocompleter.Event.observeListSelections('medInput', function() {
+                var drugField = $('#medInput')[0];
+                var drugFieldVal = drugField.value;
+                var autocomp = drugField.autocomp;
+                var strengths = autocomp.getItemExtraData(drugFieldVal)['STRENGTHS_AND_FORMS'];
+                if (strengths)
+                    $('#amtInput')[0].autocomp.setListAndField(strengths, '');
+                })
+        */
+        </script>
 
 
         <div class="tab-2">
@@ -326,6 +350,7 @@
 
   <!--Link to JS Tab file-->
   <script language="javascript" type="text/javascript" src="js/tab.js"></script>
+  
 
 
 </body>
