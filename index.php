@@ -1,7 +1,7 @@
 <?php 
 /* Main page with two forms: sign up and log in */
     require ('lib/config.php');
-    session_start();
+
 ?>
 
 <!DOCTYPE html>

@@ -17,12 +17,13 @@ if ( $chemist_result->num_rows == 1 )
     // User does exist
     $user = $chemist_result->fetch_assoc();
 
-    if ($password == $user['chemist_password'])
+    if (password_VERIFY($password, $user['chemist_password']))
     {
-        $_SESSION['store_name'] = $user['chemist_store_name'];
+
 
         // This is how we'll know the user is logged in
-        $_SESSION['logged_in'] = true;
+        $_SESSION['login_user'] = $user['chemist_id'];
+        $_SESSION['user_name'] = $user['chemist_name'];
         header("location: chemist_dashboard.php");
         exit();
     }
@@ -44,12 +45,13 @@ if ( $doctor_result->num_rows == 1 )
     // User does exist
     $user = $doctor_result->fetch_assoc();
 
-    if ($password == $user['doctor_password'])
+    if (password_VERIFY($password, $user['doctor_password']))
     {
         $_SESSION['doctor_name'] = $user['doctor_name'];
 
         // This is how we'll know the user is logged in
-        $_SESSION['logged_in'] = true;
+        $_SESSION['login_user'] = $user['doctor_id'];
+        $_SESSION['user_name'] = $user['doctor_name'];
         header("location: doctor_dashboard.php");
         exit();
     }
@@ -71,12 +73,13 @@ if ( $patient_result->num_rows == 1 )
     // User does exist
     $user = $patient_result->fetch_assoc();
 
-    if ($password == $user['patient_password'])
+    if (password_VERIFY($password, $user['patient_password']))
     {
         $_SESSION['patient_name'] = $user['patient_name'];
 
         // This is how we'll know the user is logged in
-        $_SESSION['logged_in'] = true;
+        $_SESSION['login_user'] = $user['patient_id'];
+        $_SESSION['user_name'] = $user['patient_name'];
         header("location: patient_dashboard.php");
         exit();
     }
@@ -98,12 +101,13 @@ if ( $driver_result->num_rows == 1 )
     // User does exist
     $user = $driver_result->fetch_assoc();
 
-    if ($password == $user['driver_password'])
+    if (password_VERIFY($password, $user['driver_password']))
     {
         $_SESSION['driver_name'] = $user['driver_name'];
 
         // This is how we'll know the user is logged in
-        $_SESSION['logged_in'] = true;
+        $_SESSION['login_user'] = $user['driver_id'];
+        $_SESSION['user_name'] = $user['driver_name'];
         header("location: deliveryman_dashboard.php");
         exit();
     }

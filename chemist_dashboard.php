@@ -3,16 +3,17 @@
 session_start();
 
 // Check if user is logged in using the session variable
-if ( $_SESSION['logged_in'] != 1 ) {
+if ( $_SESSION['login_user'] == null ) {
   $_SESSION['message'] = "You must log in before viewing dashboard";
   header("location: index.php");
 }
 else {
     // Makes it easier to read
-    $_SESSION['store_name'] = $user['chemist_store_name'];
+    $_SESSION['name'] = $_SESSION['user_name'];
 
 }
-?>
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 
