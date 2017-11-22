@@ -24,6 +24,7 @@ if (isset($_POST['patient-signUp']))
         $patient_lname  = $DBcon->real_escape_string($patient_lname);
         $patient_email  = $DBcon->real_escape_string($patient_email);
         $patient_pwd = $DBcon->real_escape_string($patient_pwd);
+		$Hash_patient_pwd = password_hash($patient_pwd, PASSWORD_BCRYPT);
         $patient_phone  = $DBcon->real_escape_string($patient_phone);
         $patient_address_line_one  = $DBcon->real_escape_string($patient_address_line_one);
         $patient_address_line_two = $DBcon->real_escape_string($patient_address_line_two);
@@ -41,7 +42,7 @@ if (isset($_POST['patient-signUp']))
             $query = "INSERT INTO patient_table( patient_fname, patient_lname, patient_email, patient_phone, patient_address_line_one, patient_address_line_two, patient_city, patient_county, patient_password )
 
             VALUES (
-                '$patient_fname',  '$patient_lname',  '$patient_email', '$patient_phone',  '$patient_address_line_one',  '$patient_address_line_two',  '$patient_city',  '$patient_county',  '$patient_pwd'
+                '$patient_fname',  '$patient_lname',  '$patient_email', '$patient_phone',  '$patient_address_line_one',  '$patient_address_line_two',  '$patient_city',  '$patient_county',  '$Hash_patient_pwd'
             )";
             //send query to DB
             $DBcon->query($query);
@@ -64,6 +65,7 @@ else if (isset($_POST['doctor-signUp']))
   $doctor_lname  = strip_tags($_POST['doctor_lname']);
   $doctor_email  = strip_tags($_POST['doctor_email']);
   $doctor_password = strip_tags($_POST['doctor_password']);
+  $Hash_doctor_password = password_hash($doctor_password, PASSWORD_BCRYPT);
   $doctor_phone  = strip_tags($_POST['doctor_phone']);
   $doctor_address_line_one  = strip_tags($_POST['doctor_address_line_one']);
   $doctor_address_line_two = strip_tags($_POST['doctor_address_line_two']);
@@ -93,7 +95,7 @@ else if (isset($_POST['doctor-signUp']))
       $query = "INSERT INTO doctor_table( doctor_fname, doctor_lname, doctor_address_line_one, doctor_address_line_two, doctor_city, doctor_county, doctor_phone, doctor_email, doctor_password )
 
       VALUES (
-          '$doctor_fname',  '$doctor_lname',  '$doctor_address_line_one', '$doctor_address_line_two',  '$doctor_city',  '$doctor_county',  '$doctor_phone',  '$doctor_email',  '$doctor_password'
+          '$doctor_fname',  '$doctor_lname',  '$doctor_address_line_one', '$doctor_address_line_two',  '$doctor_city',  '$doctor_county',  '$doctor_phone',  '$doctor_email',  '$Hash_doctor_password'
       )";
       //send query to DB
       $DBcon->query($query);
@@ -124,6 +126,7 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_store_name  = $DBcon->real_escape_string($chemist_store_name);
   $chemsit_email  = $DBcon->real_escape_string($chemsit_email);
   $chemist_password = $DBcon->real_escape_string($chemist_password);
+  $Hash_chemist_password = password_hash($chemist_password, PASSWORD_BCRYPT);
   $chemist_phone  = $DBcon->real_escape_string($chemist_phone);
   $chemist_al1  = $DBcon->real_escape_string($chemist_al1);
   $chemist_al2 = $DBcon->real_escape_string($chemist_al2);
@@ -140,7 +143,7 @@ else if (isset($_POST['chemist-signUp']))
       $query = "INSERT INTO chemist_table( chemist_store_name, chemist_address_line_one, chemist_address_line_two, chemist_city, chemist_county, chemist_phone, chemist_email, chemist_password )
 
       VALUES (
-          '$chemist_store_name',  '$chemist_al1', '$chemist_al2', '$chemist_city', '$chemist_county',  '$chemist_phone', '$chemist_email', '$chemist_password'
+          '$chemist_store_name',  '$chemist_al1', '$chemist_al2', '$chemist_city', '$chemist_county',  '$chemist_phone', '$chemist_email', '$Hash_chemist_password'
       )";
       //send query to DB
       $DBcon->query($query);
@@ -164,6 +167,7 @@ else if (isset($_POST['driver-signUp']))
   $driver_lname  = strip_tags($_POST['driver_lname']);
   $driver_email = strip_tags($_POST['driver_email']);
   $driver_password = strip_tags($_POST['driver_pwd']);
+  $Hash_driver_password = password_hash($driver_password, PASSWORD_BCRYPT);
   $driver_address  = strip_tags($_POST['driver_address']);
   $driver_city  = strip_tags($_POST['driver_city']);
   $driver_county  = strip_tags($_POST['driver_county']);
@@ -187,8 +191,9 @@ else if (isset($_POST['driver-signUp']))
   if ($count == 0) {
       //if email is not taken insert query
       $query = "INSERT INTO driver_table( driver_fname, driver_lname, driver_address_line_one, driver_address_line_two, driver_city, driver_county, driver_email, driver_phone, driver_password)
-      VALUES (
-          '$driver_fname',  '$driver_lname',  '$driver_address_line_one', '$driver_address_line_two', '$driver_city',  '$driver_county', '$driver_email', '$driver_phone', '$driver_password'
+      
+	  VALUES (
+          '$driver_fname',  '$driver_lname',  '$driver_address_line_one', '$driver_address_line_two', '$driver_city',  '$driver_county', '$driver_email', '$driver_phone', '$Hash_driver_password', '
       )";
       //send query to DB
       $DBcon->query($query);
