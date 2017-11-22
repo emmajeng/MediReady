@@ -1,20 +1,4 @@
 <?php
-/* Displays user information and some useful messages */
-session_start();
-
-// Check if user is logged in using the session variable
-if ( $_SESSION['login_user'] == null ) {
-  $_SESSION['message'] = "You must log in before viewing dashboard";
-  header("location: index.php");
-}
-else {
-    // Makes it easier to read
-    $_SESSION['name'] = $_SESSION['user_name'];
-
-}
-?> 
-
-<?php
   // this is just for testing purposes
   // Will change so that it connects from config.php
   // Also Need to add require sign.php
