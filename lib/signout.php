@@ -1,11 +1,6 @@
 <?php
-//User session in ['user']
-if($_SESSION['user_id']){
-  session_start();
-  session_unset();
-  session_destroy();
-  session_write_close();
-  setcookie(session_name(),'',0,'/');
-  session_regenerate_id(true);
-}
+session_start(); //to ensure you are using same session
+session_destroy(); //destroy the session
+header("location: /index.php"); //to redirect back to "index.php" after logging out
+exit();
 ?>

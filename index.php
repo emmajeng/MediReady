@@ -1,6 +1,7 @@
 <?php
 /* Main page with two forms: sign up and log in */
     require ('lib/config.php');
+    include 'lib/signin.php';
 
 ?>
 
@@ -90,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         </div>
 
         <div class="modal-body">
-	        <form class="form-signin" action="lib/signin.php" method="post">
+	        <form class="form-signin" method="post">
 
 	          <div class = "modal-grouping">
               <input type="email" class="form-control" name="signin_email" placeholder="Email*" required autofocus>

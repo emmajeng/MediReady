@@ -29,6 +29,7 @@ if ( $chemist_result->num_rows == 1 )
     {
         // This is how we'll know the user is logged in
         $_SESSION['login_user'] = $user['chemist_id'];
+        $_SESSION['user_type'] = 'chemist';
         header("location: ../chemist_dashboard.php");
         //exit();
     }
@@ -49,6 +50,7 @@ else if ( $doctor_result->num_rows == 1 )
     {
         // This is how we'll know the user is logged in
         $_SESSION['login_user'] = $user['doctor_id'];
+        $_SESSION['user_type'] = 'doctor';
         header("location: ../doctor_dashboard.php");
         //exit();
     }
@@ -72,6 +74,7 @@ else if ( $patient_result->num_rows == 1 )
     {
         // This is how we'll know the user is logged in
         $_SESSION['login_user'] = $user['patient_id'];
+        $_SESSION['user_type'] = 'patient';
         header("location: ../patient_dashboard.php");
         //exit();
     }
@@ -93,6 +96,7 @@ else if ( $driver_result->num_rows == 1 )
     {
         // This is how we'll know the user is logged in
         $_SESSION['login_user'] = $user['driver_id'];
+        $_SESSION['user_type'] = 'driver';
         header("location: ../deliveryman_dashboard.php");
         //exit();
     }

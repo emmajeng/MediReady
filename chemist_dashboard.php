@@ -1,4 +1,6 @@
 <?php
+require 'lib/config.php';
+
 /* Displays user information and some useful messages */
 session_start();
 
@@ -8,11 +10,31 @@ if ( $_SESSION['login_user'] == null ) {
   header("location: index.php");
 }
 else {
-    // Makes it easier to read
-    $_SESSION['name'] = $_SESSION['user_name'];
+    // pass in user type add if for redirects
+    if($_SESSION['user_type'] == 'patient'){
+      header("location: patient_dashboard.php");
+    }
+
+    else if($_SESSION['user_type'] == 'doctor'){
+      header("location: doctor_dashboard.php");
+    }
+
+    else if($_SESSION['user_type'] == 'chemist'){
+    }
+
+    else if($_SESSION['user_type'] == 'driver'){
+      header("location: deliveryman_dashboard.php");
+    }
+
+    else{
+      //header("location: index.php");
+    }
+
+
 
 }
-?> 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,10 +74,10 @@ else {
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="https://mediready-development-emmajeng.c9users.io/account.php">Account</a>
+              <a class="nav-link" href="account.php">Account</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Sign Out</a>
+              <a class="nav-link" href="lib/signout.php">Sign Out</a>
             </li>
           </ul>
         </div>

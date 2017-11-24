@@ -1,5 +1,7 @@
 
 <?php
+require 'lib/config.php';
+
 /* Displays user information and some useful messages */
 session_start();
 
@@ -9,11 +11,30 @@ if ( $_SESSION['login_user'] == null ) {
   header("location: index.php");
 }
 else {
-    // Makes it easier to read
-    $_SESSION['name'] = $_SESSION['user_name'];
+    // pass in user type add if for redirects
+    if($_SESSION['user_type'] == 'patient'){
+      header("location: patient_dashboard.php");
+    }
+
+    else if($_SESSION['user_type'] == 'doctor'){
+      //header("location: doctor_dashboard.php");
+    }
+
+    else if($_SESSION['user_type'] == 'chemist'){
+      header("location: chemist_dashboard.php");
+    }
+
+    else if($_SESSION['user_type'] == 'driver'){
+      header("location: deliveryman_dashboard.php");
+    }
+
+    else{
+      header("location: index.php");
+    }
 
 }
-?> 
+
+?>
 <?php
   // this is just for testing purposes
   // Will change so that it connects from config.php
@@ -69,10 +90,10 @@ else {
   <!-- Bootgrid -->
   <script src="vendor/bootgrid/jquery.bootgrid.min.js"></script>
   <link rel="stylesheet" href="vendor/bootgrid/jquery.bootgrid.css" type="text/css" />
-  
+
   <!-- auto complete form -->
   <link href='data/Autocomplete-medication/autocomplete-lhc_jQueryUI.min.css' rel="stylesheet">
- 
+
 
 
 
@@ -92,10 +113,10 @@ else {
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="">Account</a>
+              <a class="nav-link" href="account.php">Account</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Sign Out</a>
+              <a class="nav-link" href="lib/signout.php">Sign Out</a>
             </li>
           </ul>
         </div>
@@ -150,7 +171,7 @@ else {
         <div class="hide-drop">
           <input id="patient_id" name="patient_id" value=""/>
         </div>
-        
+
          <!-- auto complete js -->
         <script src='data/Autocomplete-medication/autocomplete-lhc_jQuery.min.js'></script>
         <script>
@@ -366,7 +387,7 @@ else {
 
   <!--Link to JS Tab file-->
   <script language="javascript" type="text/javascript" src="js/tab.js"></script>
-  
+
 
 
 </body>
