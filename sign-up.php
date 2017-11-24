@@ -72,25 +72,18 @@
               <input type="password" class="form-control" name="patient_pwd" id="patient_password">
             </div>
             <div class="form-group">
+              <label for="patient_pwd2">Confirm Password:</label>
+              <input type="password" class="form-control" name="patient_pwd2" id="patient_password2">
+            </div>
+            <div class="form-group">
               <label for="patient_phone">Phone Number:</label>
               <input type="text" class="form-control" name="patient_phone" id="patient_phone">
             </div>
             <div class="form-group">
-              <label for="patient_address_line_one">Address Line One:</label>
-              <input type="text" class="form-control" name="patient_address_line_one" id="patient_address_line_one">
+              <label for="patient_address_line_one">Address:</label>
+              <input type="text" class="form-control" name="patient_address" id="patient_address_line_one">
             </div>
-            <div class="form-group">
-              <label for="patient_address_line_two">Address Line Two:</label>
-              <input type="text" class="form-control" name="patient_address_line_two" id="patient_address_line_two">
-            </div>
-            <div class="form-group">
-              <label for="patient_city">City:</label>
-              <input type="text" class="form-control" name="patient_city" id="patient_city">
-            </div>
-            <div class="form-group">
-              <label for="patient_county">County:</label>
-              <input type="text" class="form-control" name="patient_county" id="patient_county">
-            </div>
+
             <button type="submit" class="patient-signUp" name="patient-signUp">Submit</button>
           </form>
             <!--Doctor Sign Up Section-->
@@ -112,24 +105,12 @@
               <input type="password" class="form-control" name="doctor_password" id="doctor_password">
             </div>
             <div class="form-group">
+              <label for="doctor_password2">Confirm Password:</label>
+              <input type="password" class="form-control" name="doctor_password2" id="doctor_password2">
+            </div>
+            <div class="form-group">
               <label for="doctor_phone">Phone Number:</label>
               <input type="text" class="form-control" name="doctor_phone" id="doctor_phone">
-            </div>
-            <div class="form-group">
-              <label for="doctor_address_line_one">Address Line One:</label>
-              <input type="text" class="form-control" name="doctor_address_line_one" id="doctor_address_line_one">
-            </div>
-            <div class="form-group">
-              <label for="doctor_address_line_two">Address Line Two:</label>
-              <input type="text" class="form-control" name="doctor_address_line_two" id="doctor_address_line_two">
-            </div>
-            <div class="form-group">
-              <label for="doctor_city">City:</label>
-              <input type="text" class="form-control" name="doctor_city" id="doctor_city">
-            </div>
-            <div class="form-group">
-              <label for="doctor_county">County:</label>
-              <input type="text" class="form-control" name="doctor_county" id="doctor_county">
             </div>
             <button type="submit" class="doctor-signUp" name="doctor-signUp">Submit</button>
           </form>
@@ -149,24 +130,16 @@
               <input type="password" class="form-control" name="chemist_password" id="chemist_password">
             </div>
             <div class="form-group">
+              <label for="chemist_password2">Confirm Password:</label>
+              <input type="password" class="form-control" name="chemist_password2" id="chemist_password2">
+            </div>
+            <div class="form-group">
               <label for="chemist_phone">Phone Number:</label>
               <input type="text" class="form-control" name="chemist_phone" id="chemist_phone">
             </div>
             <div class="form-group">
-              <label for="chemist_al1">Address Line One:</label>
-              <input type="text" class="form-control" name="chemist_al1" id="chemist_al1">
-            </div>
-            <div class="form-group">
-              <label for="chemist_al2">Address Line Two:</label>
-              <input type="text" class="form-control" name="chemist_al2" id="chemist_al2">
-            </div>
-            <div class="form-group">
-              <label for="chemist_city">City:</label>
-              <input type="text" class="form-control" name="chemist_city" id="chemist_city">
-            </div>
-            <div class="form-group">
-              <label for="chemist_county">County:</label>
-              <input type="text" class="form-control" name="chemist_county" id="chemist_county">
+              <label for="chemist_address">Address:</label>
+              <input type="text" class="form-control" name="chemist_address" id="chemist_address">
             </div>
             <button type="submit" class="chemist-signUp" name="chemist-signUp">Submit</button>
           </form>
@@ -190,24 +163,12 @@
               <input type="password" class="form-control" name="driver_pwd" id="driver_password">
             </div>
             <div class="form-group">
+              <label for="driver_pwd2">Confirm Password:</label>
+              <input type="password" class="form-control" name="driver_pwd2" id="driver_password2">
+            </div>
+            <div class="form-group">
               <label for="driver_phone">Phone Number:</label>
               <input type="text" class="form-control" name="driver_phone" id="driver_phone">
-            </div>
-            <div class="form-group">
-              <label for="driver_address_line_one">Address Line One:</label>
-              <input type="text" class="form-control" name="driver_address_line_one" id="driver_address_line_one">
-            </div>
-            <div class="form-group">
-              <label for="driver_address_line_two">Address Line Two:</label>
-              <input type="text" class="form-control" name="driver_address_line_two" id="driver_address_line_two">
-            </div>
-            <div class="form-group">
-              <label for="driver_city">City:</label>
-              <input type="text" class="form-control" name="driver_city" id="driver_city">
-            </div>
-            <div class="form-group">
-              <label for="driver_county">County:</label>
-              <input type="text" class="form-control" name="driver_county" id="driver_county">
             </div>
             <button type="submit" class="driver-signUp" name="driver-signUp">Submit</button>
           </form>

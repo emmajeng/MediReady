@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* Main page with two forms: sign up and log in */
     require ('lib/config.php');
 
@@ -27,22 +27,23 @@
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
 
-  
-  
-  <?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+
+
+<?php
+/*
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    if (isset($_POST['signin'])) 
-    { 
+    if (isset($_POST['signin']))
+    {
       //user logging in
       require 'lib/signin.php';
     }
     elseif (isset($_POST['register'])) { //user registering
-        
+
         header("location: sign-up.php");
-        
+
     }
-}
+}*/
 ?>
 
 
@@ -50,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </head>
 
 <body id="page-top">
-  
+
   <script>
-    
+
   </script>
 
   <!-- Navigation -->
@@ -75,43 +76,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       </div>
     </div>
   </header>
-  
+
   <!-- modal -->
   <div class="modal fade" id="modal" role="dialog">
-    
+
     <div class = "modal-dialog">
-      
+
       <!-- content of modal -->
       <div class= "modal-content">
         <div class = "modal-header">
           <a class="" href="index.html"><img height=35 width=210 src="img/MediReady.png" /></a>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        
+
         <div class="modal-body">
-	        <form class="form-signin" action="" method="post">
-	          
+	        <form class="form-signin" action="lib/signin.php" method="post">
+
 	          <div class = "modal-grouping">
               <input type="email" class="form-control" name="signin_email" placeholder="Email*" required autofocus>
             </div>
-            
+
             <div class="modal-grouping">
               <input type="password" class="form-control" name="signin_password" placeholder="Password*" required>
             </div>
-            
+
             <p class="forgot"><a href="forgotpassword.php">Forgot Password?</a></p>
-            
+
             <div class="modal-footer">
               <input type="submit" class="btn btn-lg btn-default btn-block" name="signin" value="Sign In" />
             </div>
-            
-          </form>       
+
+          </form>
         </div>
-        
+
     </div>
   </div>
 </div>
- 
+
 
   <!-- About Section -->
   <section id="about-section">
@@ -291,7 +292,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   <!-- Custom scripts for this template -->
   <script src="js/agency.js"></script>
-  
+
 
 
 </body>
