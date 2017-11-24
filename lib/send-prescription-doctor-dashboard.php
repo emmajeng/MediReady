@@ -18,7 +18,7 @@ before we send to prescriptions we set the date to todays
 */
 $date = date('Y-m-d H:i:s');
 
-$presciption = "INSERT INTO `prescriptions`(`order_id`, `doctor_id`, `patient_id`, `order_date`) VALUES (0,1,'$id','$date')";
+$presciption = "INSERT INTO `prescriptions`(`order_id`, `doctor_id`, `patient_id`, `order_date`) VALUES (0,".$_SESSION['login_user'].",'$id','$date')";
 //$DBcon->exec($presciption);
 $DBcon->query($presciption);
 

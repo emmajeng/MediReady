@@ -1,4 +1,6 @@
 <?php
+require 'lib/config.php';
+
 /* Displays user information and some useful messages */
 session_start();
 
@@ -13,9 +15,7 @@ else {
 
 }
 
-require 'lib/config.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +85,7 @@ require 'lib/config.php';
             <tbody class="">
           <form method="post">
           <?php
-            $query = "SELECT prescription_id FROM prescriptions WHERE patient_id='1'" /*insert patient id using sessions*/;
+            $query = "SELECT prescription_id FROM prescriptions WHERE patient_id='".$_SESSION['login_user']."';";
             $result = mysqli_query($DBcon, $query);
 
             while($row = mysqli_fetch_array($result))
@@ -171,7 +171,7 @@ require 'lib/config.php';
               //searching
               $chem_id = strip_tags($_POST['chem_id_val']);
               //insert query for order
-              $insertorder = "INSERT INTO orders_table(status,patient_id,chemist_id) VALUES('Awaiting Response',1,".$chem_id.");";
+              $insertorder = "INSERT INTO orders_table(status,patient_id,chemist_id) VALUES('Awaiting Response',".$_SESSION['login_user'].",".$chem_id.");";
               $DBcon->query($insertorder);
               //gets id for the previous query
               $orderID = $DBcon->insert_id;
@@ -221,7 +221,7 @@ require 'lib/config.php';
         </thead>
         <tbody class="table-hover">
           <?php
-            $query = "SELECT * FROM orders_table where patient_id='1' AND status != 'Delivered'"/*insert patient id using sessions*/;
+            $query = "SELECT * FROM orders_table where patient_id='".$_SESSION['login_user']."' AND status != 'Delivered'"/*insert patient id using sessions*/;
             $result = mysqli_query($DBcon, $query);
             if ($result->num_rows > 0) {
               while($row = mysqli_fetch_array($result))
@@ -242,6 +242,10 @@ require 'lib/config.php';
         </tbody>
       </table>
     </div>
+
+    <?php
+    echo 'hello '.$_SESSION['login_user'];
+    ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
