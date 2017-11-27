@@ -24,11 +24,15 @@
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
 
+    <!-- JS for password confirmation match-->
+    <script language="javascript" type="text/javascript" src="js/signup_password_match.js"></script>
+
+
 
 
   </head>
 
-  <body id="form-background">
+  <body id="form-background" onload="checkPassword()">
     <?php
           include('lib/signUp.php');
         ?>
@@ -69,11 +73,11 @@
             </div>
             <div class="form-group">
               <label for="patient_pwd">Password:</label>
-              <input type="password" class="form-control" name="patient_pwd" id="patient_password">
+              <input type="password" class="form-control" name="patient_pwd" id="patient_password" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="patient_pwd2">Confirm Password:</label>
-              <input type="password" class="form-control" name="patient_pwd2" id="patient_password2">
+              <input type="password" class="form-control" name="patient_pwd2" id="patient_password2" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="patient_phone">Phone Number:</label>
@@ -83,9 +87,10 @@
               <label for="patient_address_line_one">Address:</label>
               <input type="text" class="form-control" name="patient_address" id="patient_address_line_one">
             </div>
-
-            <button type="submit" class="patient-signUp" name="patient-signUp">Submit</button>
+            <button type="submit" id="patient-reg" class="patient-signUp" name="patient-signUp">Submit</button>
+            <div id="patient_error">Hey there friend your passwords do not match!</div>
           </form>
+
             <!--Doctor Sign Up Section-->
           <form id="doctor-sign-up" class="reg-form" method="post">
               <div class="form-group">
@@ -102,17 +107,18 @@
             </div>
             <div class="form-group">
               <label for="doctor_password">Password:</label>
-              <input type="password" class="form-control" name="doctor_password" id="doctor_password">
+              <input type="password" class="form-control" name="doctor_password" id="doctor_password" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="doctor_password2">Confirm Password:</label>
-              <input type="password" class="form-control" name="doctor_password2" id="doctor_password2">
+              <input type="password" class="form-control" name="doctor_password2" id="doctor_password2" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="doctor_phone">Phone Number:</label>
               <input type="text" class="form-control" name="doctor_phone" id="doctor_phone">
             </div>
-            <button type="submit" class="doctor-signUp" name="doctor-signUp">Submit</button>
+            <button type="submit" id="doctor-reg" class="doctor-signUp" name="doctor-signUp">Submit</button>
+            <div id="doctor_error">Hey there friend your passwords do not match!</div>
           </form>
 
           <form id="chemist-sign-up" class="reg-form" method="post">
@@ -127,11 +133,11 @@
             </div>
             <div class="form-group">
               <label for="chemist_password">Password:</label>
-              <input type="password" class="form-control" name="chemist_password" id="chemist_password">
+              <input type="password" class="form-control" name="chemist_password" id="chemist_password" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="chemist_password2">Confirm Password:</label>
-              <input type="password" class="form-control" name="chemist_password2" id="chemist_password2">
+              <input type="password" class="form-control" name="chemist_password2" id="chemist_password2" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="chemist_phone">Phone Number:</label>
@@ -141,7 +147,8 @@
               <label for="chemist_address">Address:</label>
               <input type="text" class="form-control" name="chemist_address" id="chemist_address">
             </div>
-            <button type="submit" class="chemist-signUp" name="chemist-signUp">Submit</button>
+            <button type="submit" id="chemist-reg" class="chemist-signUp" name="chemist-signUp">Submit</button>
+            <div id="chemist_error">Hey there friend your passwords do not match!</div>
           </form>
 
           <form id="driver-sign-up" class="reg-form" method="post">
@@ -160,21 +167,24 @@
             </div>
             <div class="form-group">
               <label for="driver_pwd">Password:</label>
-              <input type="password" class="form-control" name="driver_pwd" id="driver_password">
+              <input type="password" class="form-control" name="driver_pwd" id="driver_password" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="driver_pwd2">Confirm Password:</label>
-              <input type="password" class="form-control" name="driver_pwd2" id="driver_password2">
+              <input type="password" class="form-control" name="driver_pwd2" id="driver_password2" onchange="checkPassword()">
             </div>
             <div class="form-group">
               <label for="driver_phone">Phone Number:</label>
               <input type="text" class="form-control" name="driver_phone" id="driver_phone">
             </div>
-            <button type="submit" class="driver-signUp" name="driver-signUp">Submit</button>
+            <button type="submit" id="driver-reg" class="driver-signUp" name="driver-signUp">Submit</button>
+            <div id="driver_error">Hey there friend your passwords do not match!</div>
           </form>
+
         </div>
       </div>
-        <!--Button to send sign up-->
+
+
 
 
 
