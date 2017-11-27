@@ -1,5 +1,6 @@
 <?php
 //start session
+session_start();
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -42,8 +43,12 @@ if (isset($_POST['patient-signUp']))
             )";
             //send query to DB
             $DBcon->query($query);
+            $patientID = $DBcon->insert_id;
             //send out to user that their account was successfully created
             $msg = "Successful registration";
+            $_SESSION['login_user'] = $patientID;
+            $_SESSION['user_type'] = 'patient';
+            header("location: ../patient_dashboard.php");
         }
 
         //else send error email already taken
@@ -90,8 +95,12 @@ else if (isset($_POST['doctor-signUp']))
       )";
       //send query to DB
       $DBcon->query($query);
+      $doctorID = $DBcon->insert_id;
       //send out to user that their account was successfully created
       $msg = "Successful registration";
+      $_SESSION['login_user'] = $doctorID;
+      $_SESSION['user_type'] = 'doctor';
+      header("location: ../doctor_dashboard.php");
   }
   //else send error email already taken
   else{
@@ -134,8 +143,12 @@ else if (isset($_POST['chemist-signUp']))
       )";
       //send query to DB
       $DBcon->query($query);
+      $chemistID = $DBcon->insert_id;
       //send out to user that their account was successfully created
       $msg = "Successful registration";
+      $_SESSION['login_user'] = $chemistID;
+      $_SESSION['user_type'] = 'chemist';
+      header("location: ../chemist_dashboard.php");
 
   }
   //else send error email already taken
@@ -180,8 +193,12 @@ else if (isset($_POST['driver-signUp']))
       )";
       //send query to DB
       $DBcon->query($query);
+      $driverID = $DBcon->insert_id;
       //send out to user that their account was successfully created
       $msg = "Successful registration";
+      $_SESSION['login_user'] = $driverID;
+      $_SESSION['user_type'] = 'driver';
+      header("location: ../deliveryman_dashboard.php");
 
   }
   //else send error that the email already taken
@@ -195,5 +212,7 @@ else if (isset($_POST['driver-signUp']))
 
 else{
 }
+
+//header("Location: /index.php");
 
 ?>
