@@ -117,6 +117,10 @@
               <label for="doctor_phone">Phone Number:</label>
               <input type="text" class="form-control" name="doctor_phone" id="doctor_phone">
             </div>
+            <div class="form-group">
+              <label for="doctor_cert">Please Upload your certifucation:</label>
+              <input type="file" class="" name="doctor_cert" id="doctor_cert">
+            </div>
             <button type="submit" id="doctor-reg" class="doctor-signUp" name="doctor-signUp">Submit</button>
             <div id="doctor_error">Hey there friend your passwords do not match!</div>
           </form>
@@ -147,6 +151,10 @@
               <label for="chemist_address">Address:</label>
               <input type="text" class="form-control" name="chemist_address" id="chemist_address">
             </div>
+            <div class="form-group">
+              <label for="chemist_cert">Please Upload your certifucation:</label>
+              <input type="file" class="" name="chemist_cert" id="chemist_cert">
+            </div>
             <button type="submit" id="chemist-reg" class="chemist-signUp" name="chemist-signUp">Submit</button>
             <div id="chemist_error">Hey there friend your passwords do not match!</div>
           </form>
@@ -176,6 +184,10 @@
             <div class="form-group">
               <label for="driver_phone">Phone Number:</label>
               <input type="text" class="form-control" name="driver_phone" id="driver_phone">
+            </div>
+            <div class="form-group">
+              <label for="driver_license">Please Upload your drivers license:</label>
+              <input type="file" class="" name="driver_license" id="driver_license">
             </div>
             <button type="submit" id="driver-reg" class="driver-signUp" name="driver-signUp">Submit</button>
             <div id="driver_error">Hey there friend your passwords do not match!</div>

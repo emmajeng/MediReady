@@ -66,11 +66,11 @@ else if (isset($_POST['doctor-signUp']))
   $doctor_lname  = strip_tags($_POST['doctor_lname']);
   $doctor_email  = strip_tags($_POST['doctor_email']);
   $doctor_password = strip_tags($_POST['doctor_password']);
-
+  //encrypts password
   $Hash_doctor_password = password_hash($doctor_password, PASSWORD_BCRYPT);
 
-
   $doctor_phone  = strip_tags($_POST['doctor_phone']);
+  $Filename=basename( $_FILES['doctor-cert']['name']);
 
   //Sending the input to variables so it can be sent to the db
   $doctor_fname  = $DBcon->real_escape_string($doctor_fname);
@@ -88,10 +88,10 @@ else if (isset($_POST['doctor-signUp']))
   //if the the emails mathching is equal to 0
   if ($count == 0) {
       //if email is not taken insert query
-      $query = "INSERT INTO doctor_table( doctor_fname, doctor_lname, doctor_phone, doctor_email, doctor_password )
+      $query = "INSERT INTO doctor_table( doctor_fname, doctor_lname, doctor_phone, doctor_email, doctor_license, doctor_password )
 
       VALUES (
-          '$doctor_fname', '$doctor_lname', '$doctor_phone',  '$doctor_email',  '$Hash_doctor_password'
+          '$doctor_fname', '$doctor_lname', '$doctor_phone',  '$doctor_email', '$Filename',  '$Hash_doctor_password'
       )";
       //send query to DB
       $DBcon->query($query);
