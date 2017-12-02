@@ -700,9 +700,9 @@ ul.social-buttons {
 
 /* Deliveryman Dashboard */
 
-#googleMap
+#mapContainer
 {
-    height:600px;
+    height:500px;
     width:100%;
 
 }
@@ -1077,4 +1077,8 @@ section h2.account-heading {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+#map {
+  height: 100%;
 }

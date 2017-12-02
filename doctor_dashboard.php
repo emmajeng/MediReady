@@ -1,4 +1,3 @@
-
 <?php
 require 'lib/config.php';
 
@@ -17,7 +16,7 @@ else {
     }
 
     else if($_SESSION['user_type'] == 'doctor'){
-      //header("location: doctor_dashboard.php");
+      header("location: doctor_dashboard.php");
     }
 
     else if($_SESSION['user_type'] == 'chemist'){
@@ -25,7 +24,6 @@ else {
     }
 
     else if($_SESSION['user_type'] == 'driver'){
-      header("location: deliveryman_dashboard.php");
     }
 
     else{
@@ -35,74 +33,38 @@ else {
 }
 
 ?>
-<?php
-  // this is just for testing purposes
-  // Will change so that it connects from config.php
-  // Also Need to add require sign.php
-  // database connection testing for now
-
-  $connectToMysql = mysqli_connect("localhost","root","","c9");
-
-  //query
-  $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
-
-  // store result
-  $storedResult = mysqli_query($connectToMysql, $query);
-
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Doctor - Dashboard</title>
+    <title>Deliveryman - Dashboard</title>
 
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
-
-  <!-- Custom fonts for this template -->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <!-- Auto complete JS -->
-  <script src="vendor/autocomplete/jquery.easy-autocomplete.min.js"></script>
-
-  <!-- Auto complete CSS -->
-  <link rel="stylesheet" href="vendor/autocomplete/easy-autocomplete.min.css">
-
-  <!-- Bootgrid -->
-  <script src="vendor/bootgrid/jquery.bootgrid.min.js"></script>
-  <link rel="stylesheet" href="vendor/bootgrid/jquery.bootgrid.css" type="text/css" />
-
-  <!-- auto complete form -->
-  <link href='data/Autocomplete-medication/autocomplete-lhc_jQueryUI.min.css' rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="//api.mapbox.com/mapbox.js/v2.2.2/mapbox.css" />
 
 
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
 
+  </head>
 
-
-</head>
-
-<body>
-
-  <div id="page-top">
+  <body>
+    <div id="page-top">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
@@ -118,218 +80,113 @@ else {
             <li class="nav-item">
               <a class="nav-link" href="lib/signout.php">Sign Out</a>
             </li>
+
           </ul>
         </div>
       </div>
     </nav>
-  </div>
-
-  <!--Tabs for Doctor Dashboard-->
-  <div class="dashboard-container">
-    <div id="tab-buttons">
-      <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active">Make Prescription</button>
-      <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2">Select Client</button>
     </div>
-    <div id="wrapper-tabs">
+
+  <!--Tabs for Patient Dashboard-->
+    <div class="dashboard-container">
+      <div id="tab-buttons">
+        <button onclick="setTabContents('tab-1')" id="mapDisplay" class="tab-1 active" >Map</button>
+        <button onclick="setTabContents('tab-2')" id="directions" class="tab-2" >Directions</button>
+      </div>
       <div id="tab-contents">
         <div class="tab-1 active">
-          <h4>
-          </h4>
-
-          <div id="make_prescription">
-
-            <!-- form method = "post" action = "submitting.php" -->
-            <form method="post" action="lib/send-prescription-doctor-dashboard.php" novalidate>
-
-              <div class="form-group fieldGroup">
-
-                <div class="input-group">
-
-                  <input id="medInput" type="text" name="medication[]" class="form-control drugs" placeholder="Medication" required />
-                  <input id="amtInput" type="text" name="amount[]" class="form-control drug-amt" placeholder="Amount" required/>
-
-                  <div class="input-group-addon">
-                    <a href="javascript:void(0)" onclick="drug_fields()" class="btn btn-success btn-block addMore"><span class = "glyphicon glyphicon glyphicon-plus" aria-hidden = "true"><img height=25 width=25 src="img/plus.png" /></span> </a>
-                  </div>
-
-                </div>
-
-              </div>
-
-            <!-- tell javascript to grab this-->
-            <div class="form-group fieldGroupCopy" style="display: none;">
-              <div class="input-group">
-                <input id="medInput" type="text" name="medication[]" class="form-control drugs" placeholder="Medication" required/>
-                <input id="amtInput" type="text" name="amount[]" class="form-control drug-amt" placeholder="Amount" />
-                <div class="input-group-addon">
-                  <a href="javascript:void(0)" class="btn btn-danger btn-block remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"><img id="remove-img" height=7 width=25 src="img/remove.png" /></span></a>
-                </div>
-              </div>
-            </div>
+          <div id="mapContainer">
+            <div id="map"></div>
           </div>
+            <script type="text/javascript" src="//api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"></script>
+            <script type="text/javascript" src="js/mapbox.js"></script>
         </div>
-        <div class="hide-drop">
-          <input id="patient_id" name="patient_id" value=""/>
-        </div>
-
-         <!-- auto complete js -->
-        <script src='data/Autocomplete-medication/autocomplete-lhc_jQuery.min.js'></script>
-        <script>
-          /* This javascript auto completes our form from : https://clin-table-search.lhc.nlm.nih.gov/apidoc/rxterms/v3/doc.html  */
-          /* global $ */
-          /* global Def */
-        /*
-              new Def.Autocompleter.Prefetch('amtInput', []);
-              new Def.Autocompleter.Search('medInput','https://clin-table-search.lhc.nlm.nih.gov/api/rxterms/v3/search?ef=STRENGTHS_AND_FORMS');
-              Def.Autocompleter.Event.observeListSelections('medInput', function() {
-                var drugField = $('#medInput')[0];
-                var drugFieldVal = drugField.value;
-                var autocomp = drugField.autocomp;
-                var strengths = autocomp.getItemExtraData(drugFieldVal)['STRENGTHS_AND_FORMS'];
-                if (strengths)
-                    $('#amtInput')[0].autocomp.setListAndField(strengths, '');
-                })
-        */
-        </script>
-
-
+        
         <div class="tab-2">
           <h4>
+            <ul>
+            <li>1. Head north on Jervis St toward Mary St</li>
+            <li>2. Continue on North Rd to your destination</li>
+            <li>3. Take R804, R805, Aughrim St/R806 and N Circular Rd/R101 to North Rd</li>
+            </ul>
           </h4>
-          <div id="choose-client">
-
-
-            <!-- Make table that pulls from database -->
-
-            <div class = "table-responsive">
-
-              <table id = "patient_table" class="table table-striped table-bordered">
-                 <thead>
-                   <tr>
-
-
-                   </tr>
-
-                 </thead>
-                 <tbody>
-                 <?php
-
-                  while($row = mysqli_fetch_array($storedResult))
-                  {
-
-                    echo '
-                    <tr>
-                      <td>' .$row["patient_fname"].'</td>
-                      <td>' .$row["patient_lname"].'</td>
-                      <td><button type="button" id="' .$row["patient_id"]. '" class="btn btn-primary btn-lg btn-block view-patient" data-toggle="modal" data-target="#myModal" >Select</button></td>
-                    </tr>
-
-
-                    ';
-                  }
-                 ?>
-                 </tbody>
-              </table>
-
-
-
-            </div>
-          </div>
         </div>
-        <!-- end tab -->
-        <!-- When select is pressed bring up modal -->
-
-        <div id="myModal" class="modal fade">
-          <div class="modal-dialog ">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Confirm Prescription</h4>
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              </div>
-            <div class="modal-body" id="patient_details">
-
-            </div>
-
-
-
-
-
-              <div class="modal-footer">
-                  <button type="submit"  class="btn btn-primary btn-lg btn-block" name="btn-sendMed" >Send</button>
-              </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
-  <script>
+      
+    <!-- Update route button -->
+    <button name="calc_route" class="btn btn-xl btn-mrg" id="calc_route">Update Route</button>
+     
+    
+    <!-- Orders Table -->
+    <div class="dashboard-container bottom-container">
+      <table class="table-fill">
+        <thead>
+        <tr>
+        <th class="text-left">Name</th>
+        <th class="text-left">Address</th>
+        <th class="text-left">Price</th>
+        <th class="text-left">Status</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+          <?php
+                  require_once 'lib/config.php';
 
+                  // Create connection
+                  // Check connection
+                  if ($DBcon->connect_error)
+                  {
+                    die("Connection failed: " . $DBcon->connect_error);
+                  }
 
-  /* remove url - problem with closing modal */
-  /* global $ */
-    /* Insert data into modal grab id and send to php file */
+                  $sql = "SELECT * FROM orders_table WHERE status = 'Delivery'";
+                  $result = $DBcon->query($sql);
 
-    $(document).on('click', '.view-patient', function(){
-           var patient_id = $(this).attr("id");
-           document.getElementById("patient_id").value = patient_id;
-           //alert(patient_id);
+                  if ($result->num_rows > 0)
+                  {
+                    // output data of each row
+                    while($row = $result->fetch_assoc())
+                    {
+                      $patient = "SELECT * FROM patient_table WHERE patient_id =" . $row['patient_id'].";";
+                      $details = $DBcon->query($patient);
+                      
+                      while($row1 = $details->fetch_assoc())
+                    {
+                      
+                      echo "<tr>";
+                        echo "<td>" . $row1['patient_fname']. "</td>";
+                        echo "<td>" . $row1['patient_address']. "</td>";
+                        echo "<td>" . $row['price']. "</td>";
+                        echo "<td><button class='btn btn-success btn-block'>" . $row['status']. "</button></td>";
+                      echo "</tr>";
+                    }
+                    }
+                  }
+                  else
+                  {
+                    echo "<tr>";
+                        echo "<td>N</td>";
+                        echo "<td>A</td>";
+                        echo "<td>D</td>";
+                        echo "<td><button class='btn btn-success btn-block'>Status</button></td>";
+                      echo "</tr>";
+                  }
+                  
+                ?>
+        </tbody>
+      </table>
+    </div>
 
-           if(patient_id != '')
-           {
-                $.ajax({
-                     url:"lib/show-patient-modal.php",
-                     method:"POST",
-                     data:{patient_id:patient_id},
-                     success:function(data){
-                          $('#patient_details').html(data);
-                          //$('#myModal').modal('show');
-
-                     }
-                });
-           }
-
-      });
-
-
-  </script>
-
-
-  <script>
-    /* global $ */
-    $(document).ready(function() {
-      // limit
-      var max = 7;
-
-      // add
-      $(".addMore").click(function() {
-        if ($('body').find('.fieldGroup').length < max) {
-          var htmlF = '<div class = "form-group fieldGroup">' + $(".fieldGroupCopy").html() + '</div>';
-          $('body').find('.fieldGroup:last').after(htmlF);
-        }
-        else {
-          alert('Too many items! ' + max);
-        }
-      });
-
-      // remove
-      $('body').on("click", ".remove", function() {
-        $(this).parents(".fieldGroup").remove();
-      });
-    });
-  </script>
   <!-- Footer Section -->
-  <footer id="footer" class="padded-footer">
+  <footer id="footer">
     <div class="container">
       <div class="row">
         <div class="footer-links col-md-4">
           <a class="footer-links" href="faq.html">FAQs</a>
           <br />
           <br />
-          <a class="footer-links" href="help/help.html">Help</a>
+          <a class="footer-links" href="help.html">Help</a>
           <br />
           <br />
           <a class="footer-links" href="contact.html">Contact Us</a>
@@ -368,28 +225,27 @@ else {
     </div>
   </footer>
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/popper/popper.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
 
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.js"></script>
 
-  <!-- Contact form JavaScript -->
-  <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script>
+    <!--Link to JS Tab file-->
+    <script language="javascript" type="text/javascript" src="js/tab.js"></script>
 
-  <!-- Custom scripts for this template -->
-  <script src="js/agency.js"></script>
+    <!-- Google Map function and get location -->
+    <script language="javascript" type="text/javascript" src="js/map.js"></script>
 
-  <!--Link to JS Tab file-->
-  <script language="javascript" type="text/javascript" src="js/tab.js"></script>
-
-
-
-</body>
+  </body>
 
 </html>
