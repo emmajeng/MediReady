@@ -15,7 +15,7 @@ if (isset($_POST['patient-signUp']))
         $patient_email  = strip_tags($_POST['patient_email']);
         $patient_pwd = strip_tags($_POST['patient_pwd']);
         $patient_phone  = strip_tags($_POST['patient_phone']);
-        $patient_address  = strip_tags($_POST['patient_address']);
+        $patient_address  = strip_tags($_POST['autocomplete']);
 
         //Sending the input to variables so it can be sent to the db
         $patient_fname  = $DBcon->real_escape_string($patient_fname);
@@ -119,7 +119,7 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_email  = strip_tags($_POST['chemist_email']);
   $chemist_password = strip_tags($_POST['chemist_password']);
   $chemist_phone  = strip_tags($_POST['chemist_phone']);
-  $chemist_address  = strip_tags($_POST['chemist_address']);
+  $chemist_address  = strip_tags($_POST['autocomplete']);
 
   $target = "data/";
   $target = $target . basename( $_FILES['chemist_cert']['name']);

@@ -36,6 +36,7 @@ else {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,20 +86,132 @@ else {
     </nav>
     </div>
 
+    <section>
+      <div class="dashboard-container">
+        <h2 class="section-heading">Chemist Dashboard</h2>
+        <div id="tab-buttons">
+          <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active">Orders</button>
+          <button onclick="" id="chem-select" class="tab-2">Order Information</button>
+      </div>
+    <div id="wrapper-tabs">
+      <div id="tab-contents">
+        <div class="tab-1 active">
+          <div id="new-orders">
+            <div class="form-group fieldGroup">
+                <?php
+                  require_once 'lib/config.php';
+
+                  // Create connection
+                  // Check connection
+                  if ($DBcon->connect_error)
+                  {
+                    die("Connection failed: " . $DBcon->connect_error);
+                  }
+
+                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']."";
+                  
+                  $result = $DBcon->query($sql);
+
+                  if ($result->num_rows > 0)
+                  {
+                    // output data of each row in the table
+                    while($row = $result->fetch_assoc())
+                    {
+                      $chemist =  $row['chemist_id'];
+                      $order =  $row['order_id'];
+                      $patient =  $row['patient_id'];
+                      $price =  $row['price'];
+                      $status = $row['status'];
+                      
+                      echo "<div class='input-group'>";
+                        echo "<input type='text' class='form-control' placeholder='New order from $patient'/>";
+                        echo "<div class='input-group-addon'>";
+                        echo "<button onclick='' id='" .$row['order_id']. "' class='btn btn-success btn-block view_order'>View Order</button>";
+                      echo "</div>";
+                      echo "</div>";
+                    }
+                  }
+                  else
+                  {
+                    echo "<div class='input-group'>";
+                      echo "<input type='text' class='form-control' placeholder='No New Orders!' />";
+                    echo "</div>";
+                  }
+               
+                ?>
+            </div>
+          </div>
+        </div>
+    
+
+        <div class="tab-2">
+          <div id="choose-client">
+            <div class = "table-responsive">
+              <div id="order_details"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    <section>
+      <div class="container">
+        <h2 class="section-heading">Update Orders</h2>
+        <table id = "order_table" class="table table-striped table-bordered">
+          <thead>
+           <tr>
+              <th class="text-left">Client</th>
+              <th class="text-left">Payment</th>
+              <th class="text-left">Prescription</th>
+              <th class="text-left">Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+                  require_once 'lib/config.php';
+
+                  // Create connection
+                  // Check connection
+                  if ($DBcon->connect_error)
+                  {
+                    die("Connection failed: " . $DBcon->connect_error);
+                  }
+
+                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND status != 'Delivered'";
+                  $result = $DBcon->query($sql);
+
+                  if ($result->num_rows > 0)
+                  {
+                    // output data of each row
+                    while($row = $result->fetch_assoc())
+                    {
+                      echo "<tr>";
+                        echo "<td>" . $row['patient_id']. "</td>";
+                        echo "<td>" . $row['price']. "</td>";
+                        echo "<td>" . $row['status']. "</td>";
+                        echo "<td><button class='btn btn-success btn-block'>" . $row['status']. "</button></td>";
+                      echo "</tr>";
+                    }
+                  }
+                  else
+                  {
+                    echo "<tr>";
+                        echo "<td>N</td>";
+                        echo "<td>A</td>";
+                        echo "<td>D</td>";
+                        echo "<td><button class='btn btn-success btn-block'>Status</button></td>";
+                      echo "</tr>";
+                  }
+                  
+                ?>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
     <!-- Orders Table -->
     <section id="chemist-dash">
     <div class="container">
         <div class="row">
-          <div class="col-md-12">
-                <h2> Dashboard - <?= $store_name ?> </h2>
-            </div>
-            <div class="col-md-12">
-                <form>
-                    <input type="text" id="search" name="search" placeholder="Search..">
-                </form>
-            </div>
-
             <div class="col-lg-12 text-center">
                 <table class="table-fill">
                     <thead>
@@ -152,25 +265,13 @@ else {
                         echo "</tr>";
                       }
 
-                      $DBcon->close();
-
-                      echo "</tbody>";
+                        echo "</tbody>";
                       echo "</table>";
-
                     ?>
-
-
                     </tbody>
               </table>
             </div>
         </div>
-    </div>
-</section>
-
-<section id="chemist2">
-    <div class="container">
-
-
     </div>
 </section>
 
@@ -244,6 +345,33 @@ else {
 
     <!-- API Key for Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3u7zBjNuRP74J7XOKA0nGAQyNeAY2_vc&callback=myMap"></script>
-  </body>
+    
+    <script>
+  /* remove url - problem with closing modal */
+  /* global $ */
+    /* Insert data into modal grab id and send to php file */
 
+    $(document).on('click', '.view_order', function(){
+           var order_id = $(this).attr("id");
+           //document.getElementById("order_id").value = order_id;
+           //alert(patient_id);
+
+           if(order_id != '')
+           {
+                $.ajax({
+                     url:"lib/show-order-details.php",
+                     method:"POST",
+                     data:{order_id:order_id},
+                     success:function(data){
+                          $('#order_details').html(data);
+                          //$('#myModal').modal('show');
+
+                     }
+                });
+           }
+           setTabContents('tab-2');
+
+      });
+  </script>
+  </body>
 </html>
