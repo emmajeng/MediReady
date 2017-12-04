@@ -97,20 +97,22 @@ else {
         <div class="tab-1 active">
           <div id="mapContainer">
             <div id="map"></div>
+
             <script>
             mapboxgl.accessToken = 'pk.eyJ1IjoiZW1tYWplbmciLCJhIjoiY2phbzNkdnRqM2kzejMzcGx6aXRnNGEzZCJ9.B2v7VV1Go9UVRv0m-YEDOw';
             var map = new mapboxgl.Map({
                 container: 'map', // container id
                 style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-                center: [-74.50, 40], // starting position [lng, lat]
-                zoom: 9 // starting zoom
+                center: [-7.778320310000026, 53.2734], // starting position [lng, lat]
+                zoom: 6 // starting zoom
             });
+
             </script>
           </div>
-           
-            
+
+
         </div>
-        
+
         <div class="tab-2">
           <h4>
             <ul>
@@ -122,11 +124,75 @@ else {
         </div>
       </div>
     </div>
-      
+
     <!-- Update route button -->
-    <button name="calc_route" class="btn btn-xl btn-mrg" id="calc_route">Update Route</button>
-     
-    
+
+     <!-- Location.php script -->
+            <?php
+             // include 'lib/location.php';
+              //print_r($locations);
+              //echo '<button onclick="plotPoints(<?php echo  json_encode($locations) )" name="calc_route" class="btn btn-xl btn-mrg" id="calc_route">Update Route</button>';
+
+            ?>
+
+            <button onclick="plotPoints(<?php include 'lib/location.php'; echo  json_encode($locations) ?>)" name="calc_route" class="btn btn-xl btn-mrg" id="calc_route">Update Route</button>
+
+            <script>
+
+           /*function plotPoints(myarr){
+                console.log(myarr.length);
+                console.log(myarr);
+               for(var i = 0; i<myarr.length; i++){
+                 //print the locations as point from the array
+                 console.log(myarr[i]);
+
+               }
+           }*/
+
+          var arr = <?php include 'lib/location.php'; echo json_encode($locations)?>;
+          var arrloc = [];
+
+          for(var i = 0; i<arr.length;i++){
+            arrloc.push(arr[i]);
+          }
+          //arr2 = arr[3];
+          //arr3 = arr[2];
+          console.log(arrloc);
+
+          map.on('load', function () {
+
+          map.addLayer({
+              "id": "route",
+              "type": "line",
+              "source": {
+                  "type": "geojson",
+                  "data": {
+                      "type": "Feature",
+                      "properties": {},
+                      "geometry": {
+                          "type": "LineString",
+                          "coordinates": arrloc
+                      }
+                  }
+              },
+              "layout": {
+                  "line-join": "round",
+                  "line-cap": "round"
+              },
+              "paint": {
+                  "line-color": "#888",
+                  "line-width": 8
+              }
+          });
+
+      });
+
+
+
+
+
+            </script>
+
     <!-- Orders Table -->
     <div class="dashboard-container bottom-container">
       <table class="table-fill">
@@ -159,10 +225,10 @@ else {
                     {
                       $patient = "SELECT * FROM patient_table WHERE patient_id =" . $row['patient_id'].";";
                       $details = $DBcon->query($patient);
-                      
+
                       while($row1 = $details->fetch_assoc())
                     {
-                      
+
                       echo "<tr>";
                         echo "<td>" . $row1['patient_fname']. "</td>";
                         echo "<td>" . $row1['patient_address']. "</td>";
@@ -181,7 +247,7 @@ else {
                         echo "<td><button class='btn btn-success btn-block'>Status</button></td>";
                       echo "</tr>";
                   }
-                  
+
                 ?>
         </tbody>
       </table>
