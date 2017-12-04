@@ -70,7 +70,9 @@ else if (isset($_POST['doctor-signUp']))
   $Hash_doctor_password = password_hash($doctor_password, PASSWORD_BCRYPT);
 
   $doctor_phone  = strip_tags($_POST['doctor_phone']);
-  $Filename=basename( $_FILES['doctor-cert']['name']);
+  $target = "data/";
+  $target = $target . basename( $_FILES['doctor_cert']['name']);
+  $Filename=basename( $_FILES['doctor_cert']['name']);
 
   //Sending the input to variables so it can be sent to the db
   $doctor_fname  = $DBcon->real_escape_string($doctor_fname);
@@ -118,6 +120,10 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_password = strip_tags($_POST['chemist_password']);
   $chemist_phone  = strip_tags($_POST['chemist_phone']);
   $chemist_address  = strip_tags($_POST['chemist_address']);
+
+  $target = "data/";
+  $target = $target . basename( $_FILES['chemist_cert']['name']);
+  $Filename=basename( $_FILES['chemist_cert']['name']);
 
   //Sending the input to variables so it can be sent to the db
   $chemist_store_name  = $DBcon->real_escape_string($chemist_store_name);
@@ -173,6 +179,10 @@ else if (isset($_POST['driver-signUp']))
   $Hash_driver_password = password_hash($driver_password, PASSWORD_BCRYPT);
 
   $driver_password = strip_tags($_POST['driver_phone']);
+
+  $target = "data/";
+  $target = $target . basename( $_FILES['driver_license']['name']);
+  $Filename=basename( $_FILES['driver_license']['name']);
 
   //Sending the input to variables so it can be sent to the db
   $driver_fname  = $DBcon->real_escape_string($driver_fname);
