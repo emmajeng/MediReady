@@ -84,11 +84,11 @@
               <input type="text" class="form-control" name="patient_phone" id="patient_phone">
             </div>
             <div class="form-group">
-              <label for="patient_address_line_one">Address:</label>
-      
+              <label for="patient_address">Address:</label>
+
             </div>
 			<div id="locationField">
-			  <input id="autocomplete" placeholder="Enter your address"
+			  <input id="autocomplete" name="autocomplete" placeholder="Enter your address"
 					 onFocus="geolocate()" type="text"></input>
 			</div>
 
@@ -187,7 +187,7 @@
               <label for="chemist_address">Address:</label>
             </div>
 			<div id="locationField">
-			  <input id="autocomplete" placeholder="Enter your address"
+			  <input id="autocomplete" name="autocomplete" placeholder="Enter your address"
 					 onFocus="geolocate()" type="text"></input>
 			</div>
 
