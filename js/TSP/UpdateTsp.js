@@ -27,6 +27,7 @@ var cityDistancesArray = [
 var totalCities = cityDistancesArray.length;
 
 
+
 // City creation function
 /*
     This function creates a city with long and lat
@@ -61,7 +62,7 @@ function makeCities(cityDistancesArray)
 
         //console.log(population);
     }
-	
+
     startAlgorithim();
 }
 
@@ -73,9 +74,9 @@ function makeCities(cityDistancesArray)
 //startAlgorithim(cityDistancesArray);
 
 function startAlgorithim()
-{ 
+{
    var a = performance.now();
-	
+
    //console.log("Population is " + population);
    for(var i = 0; i < 250; i++)
    {
@@ -95,7 +96,11 @@ function startAlgorithim()
   var b = performance.now();
   console.log("Took " + (b-a) + " miliseconds");
   //alert('It took ' + (b - a) + ' ms.');
-  
+
+  let finalArray = bestEver.map(i => cityDistancesArray[i]);
+
+  console.log(finalArray);
+
 }
 
 // CALCULATE THE DISTANCE BETWEEN TWO CITIES
