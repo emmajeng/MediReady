@@ -1,5 +1,6 @@
 <?php
 /* Main page with two forms: sign up and log in */
+    session_start();
     require ('lib/config.php');
     include 'lib/signin.php';
 
@@ -70,10 +71,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       <div class="intro-text">
         <div class="intro-lead-in">Get Started with MediReady</div>
         <div class="intro-heading">Fast, Simple, Reliable</div>
-        <button class="btn btn-xl btn-mrg" data-toggle="modal" data-target="#modal">Sign In</button>
-        <a href="/../sign-up.php">
-        <button class="btn btn-xl btn-mrg">Sign Up</button>
-        </a>
+        <?php
+          if ( $_SESSION['login_user'] == null ) {
+          echo
+          '<button class="btn btn-xl btn-mrg" data-toggle="modal" data-target="#modal">Sign In</button>
+          <a href="/../sign-up.php">
+          <button class="btn btn-xl btn-mrg">Sign Up</button>
+          </a>';
+          }
+
+          else{
+
+
+
+          echo
+            '<a href="patient_dashboard.php"><button class="btn btn-xl btn-mrg">Go to your Dashboard</button></a>';
+          }
+        ?>
       </div>
     </div>
   </header>
@@ -100,8 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <div class="modal-grouping">
               <input type="password" class="form-control" name="signin_password" placeholder="Password*" required>
             </div>
-
-            <p class="forgot"><a href="forgotpassword.php">Forgot Password?</a></p>
 
             <div class="modal-footer">
               <input type="submit" class="btn btn-lg btn-default btn-block" name="signin" value="Sign In" />
