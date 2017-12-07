@@ -1101,3 +1101,25 @@ section h2.account-heading {
 .bottom-pad{
   margin-bottom:4.5em;
 }
+
+#newPrice
+{
+  margin-top:1em;
+}
+
+#chemist-heading
+{
+  text-align:center;
+}
+
+#chemist-button
+{
+  background-color: #4DD0E1;
+  color: white;
+  outline: none;
+  width:100%;
+  height:100%;
+  text-align:center;
+  border-radius: 2px;
+  margin-right: auto;
+}

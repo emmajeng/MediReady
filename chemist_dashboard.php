@@ -87,7 +87,7 @@ else {
     </div>
 
     <section>
-      <div class="dashboard-container">
+      <div class="container">
         <h2 class="section-heading">Chemist Dashboard</h2>
         <div id="tab-buttons">
           <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active">Orders</button>
@@ -207,73 +207,6 @@ else {
           </table>
         </div>
       </section>
-
-    <!-- Orders Table -->
-    <section id="chemist-dash">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <table class="table-fill">
-                    <thead>
-                        <tr>
-                            <th class="text-left">Orders</th>
-                            <th class="text-left">Name</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-hover">
-                      <tr>
-                          <td class="text-left" >2333444</td>
-                          <td class="text-left">Christopher Kambayi</td>
-                      </tr>
-
-                      <?php
-                      require_once 'lib/config.php';
-
-                      // Create connection
-                      // Check connection
-                      if ($DBcon->connect_error)
-                      {
-                          die("Connection failed: " . $DBcon->connect_error);
-                      }
-
-                      $sql = "SELECT * FROM chemist_table";
-                      $result = $DBcon->query($sql);
-
-                      if ($result->num_rows > 0)
-                      {
-                          // output data of each row
-                          while($row = $result->fetch_assoc())
-                          {
-                              echo "<tr>";
-                                echo "<td>" . $row["chemist_id"]. "</td>";
-                                echo "<td>" . $row["chemist_store_name"]. "</td>";
-                                //echo "<td>" . $row["patient_fname"]. "</td>";
-                              echo "</tr>";
-                          }
-                          //echo "</table>";
-                      }
-                      else
-                      {
-                        echo "<tr>";
-                          echo "<td>No</td>";
-                          echo "<td>Results</td>";
-                        echo "</tr>";
-
-                        echo "<tr>";
-                          echo "<td>Still</td>";
-                          echo "<td>Results</td>";
-                        echo "</tr>";
-                      }
-
-                        echo "</tbody>";
-                      echo "</table>";
-                    ?>
-                    </tbody>
-              </table>
-            </div>
-        </div>
-    </div>
-</section>
 
   <!-- Footer Section -->
   <footer id="footer">
