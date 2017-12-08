@@ -1,44 +1,44 @@
 <?php
 /*
- ====== Also need to comvert the output of the TSP as a json ===== 
+ ====== Also need to comvert the output of the TSP as a json =====
 */
-/* 
+/*
 This file grabs the longitudes and latitudes from the database
 and then converts them into a 2D array and calls the algorithim
 
 NOTE: Need to change fname and lname to the longitudes and latitudes
 */
     require_once 'config.php';
-    
+
     $arr = array();
     $query = ("SELECT * FROM patient_table");
     $result = $DBcon->query($query);
-    
+
     //echo $query;
  $i=0;
     while($row = mysqli_fetch_array($result)) {
-        
+
         $arr[$i] = array($row['patient_fname'],$row['patient_lname']);
         $i++;
-        
+
     }
 
 ?>
 
 <script>
 
-    
+
 /*
-    
+
     var js_json = <?php echo json_encode($arr)?>;
     var cityDistancesArray = [];
-    
+
     for(var i = 0; i<js_json.length;i++){
         cityDistancesArray.push(js_json[i]);
     }
-    
+
 */
-    
+
 var cities = [];
 var populationSize = 100;
 var population = [];
@@ -102,7 +102,7 @@ function makeCities(cityDistancesArray)
 
         //console.log(population);
     }
-	
+
     startAlgorithim();
 }
 
@@ -114,9 +114,9 @@ function makeCities(cityDistancesArray)
 //startAlgorithim(cityDistancesArray);
 
 function startAlgorithim()
-{ 
+{
    var a = performance.now();
-	
+
    //console.log("Population is " + population);
    for(var i = 0; i < 250; i++)
    {
@@ -137,7 +137,11 @@ function startAlgorithim()
   console.log("Took " + (b-a) + " miliseconds");
   console.log("Best" + bestEver);
   //alert('It took ' + (b - a) + ' ms.');
-  
+
+  let finalArray = bestEver.map(i => cityDistancesArray[i]);
+
+  console.log(finalArray);
+
 }
 
 // CALCULATE THE DISTANCE BETWEEN TWO CITIES
