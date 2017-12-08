@@ -329,9 +329,9 @@ function nextGeneration()
       var order = crossOver(orderA, orderB);
       //console.log("After crossoveer " + order);
 
+      mutate(order, 0.02);
 
       newPopulation[i] = order;
-      mutate(order, 0.02);
       //console.log(newPopulation);
     }
     console.log("What " + newPopulation);
