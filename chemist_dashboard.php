@@ -109,7 +109,7 @@ else {
                   }
 
                   $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND price = 0";
-                  
+
                   $result = $DBcon->query($sql);
 
                   if ($result->num_rows > 0)
@@ -122,7 +122,7 @@ else {
                       $patient =  $row['patient_id'];
                       $price =  $row['price'];
                       $status = $row['status'];
-                      
+
                       echo "<div class='input-group'>";
                         echo "<input type='text' class='form-control' placeholder='New order from $patient'/>";
                         echo "<div class='input-group-addon'>";
@@ -137,12 +137,12 @@ else {
                       echo "<input type='text' class='form-control' placeholder='No New Orders!' />";
                     echo "</div>";
                   }
-               
+
                 ?>
             </div>
           </div>
         </div>
-    
+
 
         <div class="tab-2">
           <div id="choose-client">
@@ -154,7 +154,7 @@ else {
           </div>
         </div>
       </section>
-    
+
     <section>
       <div class="container">
         <h2 class="section-heading">Update Orders</h2>
@@ -183,7 +183,7 @@ else {
                           FROM patient_table
                           INNER JOIN orders_table AS o ON o.patient_id = patient_table.patient_id
                           WHERE chemist_id = ".$_SESSION['login_user']." ";
-                          
+
                   $result = $DBcon->query($sql);
 
                   if ($result->num_rows > 0)
@@ -193,7 +193,7 @@ else {
                     {
                       $status = $row['status'];
                       $orderID = $row['order_id'];
-                      
+
                       if($status == 'Fulfilled'){
                         $update = 'Send for delivery';
                       }
@@ -203,7 +203,7 @@ else {
                       else{
                         $update = 'Ready';
                       }
-                      
+
                       echo "<tr>";
                       echo "<form method='post' action='lib/setStatus.php'>";
                         echo "<td>" . $row['fullname']. "</td>";
@@ -298,7 +298,7 @@ else {
 
     <!-- API Key for Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3u7zBjNuRP74J7XOKA0nGAQyNeAY2_vc&callback=myMap"></script>
-    
+
     <script>
   /* remove url - problem with closing modal */
   /* global $ */

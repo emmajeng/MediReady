@@ -80,7 +80,7 @@ else {
         </div>
       </div>
     </nav>
-    
+
     <!--Tabs for Patient Dashboard-->
     <div class="dashboard-container">
       <div id="tab-buttons">
@@ -170,8 +170,8 @@ else {
               </script>
 
             <input type="hidden" name="chem_id_val" id="chem_id_val" required/>
-            
-            </form>
+
+
 
             <?php
 
@@ -206,10 +206,11 @@ else {
               }
             }
             ?>
-            
+
             </tbody>
-            
+
           </table>
+
           <button type="submit" id="send-order" class="btn btn-block" name="btn-accept"
             <?php
             //make this button disabled if the patient has no orders
@@ -218,6 +219,7 @@ else {
             }
             ?>
             >Send Order</button><!-- Close the button tag-->
+            </form>
         </div>
       </div>
     </div>
@@ -257,12 +259,12 @@ else {
               </tr>';
             }
           ?>
-          
-          
+
+
         </tbody>
-        
+
       </table>
-      
+
     </div>
 
 

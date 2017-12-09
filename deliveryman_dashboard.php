@@ -90,83 +90,12 @@ else {
   <!--Tabs for Patient Dashboard-->
       <div id="mapContainer">
         <div class='sidebar'>
-          <table class="table-fill">
+          <table class="table-map">
             <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Button</td>
+              <th colspan="3">Directions</th>
             </tr>
           </table>
+          <div id="instructions"></div>
         </div>
         <div id="map"></div>
 
@@ -186,64 +115,120 @@ else {
     <!-- Update route button -->
 
      <!-- Location.php script -->
-            <?php
-             // include 'lib/location.php';
-              //print_r($locations);
-              //echo '<button onclick="plotPoints(<?php echo  json_encode($locations) )" name="calc_route" class="btn btn-xl btn-mrg" id="calc_route">Update Route</button>';
 
-            ?>
 
-            <button onclick="plotPoints(<?php include 'lib/location.php'; echo  json_encode($locations) ?>)" name="calc_route" class="btn btn-xl btn-mrg" id="calc_route">Update Route</button>
+
 
             <script>
 
-           /*function plotPoints(myarr){
-                console.log(myarr.length);
-                console.log(myarr);
-               for(var i = 0; i<myarr.length; i++){
-                 //print the locations as point from the array
-                 console.log(myarr[i]);
 
-               }
-           }*/
+            map.on('load', function(){
 
-          var arr = <?php include 'lib/location.php'; echo json_encode($locations)?>;
-          var arrloc = [];
+      getRoute();
+    });
 
-          for(var i = 0; i<arr.length;i++){
-            arrloc.push(arr[i]);
+    //get route takes start and end (lat,long)
+    function getRoute() {
+
+      //php connect ot db to get long lat from patients with deliveries
+
+      //store in js array using json encode
+
+      // run tsp algortithm + get response array
+
+      //pass in ordered tsp locations array below
+      var locations = [[-6.3053, 53.3562],[-6.802586, 53.176861],[-6.5991, 53.0918],[-6.9857, 52.991]];
+
+      var locationString = locations.map(function(x) {
+        return x.join(',');
+
+      }).join(';');
+
+      var directionsRequest = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + locationString + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+      $.ajax({
+        method: 'GET',
+        url: directionsRequest,
+      }).done(function(data){
+        var route = data.routes[0].geometry;
+
+        //addes route line
+        map.addLayer({
+          id: 'route',
+          type: 'line',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              geometry: route
+            }
+          },
+          paint: {
+            'line-width': 2
           }
-          //arr2 = arr[3];
-          //arr3 = arr[2];
-          console.log(arrloc);
+        });
 
-          map.on('load', function () {
-
-          map.addLayer({
-              "id": "route",
-              "type": "line",
-              "source": {
-                  "type": "geojson",
-                  "data": {
-                      "type": "Feature",
-                      "properties": {},
-                      "geometry": {
-                          "type": "LineString",
-                          "coordinates": arrloc
-                      }
-                  }
-              },
-              "layout": {
-                  "line-join": "round",
-                  "line-cap": "round"
-              },
-              "paint": {
-                  "line-color": "#4DD0E1",
-                  "line-width": 4
+        //adds start point
+        map.addLayer({
+          id: 'start',
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: start
               }
-          });
+            }
+          }
+        });
 
+        //adds end point
+        map.addLayer({
+          id: 'end',
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: end
+              }
+            }
+          }
+
+        });
+
+        map.addLayer({
+          id: 'middle',
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: middle
+              }
+            }
+          }
+
+        });
+
+        //shows insturctions
+        //https://www.mapbox.com/help/getting-started-directions-api/
+        //https://www.mapbox.com/help/how-directions-work/
+
+        var instructions = document.getElementById('instructions');
+        var steps = data.routes[0].legs[0].steps;
+        steps.forEach(function(step){
+          instructions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
+        });
       });
+    }
+
+
             </script>
 
     <!-- Orders Table -->
@@ -294,10 +279,7 @@ else {
                   else
                   {
                     echo "<tr>";
-                        echo "<td>N</td>";
-                        echo "<td>A</td>";
-                        echo "<td>D</td>";
-                        echo "<td><button class='btn btn-success btn-block'>Status</button></td>";
+                        echo "<td colspan='4'>No Current Deliveries</td>";
                       echo "</tr>";
                   }
 

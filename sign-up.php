@@ -154,7 +154,7 @@
             <input type="hidden" name="chemist_addr_long" id="chemist_addr_long">
             <button type="submit" id="chemist-reg" class="chemist-signUp" name="chemist-signUp">Submit</button>
             <div id="chemist_error">Hey there friend your passwords do not match!</div>
-            
+
           </form>
 
           <form id="driver-sign-up" class="reg-form" method="post">
@@ -462,7 +462,7 @@
         }
       }
     </script>
-  
+
     <script>
       // This example displays an address form, using the autocomplete feature
       // of the Google Places API to help users fill in the information.
@@ -535,7 +535,7 @@
         async defer>
     </script>
     <script>
-    
+
     function showResult(result) {
     document.getElementById('chemist_addr_lat').value = result.geometry.location.lat();
     document.getElementById('chemist_addr_long').value = result.geometry.location.lng();
@@ -556,16 +556,16 @@
         });
     }
 }
-    
-    
+
+
     function getLL(){
       var address = document.getElementById('chemist_addr').value;
         getLatitudeLongitude(showResult, address)
     }
-    
-    
+
+
    /* var button = document.getElementById('btn');
-    
+
     button.addEventListener("click", function () {
         var address = document.getElementById('chemist_addr').value;
         getLatitudeLongitude(showResult, address)
