@@ -87,7 +87,7 @@ else {
     </div>
 
     <section>
-      <div class="dashboard-container">
+      <div class="container">
         <h2 class="section-heading">Chemist Dashboard</h2>
         <div id="tab-buttons">
           <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active">Orders</button>
@@ -108,7 +108,7 @@ else {
                     die("Connection failed: " . $DBcon->connect_error);
                   }
 
-                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']."";
+                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND price = 0";
                   
                   $result = $DBcon->query($sql);
 
@@ -126,7 +126,7 @@ else {
                       echo "<div class='input-group'>";
                         echo "<input type='text' class='form-control' placeholder='New order from $patient'/>";
                         echo "<div class='input-group-addon'>";
-                        echo "<button onclick='' id='" .$row['order_id']. "' class='btn btn-success btn-block view_order'>View Order</button>";
+                        echo "<button onclick='' name='".$row['order_id']."' id='" .$row['order_id']. "' class='btn btn-success btn-block view_order'>View Order</button>";
                       echo "</div>";
                       echo "</div>";
                     }
@@ -147,7 +147,9 @@ else {
         <div class="tab-2">
           <div id="choose-client">
             <div class = "table-responsive">
-              <div id="order_details"></div>
+              <div id="order_details">
+          </tbody>
+              </div>
             </div>
           </div>
         </div>
@@ -161,7 +163,7 @@ else {
            <tr>
               <th class="text-left">Client</th>
               <th class="text-left">Payment</th>
-              <th class="text-left">Prescription</th>
+              <th class="text-left">Status</th>
               <th class="text-left">Update</th>
             </tr>
           </thead>
@@ -176,7 +178,12 @@ else {
                     die("Connection failed: " . $DBcon->connect_error);
                   }
 
-                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND status != 'Delivered'";
+                 // $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND status != 'Delivered'";
+                  $sql = "SELECT CONCAT(patient_fname, ' ', patient_lname) AS fullname, price, status, order_id
+                          FROM patient_table
+                          INNER JOIN orders_table AS o ON o.patient_id = patient_table.patient_id
+                          WHERE chemist_id = ".$_SESSION['login_user']." ";
+                          
                   $result = $DBcon->query($sql);
 
                   if ($result->num_rows > 0)
@@ -184,96 +191,42 @@ else {
                     // output data of each row
                     while($row = $result->fetch_assoc())
                     {
+                      $status = $row['status'];
+                      $orderID = $row['order_id'];
+                      
+                      if($status == 'Fulfilled'){
+                        $update = 'Send for delivery';
+                      }
+                      elseif($status == 'Send for delivery'){
+                        $update = 'Out for delivery';
+                      }
+                      else{
+                        $update = 'Ready';
+                      }
+                      
                       echo "<tr>";
-                        echo "<td>" . $row['patient_id']. "</td>";
+                      echo "<form method='post' action='lib/setStatus.php'>";
+                        echo "<td>" . $row['fullname']. "</td>";
                         echo "<td>" . $row['price']. "</td>";
                         echo "<td>" . $row['status']. "</td>";
-                        echo "<td><button class='btn btn-success btn-block'>" . $row['status']. "</button></td>";
+                        echo "<input type='hidden' name='status' value='".$status."' />";
+                        echo "<input type='hidden' name='orderID' value='".$orderID."' />";
+                        echo "<td><button type='submit' name='updateStatus' class='btn btn-success btn-block'>$update</button></td>";
+                      echo "</form>";
                       echo "</tr>";
                     }
                   }
                   else
                   {
                     echo "<tr>";
-                        echo "<td>N</td>";
-                        echo "<td>A</td>";
-                        echo "<td>D</td>";
-                        echo "<td><button class='btn btn-success btn-block'>Status</button></td>";
-                      echo "</tr>";
+                    echo "<td colspan='4'>No orders for update</td>";
+                    echo "</tr>";
                   }
-                  
                 ?>
             </tbody>
           </table>
         </div>
       </section>
-
-    <!-- Orders Table -->
-    <section id="chemist-dash">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <table class="table-fill">
-                    <thead>
-                        <tr>
-                            <th class="text-left">Orders</th>
-                            <th class="text-left">Name</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-hover">
-                      <tr>
-                          <td class="text-left" >2333444</td>
-                          <td class="text-left">Christopher Kambayi</td>
-                      </tr>
-
-                      <?php
-                      require_once 'lib/config.php';
-
-                      // Create connection
-                      // Check connection
-                      if ($DBcon->connect_error)
-                      {
-                          die("Connection failed: " . $DBcon->connect_error);
-                      }
-
-                      $sql = "SELECT * FROM chemist_table";
-                      $result = $DBcon->query($sql);
-
-                      if ($result->num_rows > 0)
-                      {
-                          // output data of each row
-                          while($row = $result->fetch_assoc())
-                          {
-                              echo "<tr>";
-                                echo "<td>" . $row["chemist_id"]. "</td>";
-                                echo "<td>" . $row["chemist_store_name"]. "</td>";
-                                //echo "<td>" . $row["patient_fname"]. "</td>";
-                              echo "</tr>";
-                          }
-                          //echo "</table>";
-                      }
-                      else
-                      {
-                        echo "<tr>";
-                          echo "<td>No</td>";
-                          echo "<td>Results</td>";
-                        echo "</tr>";
-
-                        echo "<tr>";
-                          echo "<td>Still</td>";
-                          echo "<td>Results</td>";
-                        echo "</tr>";
-                      }
-
-                        echo "</tbody>";
-                      echo "</table>";
-                    ?>
-                    </tbody>
-              </table>
-            </div>
-        </div>
-    </div>
-</section>
 
   <!-- Footer Section -->
   <footer id="footer">
@@ -370,7 +323,6 @@ else {
                 });
            }
            setTabContents('tab-2');
-
       });
   </script>
   </body>

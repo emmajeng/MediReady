@@ -26,16 +26,12 @@
 
     <!-- JS for password confirmation match-->
     <script language="javascript" type="text/javascript" src="js/signup_password_match.js"></script>
-
-
-
-
   </head>
 
   <body id="form-background" onload="checkPassword()">
     <?php
           include('lib/signUp.php');
-        ?>
+      ?>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
@@ -84,45 +80,13 @@
               <input type="text" class="form-control" name="patient_phone" id="patient_phone">
             </div>
             <div class="form-group">
-              <label for="patient_address">Address:</label>
-
+              <label for="patient_address_line_one">Address:</label>
             </div>
-			<div id="locationField">
-			  <input id="autocomplete" name="autocomplete" placeholder="Enter your address"
-					 onFocus="geolocate()" type="text"></input>
-			</div>
-
-			<table id="address">
-			  <tr>
-				<td class="label">Street address</td>
-				<td class="slimField"><input class="field" id="street_number"
-					  disabled="true"></input></td>
-				<td class="wideField" colspan="2"><input class="field" id="route"
-					  disabled="true"></input></td>
-			  </tr>
-			  <tr>
-				<td class="label">City</td>
-				<!-- Note: Selection of address components in this example is typical.
-					 You may need to adjust it for the locations relevant to your app. See
-					 https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-				-->
-				<td class="wideField" colspan="3"><input class="field" id="locality"
-					  disabled="true"></input></td>
-			  </tr>
-			  <tr>
-				<td class="label">State</td>
-				<td class="slimField"><input class="field"
-					  id="administrative_area_level_1" disabled="true"></input></td>
-				<td class="label">Zip code</td>
-				<td class="wideField"><input class="field" id="postal_code"
-					  disabled="true"></input></td>
-			  </tr>
-			  <tr>
-				<td class="label">Country</td>
-				<td class="wideField" colspan="3"><input class="field"
-					  id="country" disabled="true"></input></td>
-			  </tr>
-			</table>
+            <div id="locationField">
+              <input id="patient_addr" name="patient_addr" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+            </div>
+            <input type="hidden" name="patient_addr_lat">
+            <input type="hidden" name="patient_addr_long">
             <button type="submit" id="patient-reg" class="patient-signUp" name="patient-signUp">Submit</button>
             <div id="patient_error">Hey there friend your passwords do not match!</div>
           </form>
@@ -153,10 +117,6 @@
               <label for="doctor_phone">Phone Number:</label>
               <input type="text" class="form-control" name="doctor_phone" id="doctor_phone">
             </div>
-            <div class="form-group">
-              <label for="doctor_cert">Please Upload your certifucation:</label>
-              <input type="file" class="" name="doctor_cert" id="doctor_cert">
-            </div>
             <button type="submit" id="doctor-reg" class="doctor-signUp" name="doctor-signUp">Submit</button>
             <div id="doctor_error">Hey there friend your passwords do not match!</div>
           </form>
@@ -186,48 +146,15 @@
             <div class="form-group">
               <label for="chemist_address">Address:</label>
             </div>
-			<div id="locationField">
-			  <input id="autocomplete" name="autocomplete" placeholder="Enter your address"
-					 onFocus="geolocate()" type="text"></input>
-			</div>
-
-			<table id="address">
-			  <tr>
-				<td class="label">Street address</td>
-				<td class="slimField"><input class="field" id="street_number"
-					  disabled="true"></input></td>
-				<td class="wideField" colspan="2"><input class="field" id="route"
-					  disabled="true"></input></td>
-			  </tr>
-			  <tr>
-				<td class="label">City</td>
-				<!-- Note: Selection of address components in this example is typical.
-					 You may need to adjust it for the locations relevant to your app. See
-					 https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-				-->
-				<td class="wideField" colspan="3"><input class="field" id="locality"
-					  disabled="true"></input></td>
-			  </tr>
-			  <tr>
-				<td class="label">State</td>
-				<td class="slimField"><input class="field"
-					  id="administrative_area_level_1" disabled="true"></input></td>
-				<td class="label">Zip code</td>
-				<td class="wideField"><input class="field" id="postal_code"
-					  disabled="true"></input></td>
-			  </tr>
-			  <tr>
-				<td class="label">Country</td>
-				<td class="wideField" colspan="3"><input class="field"
-					  id="country" disabled="true"></input></td>
-			  </tr>
-			</table>
-            <div class="form-group">
-              <label for="chemist_cert">Please Upload your certifucation:</label>
-              <input type="file" class="" name="chemist_cert" id="chemist_cert">
+            <div id="locationField">
+              <input id="chemist_addr" name="chemist_addr" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
             </div>
+            <a type="button" id="btn" onclick="getLL()">Confirm Address</a>
+            <input type="hidden" name="chemist_addr_lat" id="chemist_addr_lat">
+            <input type="hidden" name="chemist_addr_long" id="chemist_addr_long">
             <button type="submit" id="chemist-reg" class="chemist-signUp" name="chemist-signUp">Submit</button>
             <div id="chemist_error">Hey there friend your passwords do not match!</div>
+            
           </form>
 
           <form id="driver-sign-up" class="reg-form" method="post">
@@ -256,10 +183,6 @@
               <label for="driver_phone">Phone Number:</label>
               <input type="text" class="form-control" name="driver_phone" id="driver_phone">
             </div>
-            <div class="form-group">
-              <label for="driver_license">Please Upload your drivers license:</label>
-              <input type="file" class="" name="driver_license" id="driver_license">
-            </div>
             <button type="submit" id="driver-reg" class="driver-signUp" name="driver-signUp">Submit</button>
             <div id="driver_error">Hey there friend your passwords do not match!</div>
           </form>
@@ -267,9 +190,7 @@
         </div>
       </div>
 
-
-
-<script type="text/javascript">
+      <script type="text/javascript">
       /*
       TO-DO :
         Move this code to a seperate JS file
@@ -302,7 +223,7 @@
           document.getElementById("patient_lname").required = true;
           document.getElementById("patient_email").required = true;
           document.getElementById("patient_phone").required = true;
-          document.getElementById("autocomplete").required = true;
+          document.getElementById("patient_addr").required = true;
           document.getElementById("patient_password").required = true;
 
 
@@ -315,7 +236,7 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("autocomplete").required = false;
+          document.getElementById("chemist_addr").required = false;
           document.getElementById("chemist_password").required = false;
 
           document.getElementById("driver_fname").required = false;
@@ -354,7 +275,7 @@
           document.getElementById("patient_lname").required = false;
           document.getElementById("patient_email").required = false;
           document.getElementById("patient_phone").required = false;
-          document.getElementById("autocomplete").required = false;
+          document.getElementById("patient_addr").required = false;
           document.getElementById("patient_password").required = false;
 
           document.getElementById("driver_fname").required = false;
@@ -366,7 +287,7 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("autocomplete").required = false;
+          document.getElementById("chemist_addr").required = false;
           document.getElementById("chemist_password").required = false;
 
 
@@ -397,14 +318,14 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("autocomplete").required = false;
+          document.getElementById("chemist_addr").required = false;
           document.getElementById("chemist_password").required = false;
 
           document.getElementById("patient_fname").required = false;
           document.getElementById("patient_lname").required = false;
           document.getElementById("patient_email").required = false;
           document.getElementById("patient_phone").required = false;
-          document.getElementById("autocomplete").required = false;
+          document.getElementById("patient_addr").required = false;
           document.getElementById("patient_password").required = false;
 
           document.getElementById("doctor_fname").required = false;
@@ -434,7 +355,7 @@
           document.getElementById("chemist_store_name").required = true;
           document.getElementById("chemist_email").required = true;
           document.getElementById("chemist_phone").required = true;
-          document.getElementById("autocomplete").required = true;
+          document.getElementById("chemist_addr").required = true;
           document.getElementById("chemist_password").required = true;
 
           document.getElementById("driver_email").required = false;
@@ -445,7 +366,7 @@
           document.getElementById("patient_lname").required = false;
           document.getElementById("patient_email").required = false;
           document.getElementById("patient_phone").required = false;
-          document.getElementById("autocomplete").required = false;
+          document.getElementById("patient_addr").required = false;
           document.getElementById("patient_password").required = false;
 
           document.getElementById("doctor_fname").required = false;
@@ -453,9 +374,6 @@
           document.getElementById("doctor_email").required = false;
           document.getElementById("doctor_phone").required = false;
           document.getElementById("doctor_password").required = false;
-
-
-
         }
 
         else{
@@ -498,7 +416,7 @@
         // Create the autocomplete object, restricting the search to geographical
         // location types.
         autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            /** @type {!HTMLInputElement} */(document.getElementById('patient_addr')),
             {types: ['geocode']});
 
         // When the user selects an address from the dropdown, populate the address
@@ -544,8 +462,115 @@
         }
       }
     </script>
+  
+    <script>
+      // This example displays an address form, using the autocomplete feature
+      // of the Google Places API to help users fill in the information.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var placeSearch, autocomplete_two;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete_two = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('chemist_addr')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete_two.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete_two.getPlace();
+
+        for (var component in componentForm) {
+          document.getElementById(component).value = '';
+          document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+          }
+        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete_two.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHLIx0wxfBSnO7tPtAXvdTMBkXDSxfDFM&libraries=places&callback=initAutocomplete"
-        async defer></script>
+        async defer>
+    </script>
+    <script>
+    
+    function showResult(result) {
+    document.getElementById('chemist_addr_lat').value = result.geometry.location.lat();
+    document.getElementById('chemist_addr_long').value = result.geometry.location.lng();
+      }
+
+    function getLatitudeLongitude(callback, address) {
+    // If adress is not supplied, use default value 'National college of ireland, dublin, ireland'
+    address = address || 'National college of ireland, dublin, ireland';
+    // Initialize the Geocoder
+    geocoder = new google.maps.Geocoder();
+    if (geocoder) {
+        geocoder.geocode({
+            'address': address
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                callback(results[0]);
+            }
+        });
+    }
+}
+    
+    
+    function getLL(){
+      var address = document.getElementById('chemist_addr').value;
+        getLatitudeLongitude(showResult, address)
+    }
+    
+    
+   /* var button = document.getElementById('btn');
+    
+    button.addEventListener("click", function () {
+        var address = document.getElementById('chemist_addr').value;
+        getLatitudeLongitude(showResult, address)
+    });*/
+    </script>
     <?php
         if (isset($msg)) {
           echo $msg;

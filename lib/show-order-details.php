@@ -4,7 +4,7 @@
 /*
 include('send-prescription-doctor-dashboard.php');
  */
-require_once 'config.php';
+require 'config.php';
 /* GLOBAL VARIABLE FOR ORDER ID */
 $orderID = $_POST["order_id"];
  if(isset($_POST["order_id"]))
@@ -39,19 +39,20 @@ $orderID = $_POST["order_id"];
                ";
         }
         echo " 
-            <tbody>
+            </tbody>
             </table>
             </div>";
             
-        echo "
+        echo '
           <div>
-            <form  method='post'>
+            <form method="post" action="lib/setprice.php">
                 <label>Price:</label>
-                $newPrice = <input type='number' id='newPrice' Placeholder='Enter Price'/>
-                <button type='submit' value='updatePrice' id='$orderID' class='btn btn-success btn-block'>Set Price</button>
-            <form>
+                <input type="text" id="newPrice" name="newPrice" Placeholder="Enter Price"/>
+                <input type="hidden" name="orderID" value="'.$orderID.'" />
+                <button type="submit" name="updatePrice" class="btn btn-success btn-block">Set Price</button>
+            </form>
           </div>
-          ";
+          ';
     }
     else 
     {
@@ -61,23 +62,6 @@ $orderID = $_POST["order_id"];
                  <td>Empty</td>
             </tr>
         ";
-        
     }
  }
- ?>
-
-<?php
-    if(isset($_GET['updatePrice']))
-    {
-        if ($DBcon->connect_error)
-        {
-            die("Connection failed: " . $DBcon->connect_error);
-        }
-        else
-        {
-            $sqlPrice = "UPDATE orders_table SET status='Fulfilled',price=$newPrice WHERE order_id = '$orderID'";
-            
-            $DBcon->query($sqlPrice);
-        }
-    }
 ?>

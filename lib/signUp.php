@@ -6,6 +6,8 @@ session_start();
 //error_reporting(E_ALL);
 require_once 'config.php';
 
+
+
 //if they click on the signup button
 if (isset($_POST['patient-signUp']))
 {
@@ -15,7 +17,7 @@ if (isset($_POST['patient-signUp']))
         $patient_email  = strip_tags($_POST['patient_email']);
         $patient_pwd = strip_tags($_POST['patient_pwd']);
         $patient_phone  = strip_tags($_POST['patient_phone']);
-        $patient_address  = strip_tags($_POST['autocomplete']);
+        $patient_address  = strip_tags($_POST['patient_addr']);
 
         //Sending the input to variables so it can be sent to the db
         $patient_fname  = $DBcon->real_escape_string($patient_fname);
@@ -36,23 +38,24 @@ if (isset($_POST['patient-signUp']))
         //if the the emails mathching counter is equal to 0 lets run query to add account
         if ($count == 0) {
             //if email is not taken insert query
-            $query = "INSERT INTO patient_table( patient_fname, patient_lname, patient_email, patient_phone, patient_address, patient_password )
+        $query = "INSERT INTO patient_table(patient_fname, patient_lname, patient_email, patient_phone, patient_address ,patient_password)
 
-            VALUES (
-                '$patient_fname',  '$patient_lname',  '$patient_email', '$patient_phone',  '$patient_address', '$Hash_patient_pwd'
-            )";
-            //send query to DB
-            $DBcon->query($query);
-            $patientID = $DBcon->insert_id;
-            //send out to user that their account was successfully created
-            $msg = "Successful registration";
-            $_SESSION['login_user'] = $patientID;
-            $_SESSION['user_type'] = 'patient';
-            header("location: ../patient_dashboard.php");
+        VALUES (
+            '$patient_fname',  '$patient_lname',  '$patient_email', '$patient_phone',  '$patient_address', '$Hash_patient_pwd'
+        )";
+        //send query to DB
+        $DBcon->query($query);
+        $patientID = $DBcon->insert_id;
+        //send out to user that their account was successfully created
+        $msg = "Successful registration";
+        $_SESSION['login_user'] = $patientID;
+        $_SESSION['user_type'] = 'patient';
+        header("location: ../patient_dashboard.php");
+            
         }
-
         //else send error email already taken
-        else{
+        else
+        {
             $msg = "Email is taken";
         }
 
@@ -109,7 +112,6 @@ else if (isset($_POST['doctor-signUp']))
       //If email is a match say this email has already been taking
       $msg = "Email is taken";
   }
-
 }
 
 else if (isset($_POST['chemist-signUp']))
@@ -119,7 +121,9 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_email  = strip_tags($_POST['chemist_email']);
   $chemist_password = strip_tags($_POST['chemist_password']);
   $chemist_phone  = strip_tags($_POST['chemist_phone']);
-  $chemist_address  = strip_tags($_POST['autocomplete']);
+  $chemist_address  = strip_tags($_POST['chemist_addr']);
+  $lat = strip_tags($_POST['chemist_addr_lat']);
+  $long = strip_tags($_POST['chemist_addr_long']);
 
   $target = "data/";
   $target = $target . basename( $_FILES['chemist_cert']['name']);
@@ -133,7 +137,9 @@ else if (isset($_POST['chemist-signUp']))
   $Hash_chemist_password = password_hash($chemist_password, PASSWORD_BCRYPT);
 
   $chemist_phone  = $DBcon->real_escape_string($chemist_phone);
-  $chemist_al1  = $DBcon->real_escape_string($chemist_address);
+  $chemist_address  = $DBcon->real_escape_string($chemist_address);
+  $lat = $DBcon->real_escape_string($lat);
+  $long = $DBcon->real_escape_string($long);
 
   //setting a query to a variable to use
   $check_email = $DBcon->query("SELECT chemist_email FROM chemist_table WHERE chemist_email='$chemist_email'");
@@ -142,11 +148,13 @@ else if (isset($_POST['chemist-signUp']))
   //if the the emails mathching is equal to 0
   if ($count == 0) {
       //if email is not taken insert query
-      $query = "INSERT INTO chemist_table( chemist_store_name, chemist_address, chemist_phone, chemist_email, chemist_password )
+        
+      $query = "INSERT INTO chemist_table(chemist_store_name, chemist_address, lattitude, longitude, chemist_phone, chemist_email, chemist_password )
 
       VALUES (
-          '$chemist_store_name',  '$chemist_address', '$chemist_phone', '$chemist_email', '$Hash_chemist_password'
+          '$chemist_store_name',  '$chemist_address', '$lat', '$long', '$chemist_phone', '$chemist_email', '$Hash_chemist_password'
       )";
+      
       //send query to DB
       $DBcon->query($query);
       $chemistID = $DBcon->insert_id;
@@ -162,19 +170,15 @@ else if (isset($_POST['chemist-signUp']))
       //If email is a match say this email has already been taking
       $msg = "Email is taken";
   }
-
-
 }
 
 else if (isset($_POST['driver-signUp']))
 {
-
   $driver_fname  = strip_tags($_POST['driver_fname']);
   $driver_lname  = strip_tags($_POST['driver_lname']);
   $driver_email = strip_tags($_POST['driver_email']);
   $driver_password = strip_tags($_POST['driver_pwd']);
   $driver_phone = strip_tags($_POST['driver_phone']);
-
 
   $Hash_driver_password = password_hash($driver_password, PASSWORD_BCRYPT);
 
@@ -223,6 +227,5 @@ else if (isset($_POST['driver-signUp']))
 else{
 }
 
-//header("Location: /index.php");
 
 ?>
