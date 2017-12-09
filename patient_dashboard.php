@@ -80,9 +80,7 @@ else {
         </div>
       </div>
     </nav>
-
-
-
+    
     <!--Tabs for Patient Dashboard-->
     <div class="dashboard-container">
       <div id="tab-buttons">
@@ -158,7 +156,7 @@ else {
                 while($row = mysqli_fetch_array($chemistResults)){
                     echo '<tr>
                             <td class="text-left">'.$row['chemist_store_name'].'</td>
-                            <td><a type="button" onclick="passID('.$row['chemist_id'].')">Select</a></td>
+                            <td><a id="chemist-button" type="button" onclick="passID('.$row['chemist_id'].')">Select</a></td>
                           </tr>';
                 }
               ?>
@@ -171,15 +169,8 @@ else {
                   }
               </script>
 
-            <input type="text" name="chem_id_val" id="chem_id_val" required/>
-            <button type="submit" id="send-order" class="btn btn-block" name="btn-accept"
-            <?php
-            //make this button disabled if the patient has no orders
-            if(!$numrows){
-              echo 'disabled';
-            }
-            ?>
-            >Send Order</button><!-- Close the button tag-->
+            <input type="hidden" name="chem_id_val" id="chem_id_val" required/>
+            
             </form>
 
             <?php
@@ -215,15 +206,25 @@ else {
               }
             }
             ?>
+            
             </tbody>
+            
           </table>
+          <button type="submit" id="send-order" class="btn btn-block" name="btn-accept"
+            <?php
+            //make this button disabled if the patient has no orders
+            if(!$numrows){
+              echo 'disabled';
+            }
+            ?>
+            >Send Order</button><!-- Close the button tag-->
         </div>
       </div>
     </div>
 
 
 
-    <h3>Active Orders</h3>
+    <h2 id="chemist-heading">Active Orders</h2>
 
 
     <!-- Orders Table -->
@@ -256,13 +257,14 @@ else {
               </tr>';
             }
           ?>
+          
+          
         </tbody>
+        
       </table>
+      
     </div>
 
-    <?php
-    echo 'hello '.$_SESSION['login_user'];
-    ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

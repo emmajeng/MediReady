@@ -67,24 +67,11 @@ else {
 
      <!--Tabs for Patient Dashboard-->
      <section id="account-section">
-       <div class="account-container">
-         <div class="row">
-           <div class="col-md-5">
-            <form method="post" action="lib/change_address.php">
-             <h2 class="account-heading">Change Address:</h2>
-              <label for="user_address">New Address</label>
-               <input type="text" class="form-control" name="user_address" id="user_address">
-               <label for="password">Password:</label>
-               <input type="password" class="form-control" name="password" id="password">
-              <button name="changeAddressBtn" class="btn btn-xl btn-mrg">Change</button>
-             </form>
-           </div>
-
            <div class="col-md-2"></div>
 
-           <div class="col-md-5">
+           <div class="col-md-5" id="change-password">
               <h2 class="account-heading">Change Password:</h2>
-              <form method="post" action="lib/change_password.php">
+              <form method="post" action="lib/change_password.php" id='password-change-form'>
                <label for="user_new_password">New Password:</label>
                <input type="password" class="form-control" name="user_new_password" id="user_new_password" onchange="check_password()">
                <label for="user_new_password_check">New Password Again:</label>
@@ -94,13 +81,12 @@ else {
                <button id="changePasswordBtn" name="changePasswordBtn" class="btn btn-xl btn-mrg">Change</button>
                
               </form>
-              <div id="password_error">hey there friend your password doesnt match!</div>
+              <div id="password_error">Make sure your passwords match!</div>
            </div>
          </div>
            <form method="post">
             <button name="deleteAccountBtn" class="btn btn-xl btn-mrg" id="delete_account">Delete Account</button>
            </form>
-       </div>
      </section>
 
    <!-- Footer Section -->

@@ -64,7 +64,7 @@ else {
   </head>
 
   <body>
-    <div id="page-top">
+    <div id="page-top" class="bottom-pad">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
@@ -88,42 +88,100 @@ else {
     </div>
 
   <!--Tabs for Patient Dashboard-->
-    <div class="dashboard-container">
-      <div id="tab-buttons">
-        <button onclick="setTabContents('tab-1')" id="mapDisplay" class="tab-1 active" >Map</button>
-        <button onclick="setTabContents('tab-2')" id="directions" class="tab-2" >Directions</button>
-      </div>
-      <div id="tab-contents">
-        <div class="tab-1 active">
-          <div id="mapContainer">
-            <div id="map"></div>
+      <div id="mapContainer">
+        <div class='sidebar'>
+          <table class="table-fill">
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Button</td>
+            </tr>
+          </table>
+        </div>
+        <div id="map"></div>
 
             <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiZW1tYWplbmciLCJhIjoiY2phbzNkdnRqM2kzejMzcGx6aXRnNGEzZCJ9.B2v7VV1Go9UVRv0m-YEDOw';
-            var map = new mapboxgl.Map({
-                container: 'map', // container id
-                style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-                center: [-7.778320310000026, 53.2734], // starting position [lng, lat]
-                zoom: 6 // starting zoom
-            });
+              mapboxgl.accessToken = 'pk.eyJ1IjoiZW1tYWplbmciLCJhIjoiY2phbzNkdnRqM2kzejMzcGx6aXRnNGEzZCJ9.B2v7VV1Go9UVRv0m-YEDOw';
+              var map = new mapboxgl.Map({
+                  container: 'map', // container id
+                  style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+                  center: [-7.778320310000026, 53.2734], // starting position [lng, lat]
+                  zoom: 6 // starting zoom
+              });
 
+              map.scrollZoom.disable();
             </script>
-          </div>
-
-
-        </div>
-
-        <div class="tab-2">
-          <h4>
-            <ul>
-            <li>1. Head north on Jervis St toward Mary St</li>
-            <li>2. Continue on North Rd to your destination</li>
-            <li>3. Take R804, R805, Aughrim St/R806 and N Circular Rd/R101 to North Rd</li>
-            </ul>
-          </h4>
-        </div>
       </div>
-    </div>
 
     <!-- Update route button -->
 
@@ -180,17 +238,12 @@ else {
                   "line-cap": "round"
               },
               "paint": {
-                  "line-color": "#888",
-                  "line-width": 8
+                  "line-color": "#4DD0E1",
+                  "line-width": 4
               }
           });
 
       });
-
-
-
-
-
             </script>
 
     <!-- Orders Table -->
