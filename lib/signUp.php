@@ -43,7 +43,7 @@ if (isset($_POST['patient-signUp']))
         $query = "INSERT INTO patient_table(patient_fname, patient_lname, patient_email, patient_phone, patient_address, lattitude, longitude ,patient_password)
 
         VALUES (
-            '$patient_fname',  '$patient_lname',  '$patient_email', '$patient_phone', '$patient_address', '$patient_lat',  '$patient_long', '$Hash_patient_pwd'
+            '$patient_fname',  '$patient_lname',  '$patient_email', '$patient_phone', '$patient_address', '$patient_long',  '$patient_lat', '$Hash_patient_pwd'
         )";
         //send query to DB
         $DBcon->query($query);

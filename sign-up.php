@@ -26,6 +26,33 @@
 
     <!-- JS for password confirmation match-->
     <script language="javascript" type="text/javascript" src="js/signup_password_match.js"></script>
+    <script>
+      function getLatitudeLongitude(callback, address) {
+        // If adress is not supplied, use default value 'National college of ireland, dublin, ireland'
+        address = address || 'National college of ireland, dublin, ireland';
+        // Initialize the Geocoder
+        geocoder = new google.maps.Geocoder();
+        if (geocoder) {
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    callback(results[0]);
+                }
+            });
+        }
+      }
+
+      function showResult(result) {
+        document.getElementById('patient_addr_lat').value = result.geometry.location.lat();
+        document.getElementById('patient_addr_long').value = result.geometry.location.lng();
+      }
+
+      function getLL(){
+        var address = document.getElementById('patient_addr').value;
+        getLatitudeLongitude(showResult, address);
+      }
+    </script>
   </head>
 
   <body id="form-background" onload="checkPassword()">
@@ -86,9 +113,9 @@
             <div id="locationField">
               <input id="patient_addr" name="patient_addr" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
             </div>
-			<a type="button" id="btn" onclick="getPatientLL()">Confirm Address</a>
-            <input type="hidden" name="patient_addr_lat">
-            <input type="hidden" name="patient_addr_long">
+			<a type="button" id="btn" onclick="getLL()">Confirm Address</a>
+            <input type="" id="patient_addr_lat" name="patient_addr_lat">
+            <input type="" id="patient_addr_long" name="patient_addr_long">
             <button type="submit" id="patient-reg" class="patient-signUp" name="patient-signUp">Submit</button>
             <div id="patient_error">Hey there friend your passwords do not match!</div>
           </form>
@@ -229,7 +256,6 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("chemist_addr").required = false;
           document.getElementById("chemist_password").required = false;
 
           document.getElementById("driver_fname").required = false;
@@ -280,7 +306,6 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("chemist_addr").required = false;
           document.getElementById("chemist_password").required = false;
 
 
@@ -311,7 +336,6 @@
           document.getElementById("chemist_store_name").required = false;
           document.getElementById("chemist_email").required = false;
           document.getElementById("chemist_phone").required = false;
-          document.getElementById("chemist_addr").required = false;
           document.getElementById("chemist_password").required = false;
 
           document.getElementById("patient_fname").required = false;
@@ -348,7 +372,6 @@
           document.getElementById("chemist_store_name").required = true;
           document.getElementById("chemist_email").required = true;
           document.getElementById("chemist_phone").required = true;
-          document.getElementById("chemist_addr").required = true;
           document.getElementById("chemist_password").required = true;
 
           document.getElementById("driver_email").required = false;
@@ -422,20 +445,21 @@
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();
 
-        for (var component in componentForm) {
-          document.getElementById(component).value = '';
-          document.getElementById(component).disabled = false;
-        }
+        // for (var component in componentForm) {
+        //   console.log(component);
+        //   // document.getElementById(component).value = '';
+        //   // document.getElementById(component).disabled = false;
+        // }
 
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-          var addressType = place.address_components[i].types[0];
-          if (componentForm[addressType]) {
-            var val = place.address_components[i][componentForm[addressType]];
-            document.getElementById(addressType).value = val;
-          }
-        }
+        // // Get each component of the address from the place details
+        // // and fill the corresponding field on the form.
+        // for (var i = 0; i < place.address_components.length; i++) {
+        //   var addressType = place.address_components[i].types[0];
+        //   if (componentForm[addressType]) {
+        //     var val = place.address_components[i][componentForm[addressType]];
+        //     document.getElementById(addressType).value = val;
+        //   }
+        // }
       }
 
       // Bias the autocomplete object to the user's geographical location,
@@ -458,64 +482,8 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHLIx0wxfBSnO7tPtAXvdTMBkXDSxfDFM&libraries=places&callback=initAutocomplete"
         async defer>
-    </script>
-    <script>
-
-    function showResult(result) {
-    document.getElementById('chemist_addr_lat').value = result.geometry.location.lat();
-    document.getElementById('chemist_addr_long').value = result.geometry.location.lng();
-      }
-
-    function getLatitudeLongitude(callback, address) {
-    // If adress is not supplied, use default value 'National college of ireland, dublin, ireland'
-    address = address || 'National college of ireland, dublin, ireland';
-    // Initialize the Geocoder
-    geocoder = new google.maps.Geocoder();
-    if (geocoder) {
-        geocoder.geocode({
-            'address': address
-        }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                callback(results[0]);
-            }
-        });
-    }
-}
 
 
-    function getChemistLL(){
-      var address = document.getElementById('chemist_addr').value;
-        getLatitudeLongitude(showResult, address)
-    }
-    </script>
-	<script>
-
-    function showResult(result) {
-    document.getElementById('patient_addr_lat').value = result.geometry.location.lat();
-    document.getElementById('patient_addr_long').value = result.geometry.location.lng();
-      }
-
-    function getLatitudeLongitude(callback, address) {
-    // If adress is not supplied, use default value 'National college of ireland, dublin, ireland'
-    address = address || 'National college of ireland, dublin, ireland';
-    // Initialize the Geocoder
-    geocoder = new google.maps.Geocoder();
-    if (geocoder) {
-        geocoder.geocode({
-            'address': address
-        }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                callback(results[0]);
-            }
-        });
-    }
-}
-
-
-    function getPatientLL(){
-      var address = document.getElementById('patient_addr').value;
-        getLatitudeLongitude(showResult, address)
-    }
     </script>
     <?php
         if (isset($msg)) {

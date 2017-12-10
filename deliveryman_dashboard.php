@@ -195,6 +195,7 @@ else {
         method: 'GET',
         url: directionsRequest,
       }).done(function(data){
+        console.log(data);
         var route = data.routes[0].geometry;
 
         //addes route line
