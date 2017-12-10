@@ -89,14 +89,6 @@ else {
 
   <!--Tabs for Patient Dashboard-->
       <div id="mapContainer">
-        <div class='sidebar'>
-          <table class="table-map">
-            <tr>
-              <th colspan="3">Directions</th>
-            </tr>
-          </table>
-          <div id="instructions"></div>
-        </div>
         <div id="map"></div>
 
             <script>
@@ -115,11 +107,40 @@ else {
     <!-- Update route button -->
 
      <!-- Location.php script -->
+            <?php
+            /*
+             ====== Also need to comvert the output of the TSP as a json =====
+            */
+            /*
+            This file grabs the longitudes and latitudes from the database
+            and then converts them into a 2D array and calls the algorithim
 
+            NOTE: Need to change fname and lname to the longitudes and latitudes
+            */
+                require 'lib/config.php';
+
+                $arr = array();
+                $query = ("SELECT * FROM patient_table");
+                $result = $DBcon->query($query);
+
+                //echo $query;
+             $i=0;
+                while($row = mysqli_fetch_array($result)) {
+
+                    $arr[$i] = array($row['lattitude'],$row['longitude']);
+                    $i++;
+
+                }
+
+
+
+            ?>
 
 
 
             <script>
+
+
 
 
             map.on('load', function(){
@@ -131,13 +152,17 @@ else {
     function getRoute() {
 
       //php connect ot db to get long lat from patients with deliveries
-
-      //store in js array using json encode
+      var locationArr = <?php echo json_encode($arr); ?>;
 
       // run tsp algortithm + get response array
-
+      <?php include 'lib/tsp.php';?>;
+      makeCities(locationArr);
       //pass in ordered tsp locations array below
-      var locations = [[-6.3053, 53.3562],[-6.802586, 53.176861],[-6.5991, 53.0918],[-6.9857, 52.991]];
+      function passLocations(finalArray){
+        console.log(finalArray);
+
+
+      var locations = finalArray;
 
       var locationString = locations.map(function(x) {
         return x.join(',');
@@ -220,12 +245,9 @@ else {
         //https://www.mapbox.com/help/getting-started-directions-api/
         //https://www.mapbox.com/help/how-directions-work/
 
-        var instructions = document.getElementById('instructions');
-        var steps = data.routes[0].legs[0].steps;
-        steps.forEach(function(step){
-          instructions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
-        });
+
       });
+    }
     }
 
 
