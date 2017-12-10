@@ -164,6 +164,27 @@ else {
 
       var locations = finalArray;
 
+
+      const allPoints = locations.map(point => ({
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: point
+        }
+       }));
+
+        map.addLayer({
+            id: 'path',
+            type: 'circle',
+            source: {
+                type: 'geojson',
+                data: {
+                    type: 'FeatureCollection',
+                    features: allPoints
+                }
+            }
+       });
+
       var locationString = locations.map(function(x) {
         return x.join(',');
 
@@ -188,7 +209,9 @@ else {
             }
           },
           paint: {
-            'line-width': 2
+            'line-width': 2,
+            'line-color': '#00E5FF'
+
           }
         });
 
