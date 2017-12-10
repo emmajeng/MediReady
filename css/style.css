@@ -35,7 +35,8 @@ section {
     font-size: 40px;
     margin-top: 0;
     margin-bottom: 15px;
-    color:#80deea; }
+    color:#80deea;
+    text-align:center;}
   section h3.section-subheading {
     font-size: 16px;
     font-weight: 400;
@@ -1168,4 +1169,20 @@ a.btn-next:hover{
   height:100%;
   width:100%;
   margin: 0 auto;
+}
+
+.container-dash{
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+.padded-footer{
+  margin-bottom:2em;
+}
+
+#section-heading{
+  font-size: 40px;
+    color:#80deea;
+    text-align:center;
 }

@@ -108,7 +108,7 @@ else {
                     die("Connection failed: " . $DBcon->connect_error);
                   }
 
-                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND status = 'Awaiting Response'";
+                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND price = 0";
 
                   $result = $DBcon->query($sql);
 
@@ -182,7 +182,7 @@ else {
                   $sql = "SELECT CONCAT(patient_fname, ' ', patient_lname) AS fullname, price, status, order_id
                           FROM patient_table
                           INNER JOIN orders_table AS o ON o.patient_id = patient_table.patient_id
-                          WHERE chemist_id = ".$_SESSION['login_user']." ";
+                          WHERE chemist_id = ".$_SESSION['login_user']." AND status != 'Delivery' AND status != 'Delivered' ";
 
                   $result = $DBcon->query($sql);
 
@@ -198,7 +198,7 @@ else {
                         $update = 'Send for delivery';
                       }
                       elseif($status == 'Send for delivery'){
-                        $update = 'Out for delivery';
+                        $update = 'Delivery';
                       }
                       else{
                         $update = 'Ready';

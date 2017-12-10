@@ -113,9 +113,9 @@
             <div id="locationField">
               <input id="patient_addr" name="patient_addr" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
             </div>
-			<a type="button" id="btn" onclick="getLL()">Confirm Address</a>
-            <input type="" id="patient_addr_lat" name="patient_addr_lat">
-            <input type="" id="patient_addr_long" name="patient_addr_long">
+			<a type="button" class="" id="btn" onclick="getLL()">Confirm Address</a>
+            <input type="hidden" id="patient_addr_lat" name="patient_addr_lat">
+            <input type="hidden" id="patient_addr_long" name="patient_addr_long">
             <button type="submit" id="patient-reg" class="patient-signUp" name="patient-signUp">Submit</button>
             <div id="patient_error">Hey there friend your passwords do not match!</div>
           </form>

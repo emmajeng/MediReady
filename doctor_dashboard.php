@@ -35,6 +35,23 @@ else {
 }
 
 ?>
+<?php
+  // this is just for testing purposes
+  // Will change so that it connects from config.php
+  // Also Need to add require sign.php
+  // database connection testing for now
+
+  $connectToMysql = mysqli_connect("localhost","root","","c9");
+
+  //query
+  $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
+
+  // store result
+  $storedResult = mysqli_query($connectToMysql, $query);
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +94,11 @@ else {
   <!-- auto complete form -->
   <link href='data/Autocomplete-medication/autocomplete-lhc_jQueryUI.min.css' rel="stylesheet">
 
+  <link data-require="sweet-alert@*" data-semver="0.4.2" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.4.2/sweet-alert.min.css" />
+  <script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script data-require="sweet-alert@*" data-semver="0.4.2" src="//cdnjs.cloudflare.com/ajax/libs/sweetalert/0.4.2/sweet-alert.min.js"></script>
+
+
 
 
 
@@ -108,7 +130,9 @@ else {
   </div>
 
   <!--Tabs for Doctor Dashboard-->
-  <div class="dashboard-container">
+  <section class="container-dash">
+
+    <h2 class="section-heading">Doctor Dashboard</h2>
     <div id="tab-buttons">
       <button onclick="setTabContents('tab-1')" id="new-order" class="tab-1 active">Make Prescription</button>
       <button onclick="setTabContents('tab-2')" id="chem-select" class="tab-2">Select Client</button>
@@ -122,7 +146,7 @@ else {
           <div id="make_prescription">
 
             <!-- form method = "post" action = "submitting.php" -->
-            <form method="post" action="lib/send-prescription-doctor-dashboard.php" novalidate>
+            <form method="post" action="lib/send-prescription-doctor-dashboard.php" id="sendMedication" novalidate>
 
               <div class="form-group fieldGroup">
 
@@ -197,12 +221,6 @@ else {
                  <tbody>
                  <?php
 
-				 //query
-				  $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
-
-				  // store result
-				  $storedResult = mysqli_query($DBcon, $query);
-
                   while($row = mysqli_fetch_array($storedResult))
                   {
 
@@ -232,7 +250,7 @@ else {
           <div class="modal-dialog ">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Confirm Prescription</h4>
+                <h4 class="modal-title" style="color:white">Confirm Prescription</h4>
 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
@@ -248,6 +266,10 @@ else {
                   <button type="submit"  class="btn btn-primary btn-lg btn-block" name="btn-sendMed" >Send</button>
               </div>
               </form>
+
+
+
+
             </div>
           </div>
         </div>
@@ -255,6 +277,7 @@ else {
       </div>
     </div>
   </div>
+  </section>
   <script>
 
 
@@ -309,6 +332,13 @@ else {
         $(this).parents(".fieldGroup").remove();
       });
     });
+
+
+
+
+
+
+
   </script>
   <!-- Footer Section -->
   <footer id="footer" class="padded-footer">

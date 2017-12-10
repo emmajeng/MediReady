@@ -56,7 +56,11 @@ else {
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
-    
+    <!--SweetAlert-->
+    <link data-require="sweet-alert@*" data-semver="0.4.2" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.4.2/sweet-alert.min.css" />
+    <script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script data-require="sweet-alert@*" data-semver="0.4.2" src="//cdnjs.cloudflare.com/ajax/libs/sweetalert/0.4.2/sweet-alert.min.js"></script>
+
 
 
   </head>
@@ -227,7 +231,7 @@ else {
 
 
 
-    <h2 id="chemist-heading">Active Orders</h2>
+    <h2 id="section-heading">Active Orders</h2>
 
 
     <!-- Orders Table -->
