@@ -3,6 +3,8 @@
     session_start();
     require ('lib/config.php');
     include 'lib/signin.php';
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'Off');
 
 ?>
 
@@ -28,25 +30,6 @@
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
-
-
-
-<?php
-/*
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    if (isset($_POST['signin']))
-    {
-      //user logging in
-      require 'lib/signin.php';
-    }
-    elseif (isset($_POST['register'])) { //user registering
-
-        header("location: sign-up.php");
-
-    }
-}*/
-?>
 
 
 

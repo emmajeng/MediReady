@@ -56,6 +56,8 @@ else {
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
+    
+
 
   </head>
 
@@ -135,7 +137,6 @@ else {
 
 
             ?>
-
             </tbody>
           </table>
             <a onclick="setTabContents('tab-2')" class="btn btn-next">Next</a>

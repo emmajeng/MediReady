@@ -196,7 +196,7 @@ else {
                  </thead>
                  <tbody>
                  <?php
-				 
+
 				 //query
 				  $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
 
