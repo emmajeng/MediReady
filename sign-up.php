@@ -32,7 +32,7 @@
     <?php
           include('lib/signUp.php');
       ?>
-      
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
@@ -147,7 +147,7 @@
             </div>
             <button type="submit" id="chemist-reg" class="chemist-signUp" name="chemist-signUp">Submit</button>
             <div id="chemist_error">Hey there friend your passwords do not match!</div>
-            
+
           </form>
 
           <form id="driver-sign-up" class="reg-form" method="post">
@@ -387,7 +387,7 @@
 
 
       </script>
-  
+
     <script>
       // This example displays an address form, using the autocomplete feature
       // of the Google Places API to help users fill in the information.
@@ -460,7 +460,7 @@
         async defer>
     </script>
     <script>
-    
+
     function showResult(result) {
     document.getElementById('chemist_addr_lat').value = result.geometry.location.lat();
     document.getElementById('chemist_addr_long').value = result.geometry.location.lng();
@@ -481,15 +481,15 @@
         });
     }
 }
-    
-    
+
+
     function getChemistLL(){
       var address = document.getElementById('chemist_addr').value;
         getLatitudeLongitude(showResult, address)
     }
     </script>
 	<script>
-    
+
     function showResult(result) {
     document.getElementById('patient_addr_lat').value = result.geometry.location.lat();
     document.getElementById('patient_addr_long').value = result.geometry.location.lng();
@@ -510,8 +510,8 @@
         });
     }
 }
-    
-    
+
+
     function getPatientLL(){
       var address = document.getElementById('patient_addr').value;
         getLatitudeLongitude(showResult, address)

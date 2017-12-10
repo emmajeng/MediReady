@@ -95,10 +95,10 @@ else if (isset($_POST['doctor-signUp']))
   //if the the emails mathching is equal to 0
   if ($count == 0) {
       //if email is not taken insert query
-      $query = "INSERT INTO doctor_table( doctor_fname, doctor_lname, doctor_phone, doctor_email, doctor_license, doctor_password )
+      $query = "INSERT INTO doctor_table( doctor_fname, doctor_lname, doctor_phone, doctor_email, doctor_password )
 
       VALUES (
-          '$doctor_fname', '$doctor_lname', '$doctor_phone',  '$doctor_email', '$Filename',  '$Hash_doctor_password'
+          '$doctor_fname', '$doctor_lname', '$doctor_phone',  '$doctor_email',  '$Hash_doctor_password'
       )";
       //send query to DB
       $DBcon->query($query);
@@ -124,11 +124,6 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_password = strip_tags($_POST['chemist_password']);
   $chemist_phone  = strip_tags($_POST['chemist_phone']);
   $chemist_address  = strip_tags($_POST['chemist_addr']);
-
-
-  $target = "data/";
-  $target = $target . basename( $_FILES['chemist_cert']['name']);
-  $Filename=basename( $_FILES['chemist_cert']['name']);
 
   //Sending the input to variables so it can be sent to the db
   $chemist_store_name  = $DBcon->real_escape_string($chemist_store_name);
@@ -182,10 +177,6 @@ else if (isset($_POST['driver-signUp']))
   $Hash_driver_password = password_hash($driver_password, PASSWORD_BCRYPT);
 
   $driver_password = strip_tags($_POST['driver_phone']);
-
-  $target = "data/";
-  $target = $target . basename( $_FILES['driver_license']['name']);
-  $Filename=basename( $_FILES['driver_license']['name']);
 
   //Sending the input to variables so it can be sent to the db
   $driver_fname  = $DBcon->real_escape_string($driver_fname);

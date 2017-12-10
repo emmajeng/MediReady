@@ -108,40 +108,40 @@ else {
     <!-- Update route button -->
 
      <!-- Location.php script -->
-            <?php 
+            <?php
             /*
              ====== Also need to comvert the output of the TSP as a json =====
             */
             /*
             This file grabs the longitudes and latitudes from the database
             and then converts them into a 2D array and calls the algorithim
-            
+
             NOTE: Need to change fname and lname to the longitudes and latitudes
             */
                 require 'lib/config.php';
-            
+
                 $arr = array();
                 $query = ("SELECT * FROM patient_table");
                 $result = $DBcon->query($query);
-            
+
                 //echo $query;
              $i=0;
                 while($row = mysqli_fetch_array($result)) {
-            
+
                     $arr[$i] = array($row['lattitude'],$row['longitude']);
                     $i++;
-            
+
                 }
-                
-                
-            
+
+
+
             ?>
 
 
 
             <script>
-            
-            
+
+
 
 
             map.on('load', function(){
@@ -154,16 +154,16 @@ else {
 
       //php connect ot db to get long lat from patients with deliveries
       var locationArr = <?php echo json_encode($arr); ?>;
-      
+
       // run tsp algortithm + get response array
-      <?php include 'lib/test.php';?>;
+      <?php include 'lib/tsp.php';?>;
       makeCities(locationArr);
       //pass in ordered tsp locations array below
       function passLocations(finalArray){
         console.log('again');
         console.log(finalArray);
-      
-      
+
+
       var locations = finalArray;
 
       var locationString = locations.map(function(x) {
@@ -247,7 +247,7 @@ else {
         //https://www.mapbox.com/help/getting-started-directions-api/
         //https://www.mapbox.com/help/how-directions-work/
 
-        
+
       });
     }
     }
@@ -289,11 +289,11 @@ else {
                       $details = $DBcon->query($patient);
                       $status = $row['status'];
                       $orderID = $row['order_id'];
-                      
+
                        if($status == 'Delivery'){
-                        $update = 'Delivered'; 
+                        $update = 'Delivered';
                       }
-                      
+
                       else{
                         $update = 'Delivery';
                       }
