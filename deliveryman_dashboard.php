@@ -214,61 +214,6 @@ else {
 
           }
         });
-
-        //adds start point
-        map.addLayer({
-          id: 'start',
-          type: 'circle',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: start
-              }
-            }
-          }
-        });
-
-        //adds end point
-        map.addLayer({
-          id: 'end',
-          type: 'circle',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: end
-              }
-            }
-          }
-
-        });
-
-        map.addLayer({
-          id: 'middle',
-          type: 'circle',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: middle
-              }
-            }
-          }
-
-        });
-
-        //shows insturctions
-        //https://www.mapbox.com/help/getting-started-directions-api/
-        //https://www.mapbox.com/help/how-directions-work/
-
-
       });
     }
     }
