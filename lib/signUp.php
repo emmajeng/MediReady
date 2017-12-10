@@ -124,8 +124,7 @@ else if (isset($_POST['chemist-signUp']))
   $chemist_password = strip_tags($_POST['chemist_password']);
   $chemist_phone  = strip_tags($_POST['chemist_phone']);
   $chemist_address  = strip_tags($_POST['chemist_addr']);
-  $lat = strip_tags($_POST['chemist_addr_lat']);
-  $long = strip_tags($_POST['chemist_addr_long']);
+
 
   $target = "data/";
   $target = $target . basename( $_FILES['chemist_cert']['name']);
@@ -140,8 +139,6 @@ else if (isset($_POST['chemist-signUp']))
 
   $chemist_phone  = $DBcon->real_escape_string($chemist_phone);
   $chemist_address  = $DBcon->real_escape_string($chemist_address);
-  $lat = $DBcon->real_escape_string($lat);
-  $long = $DBcon->real_escape_string($long);
 
   //setting a query to a variable to use
   $check_email = $DBcon->query("SELECT chemist_email FROM chemist_table WHERE chemist_email='$chemist_email'");
@@ -151,10 +148,10 @@ else if (isset($_POST['chemist-signUp']))
   if ($count == 0) {
       //if email is not taken insert query
 
-      $query = "INSERT INTO chemist_table(chemist_store_name, chemist_address, lattitude, longitude, chemist_phone, chemist_email, chemist_password )
+      $query = "INSERT INTO chemist_table(chemist_store_name, chemist_phone, chemist_email, chemist_password )
 
       VALUES (
-          '$chemist_store_name',  '$chemist_address', '$lat', '$long', '$chemist_phone', '$chemist_email', '$Hash_chemist_password'
+          '$chemist_store_name','$chemist_phone', '$chemist_email', '$Hash_chemist_password'
       )";
 
       //send query to DB

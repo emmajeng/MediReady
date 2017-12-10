@@ -32,6 +32,7 @@
     <?php
           include('lib/signUp.php');
       ?>
+      
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav-session">
       <div class="container">
@@ -85,6 +86,7 @@
             <div id="locationField">
               <input id="patient_addr" name="patient_addr" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
             </div>
+			<a type="button" id="btn" onclick="getPatientLL()">Confirm Address</a>
             <input type="hidden" name="patient_addr_lat">
             <input type="hidden" name="patient_addr_long">
             <button type="submit" id="patient-reg" class="patient-signUp" name="patient-signUp">Submit</button>
@@ -143,18 +145,9 @@
               <label for="chemist_phone">Phone Number:</label>
               <input type="text" class="form-control" name="chemist_phone" id="chemist_phone">
             </div>
-            <div class="form-group">
-              <label for="chemist_address">Address:</label>
-            </div>
-            <div id="locationField">
-              <input id="chemist_addr" name="chemist_addr" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
-            </div>
-            <a type="button" id="btn" onclick="getLL()">Confirm Address</a>
-            <input type="hidden" name="chemist_addr_lat" id="chemist_addr_lat">
-            <input type="hidden" name="chemist_addr_long" id="chemist_addr_long">
             <button type="submit" id="chemist-reg" class="chemist-signUp" name="chemist-signUp">Submit</button>
             <div id="chemist_error">Hey there friend your passwords do not match!</div>
-
+            
           </form>
 
           <form id="driver-sign-up" class="reg-form" method="post">
@@ -394,7 +387,8 @@
 
 
       </script>
-      <script>
+  
+    <script>
       // This example displays an address form, using the autocomplete feature
       // of the Google Places API to help users fill in the information.
 
@@ -462,80 +456,11 @@
         }
       }
     </script>
-
-    <script>
-      // This example displays an address form, using the autocomplete feature
-      // of the Google Places API to help users fill in the information.
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-      var placeSearch, autocomplete_two;
-      var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-      };
-
-      function initAutocomplete() {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types.
-        autocomplete_two = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('chemist_addr')),
-            {types: ['geocode']});
-
-        // When the user selects an address from the dropdown, populate the address
-        // fields in the form.
-        autocomplete_two.addListener('place_changed', fillInAddress);
-      }
-
-      function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete_two.getPlace();
-
-        for (var component in componentForm) {
-          document.getElementById(component).value = '';
-          document.getElementById(component).disabled = false;
-        }
-
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-          var addressType = place.address_components[i].types[0];
-          if (componentForm[addressType]) {
-            var val = place.address_components[i][componentForm[addressType]];
-            document.getElementById(addressType).value = val;
-          }
-        }
-      }
-
-      // Bias the autocomplete object to the user's geographical location,
-      // as supplied by the browser's 'navigator.geolocation' object.
-      function geolocate() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var geolocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            var circle = new google.maps.Circle({
-              center: geolocation,
-              radius: position.coords.accuracy
-            });
-            autocomplete_two.setBounds(circle.getBounds());
-          });
-        }
-      }
-    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHLIx0wxfBSnO7tPtAXvdTMBkXDSxfDFM&libraries=places&callback=initAutocomplete"
         async defer>
     </script>
     <script>
-
+    
     function showResult(result) {
     document.getElementById('chemist_addr_lat').value = result.geometry.location.lat();
     document.getElementById('chemist_addr_long').value = result.geometry.location.lng();
@@ -556,25 +481,47 @@
         });
     }
 }
-
-
-    function getLL(){
+    
+    
+    function getChemistLL(){
       var address = document.getElementById('chemist_addr').value;
         getLatitudeLongitude(showResult, address)
     }
+    </script>
+	<script>
+    
+    function showResult(result) {
+    document.getElementById('patient_addr_lat').value = result.geometry.location.lat();
+    document.getElementById('patient_addr_long').value = result.geometry.location.lng();
+      }
 
-
-   /* var button = document.getElementById('btn');
-
-    button.addEventListener("click", function () {
-        var address = document.getElementById('chemist_addr').value;
+    function getLatitudeLongitude(callback, address) {
+    // If adress is not supplied, use default value 'National college of ireland, dublin, ireland'
+    address = address || 'National college of ireland, dublin, ireland';
+    // Initialize the Geocoder
+    geocoder = new google.maps.Geocoder();
+    if (geocoder) {
+        geocoder.geocode({
+            'address': address
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                callback(results[0]);
+            }
+        });
+    }
+}
+    
+    
+    function getPatientLL(){
+      var address = document.getElementById('patient_addr').value;
         getLatitudeLongitude(showResult, address)
-    });*/
+    }
     </script>
     <?php
         if (isset($msg)) {
           echo $msg;
         }
     ?>
+
   </body>
 </html>
