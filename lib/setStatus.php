@@ -7,7 +7,7 @@ if(isset($_POST['updateStatus']))
         
         if($newStatus == 'Fulfilled')
         {
-            $status = 'Out for Delivery';
+            $status = 'Delivery';
             
             $sqlStatus = "UPDATE orders_table SET status='".$status."' WHERE order_id = '".$orderID."'";
             $DBcon->query($sqlStatus);

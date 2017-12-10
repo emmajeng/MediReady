@@ -108,7 +108,7 @@ else {
                     die("Connection failed: " . $DBcon->connect_error);
                   }
 
-                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND price = 0";
+                  $sql = "SELECT * FROM orders_table WHERE chemist_id = ".$_SESSION['login_user']." AND status = 'Awaiting Response'";
 
                   $result = $DBcon->query($sql);
 

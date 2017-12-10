@@ -35,23 +35,6 @@ else {
 }
 
 ?>
-<?php
-  // this is just for testing purposes
-  // Will change so that it connects from config.php
-  // Also Need to add require sign.php
-  // database connection testing for now
-
-  $connectToMysql = mysqli_connect("localhost","root","","c9");
-
-  //query
-  $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
-
-  // store result
-  $storedResult = mysqli_query($connectToMysql, $query);
-
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -213,6 +196,12 @@ else {
                  </thead>
                  <tbody>
                  <?php
+				 
+				 //query
+				  $query = "SELECT * FROM patient_table ORDER BY patient_id ASC";
+
+				  // store result
+				  $storedResult = mysqli_query($DBcon, $query);
 
                   while($row = mysqli_fetch_array($storedResult))
                   {
