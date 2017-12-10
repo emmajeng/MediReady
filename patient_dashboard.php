@@ -138,7 +138,7 @@ else {
 
             </tbody>
           </table>
-            <a type="button" onclick="setTabContents('tab-2')" class="btn btn-block">Next</a>
+            <a onclick="setTabContents('tab-2')" class="btn btn-next">Next</a>
         </div>
         <div class="tab-2">
           <table class="table-fill">
@@ -156,7 +156,7 @@ else {
                 while($row = mysqli_fetch_array($chemistResults)){
                     echo '<tr>
                             <td class="text-left">'.$row['chemist_store_name'].'</td>
-                            <td><a id="chemist-button" type="button" onclick="passID('.$row['chemist_id'].')">Select</a></td>
+                            <td><a class="chemist-button"  onclick="passID('.$row['chemist_id'].')">Select</a></td>
                           </tr>';
                 }
               ?>
@@ -234,7 +234,8 @@ else {
       <table class="table-fill">
         <thead>
         <tr>
-        <th class="text-left">Order Reference Number</th>
+        <th class="text-left">Medication</th>
+        <th class="text-left">Amount</th>
         <th class="text-left">Price</th>
         <th class="text-left">Order Status</th>
         </tr>
@@ -246,16 +247,24 @@ else {
             if ($result->num_rows > 0) {
               while($row = mysqli_fetch_array($result))
               {
-                echo '<tr>
-                    <td class="text-left">'.$row['order_id'].'</td>
+
+                $orderdetails = "SELECT * FROM order_details_table WHERE order_id=".$row['order_id'].";";
+                $details = mysqli_query($DBcon, $orderdetails);
+                while($row1 = mysqli_fetch_array($details)){
+
+                  echo '<tr>
+                    <td class="text-left">'.$row1['medName'].'</td>
+                    <td class="text-left">'.$row1['medAmount'].'</td>
                     <td class="text-left">'.$row['price'].'</td>
                     <td class="text-left">'.$row['status'].'</td>
                     </tr>';
+
+                }
               }
             }
             else{
               echo '<tr>
-              <td colspan="3">You currently have no active orders</td>
+              <td colspan="4">You currently have no active orders</td>
               </tr>';
             }
           ?>
@@ -266,6 +275,53 @@ else {
       </table>
 
     </div>
+
+    <!-- Footer Section -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-links col-md-4">
+          <a class="footer-links" href="faq.html">FAQs</a>
+          <br />
+          <br />
+          <a class="footer-links" href="help.html">Help</a>
+          <br />
+          <br />
+          <a class="footer-links" href="contact.html">Contact Us</a>
+          <br />
+          <br />
+          <a class="footer-links" href="">Phone Support</a>
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="bottom-footer row">
+        <div class="col-lg-4">
+          <span class="copyright">Copyright &copy; <img height=30 width=180 src="img/MediReady.png" /> 2017</span>
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
     <!-- Bootstrap core JavaScript -->
