@@ -1,19 +1,20 @@
-<<?php
+<?php
+
 require 'lib/config.php';
 //include 'lib/change_password.php';
-include 'lib/delete_account.php';
+//include 'lib/delete_account.php';
 
 /* Displays user information and some useful messages */
 session_start();
 
 // Check if user is logged in using the session variable
-if ( $_SESSION['login_user'] == null ) {
-  $_SESSION['message'] = "You must log in before viewing dashboard";
-  header("location: index.php");
-}
-else {
-    // Makes it easier to read
-}
+ if ( $_SESSION['login_user'] == null ) {
+   $_SESSION['message'] = "You must log in before viewing dashboard";
+   header("location: index.php");
+ }
+ else {
+     // Makes it easier to read
+ }
 
 ?>
 
@@ -42,6 +43,16 @@ else {
      <link href="css/style.css" rel="stylesheet" />
      <!-- JS for password confirmation match-->
      <script language="javascript" type="text/javascript" src="js/change_password_match.js"></script>
+
+     <!-- Sweet alert -->
+    <link data-require="sweet-alert@*" data-semver="0.4.2" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.4.2/sweet-alert.min.css" />
+    <script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script data-require="sweet-alert@*" data-semver="0.4.2" src="//cdnjs.cloudflare.com/ajax/libs/sweetalert/0.4.2/sweet-alert.min.js"></script>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+
+
    </head>
 
    <body onload="check_password()">
@@ -79,15 +90,49 @@ else {
                <label for="user_current_password">Current Password:</label>
                <input type="password" class="form-control" name="user_current_password" id="user_current_password">
                <button id="changePasswordBtn" name="changePasswordBtn" class="btn btn-xl btn-mrg">Change</button>
-               
+
               </form>
               <div id="password_error">Make sure your passwords match!</div>
            </div>
          </div>
-           <form method="post">
-            <button name="deleteAccountBtn" class="btn btn-xl btn-mrg" id="delete_account">Delete Account</button>
+           <!--<form action="lib/delete_account.php" method="post" id="deleteAccount" name="deleteMe">-->
+           <!-- <button type="submit" name="deleteAccountBtn" class="btn btn-xl btn-mrg" id="delete_account" >Delete Account</button>-->
+           <!--</form>-->
+
+           <form action="lib/delete_account.php" id="deleteAccount">
+            <button type="submit" class="btn btn-xl btn-mrg" id="deleteAccountBtn" name="deleteAccountBtn" >Delete Account</button>
            </form>
+
      </section>
+
+     <!-- sweet alert for delete account -->
+    <script>
+    /* global $ */
+    /* global swal */
+   document.querySelector('#deleteAccount').addEventListener('submit', function(e) {
+            var form = this;
+            e.preventDefault();
+            swal({
+                title: "Delete account?",
+                text: "You will not be able to recover your account",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#4DD0E1',
+                confirmButtonText: 'Delete Account',
+                cancelButtonText: "Cancel",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    form.submit();
+                } else {
+                    swal("Account not deleted","", "error");
+                }
+            });
+    });
+    </script>
+
 
    <!-- Footer Section -->
    <footer id="footer">
@@ -153,8 +198,8 @@ else {
 
      <!--Link to JS Tab file-->
      <script language="javascript" type="text/javascript" src="js/tab.js"></script>
-     
-     
+
+
 
      <!-- Google Map function and get location -->
      <script language="javascript" type="text/javascript" src="js/map.js"></script>
