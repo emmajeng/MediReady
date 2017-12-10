@@ -17,10 +17,10 @@ if ($DBcon->connect_error) {
         echo "Connected successfully (".$DBcon->host_info.")";
 
 */
-$servername = '127.0.0.1';
-    $username = 'root';
-    $password = "";
-    $database = "c9";
+$servername = '192.168.0.4';
+    $username = 'desire';
+    $password = "vRGdMlwc";
+    $database = "gopagoda";
     $dbport = 3306;
 
     // Create connection
