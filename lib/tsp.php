@@ -61,7 +61,9 @@ var cityDistancesArray = [
      [53.342686, -6.303406],
      [53.334486, -6.557465],
    [51.678091, -9.624023],
-     [52.768293, -1.560059]
+     [52.768293, -1.560059],
+     [59.249033,-154.335938],
+     [-40.338170,171.914063]
 ];
 var totalCities = cityDistancesArray.length;
 makeCities(cityDistancesArray);
@@ -72,9 +74,10 @@ console.log(totalCities);
 // City creation function
 /*
     This function creates a city with long and lat
+    It creates a City object that has a latitude and longitude
 */
 
-function City(longitude, latitude)
+function City(latitude,longitude)
 {
     this.latitude = latitude;
     this.longitude = longitude;
@@ -88,6 +91,7 @@ function makeCities(cityDistancesArray)
         // iterate the longs
         for (var x = 0; x < cityDistancesArray.length; x++)
         {
+          // mapping lat long to new city and then numbering them
             var city = new City (cityDistancesArray[i][0], cityDistancesArray[i][1]);
             cities[i] = city;
             order[i] = i;
@@ -96,13 +100,14 @@ function makeCities(cityDistancesArray)
     // We make our population and shuffle the order
     for (var n = 0; n < populationSize; n++)
     {
+      // Shuffle the population the number of times based on size
         population[n] = order.slice();
 
         shuffle(population[n]);
 
         //console.log(population);
     }
-
+    // start the algorithim
     startAlgorithim();
 }
 
@@ -152,7 +157,6 @@ function startAlgorithim()
     between two points
 */
 /* 02345 */
-/* Think theres a problem here */
 // The haversine is working
 
 function calculateDistanceBetweenTwoPoints(points, order)
@@ -273,7 +277,8 @@ function calcFitness()
     // pass in cities and the population
     var d = calculateDistanceBetweenTwoPoints(cities, population[i]);
 
-
+    // if the distance between the two points is less then the record distance then
+    // set the new record to d and set bestever to the population at that index
     if (d < recordDistance)
     {
       recordDistance = d;
@@ -281,14 +286,17 @@ function calcFitness()
     }
     if (d < currentRecord)
     {
+      // Track the currents
       currentRecord = d;
       currentBest = population[i];
     }
-    fitness[i] = 1 / (d + 1);
+
+    fitness[i] = 1 / (Math.pow(d, 8) + 1);
     //console.log("The best is " + currentBest);
   }
 
   console.log("The distance is " + recordDistance);
+  // Store distance to this array just for analytics purposes
   storeDistanceProgression.push(recordDistance);
 
   console.log(storeDistanceProgression);
@@ -301,6 +309,8 @@ function normalizeFitness()
   var sum = 0;
   for (var i = 0; i < fitness.length; i++)
   {
+    // Total fitness - We want it to map to 0-100 percent
+    // So to add to 100 percent fitness
     sum += fitness[i];
   }
   for (var i = 0; i < fitness.length; i++)
@@ -320,6 +330,7 @@ function nextGeneration()
     var newPopulation = [];
     for (var i = 0; i < population.length; i++)
     {
+      // pick member according to fitness values
 
       var orderA = pickOne(population, fitness);
       //console.log("Order A " + orderA);
@@ -344,17 +355,31 @@ function nextGeneration()
 /*
 pick random number from 0 to 1 - 0.8 = 80percent
 */
+/*
+  0912 - 70
+  2344 - 20
+  1345 - 10
+  pick random number between 0-1, 70 percent of the time will land at 0912
+*/
 function pickOne(list, prob)
 {
 //console.log("the " + list + "probalility " + prob);
+// assume index at 0
+// pick 0-1.0
   var index = 0;
   var r = Math.random();
-
+// as long as r is greater then 0
   while (r > 0)
   {
+    // r is minus the probalility of that index
+    /*
+      If i had a .9 and .1 , pick random from 0-1 and subtract .9 from it
+      as it is first, subtract .9 from it how often 0-1 subtract .9 so 90 percent
+    */
     r = r - prob[index];
     index++;
   }
+  // back up one ie if .8 and -9 and say index + 1 left at 1 but need 0
   index--;
   //console.log("u " + list[index]);
 
@@ -362,10 +387,16 @@ function pickOne(list, prob)
 
 }
 // evolve
+
 function crossOver(orderA, orderB)
 {
   //added
   //var start = Math.floor(Math.random(orderA.length));
+
+  /*
+    We get a random part of the array and then get next one
+  */
+
   var start = Math.floor(Math.random() * orderA.length);
 
   //var start = Math.floor(Math.random() * myArray.length);
@@ -376,12 +407,13 @@ function crossOver(orderA, orderB)
 
   var end = Math.floor(Math.random() * orderA.length) + temp;
 
-
+  /* this is our new array from cross over */
   var newOrder = orderA.slice(start, end);
   // loop through order b
+  //
   for (var i = 0; i < orderB.length; i++)
   {
-
+    // if the new order includes city then dont push else push
     var city = orderB[i];
     // if new order includes city
     if (!newOrder.includes(city))
@@ -395,6 +427,10 @@ function crossOver(orderA, orderB)
 
 function mutate(order, mutationRate)
 {
+  // Mutate based on a giving mutationRate
+  // as long as the number of cities has not reached total cities
+  // and the result from math random is less then mutationRate
+  // then shuffle the order
   for (var i = 0; i < totalCities; i++)
   {
     if (Math.random() < mutationRate)
@@ -420,6 +456,7 @@ function squash(arr)
 }
 
 // All distances
+// for testing
 function what()
 {
   console.log(squash(storeDistanceProgression));
