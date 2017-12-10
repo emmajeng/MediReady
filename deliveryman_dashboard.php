@@ -109,28 +109,26 @@ else {
 
      <!-- Location.php script -->
             <?php
-            /*
-             ====== Also need to comvert the output of the TSP as a json =====
-            */
-            /*
-            This file grabs the longitudes and latitudes from the database
-            and then converts them into a 2D array and calls the algorithim
 
-            NOTE: Need to change fname and lname to the longitudes and latitudes
-            */
                 require 'lib/config.php';
-
                 $arr = array();
-                $query = ("SELECT * FROM patient_table");
+                $i=0;
+                $getDeliveries = ("SELECT * FROM orders_table WHERE status='Delivery'");
+                $deliveries = $DBcon->query($getDeliveries);
+                while($row1 = mysqli_fetch_array($deliveries)) {
+
+
+                $query = ("SELECT * FROM patient_table WHERE patient_id =".$row1['patient_id'].";");
                 $result = $DBcon->query($query);
 
                 //echo $query;
-             $i=0;
-                while($row = mysqli_fetch_array($result)) {
 
-                    $arr[$i] = array($row['lattitude'],$row['longitude']);
-                    $i++;
+                    while($row = mysqli_fetch_array($result)) {
 
+                        $arr[$i] = array($row['lattitude'],$row['longitude']);
+                        $i++;
+
+                    }
                 }
 
 
@@ -156,7 +154,7 @@ else {
       var locationArr = <?php echo json_encode($arr); ?>;
 
       // run tsp algortithm + get response array
-      <?php include 'lib/tsp.php';?>;
+      <?php include 'lib/test.php';?>;
       makeCities(locationArr);
       //pass in ordered tsp locations array below
       function passLocations(finalArray){
