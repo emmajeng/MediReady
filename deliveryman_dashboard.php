@@ -97,50 +97,51 @@ else {
                   container: 'map', // container id
                   style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
                   center: [-7.778320310000026, 53.2734], // starting position [lng, lat]
-                  zoom: 6 // starting zoom
+                  zoom: 8 // starting zoom
               });
 
               map.scrollZoom.disable();
+              map.addControl(new mapboxgl.NavigationControl());
             </script>
       </div>
 
     <!-- Update route button -->
 
      <!-- Location.php script -->
-            <?php
+            <?php 
             /*
              ====== Also need to comvert the output of the TSP as a json =====
             */
             /*
             This file grabs the longitudes and latitudes from the database
             and then converts them into a 2D array and calls the algorithim
-
+            
             NOTE: Need to change fname and lname to the longitudes and latitudes
             */
                 require 'lib/config.php';
-
+            
                 $arr = array();
                 $query = ("SELECT * FROM patient_table");
                 $result = $DBcon->query($query);
-
+            
                 //echo $query;
              $i=0;
                 while($row = mysqli_fetch_array($result)) {
-
+            
                     $arr[$i] = array($row['lattitude'],$row['longitude']);
                     $i++;
-
+            
                 }
-
-
-
+                
+                
+            
             ?>
 
 
 
             <script>
-
-
+            
+            
 
 
             map.on('load', function(){
@@ -153,15 +154,16 @@ else {
 
       //php connect ot db to get long lat from patients with deliveries
       var locationArr = <?php echo json_encode($arr); ?>;
-
+      
       // run tsp algortithm + get response array
-      <?php include 'lib/tsp.php';?>;
+      <?php include 'lib/test.php';?>;
       makeCities(locationArr);
       //pass in ordered tsp locations array below
       function passLocations(finalArray){
+        console.log('again');
         console.log(finalArray);
-
-
+      
+      
       var locations = finalArray;
 
       var locationString = locations.map(function(x) {
@@ -245,7 +247,7 @@ else {
         //https://www.mapbox.com/help/getting-started-directions-api/
         //https://www.mapbox.com/help/how-directions-work/
 
-
+        
       });
     }
     }
@@ -258,10 +260,10 @@ else {
       <table class="table-fill">
         <thead>
         <tr>
-        <th class="text-left">Name</th>
         <th class="text-left">Address</th>
         <th class="text-left">Price</th>
         <th class="text-left">Status</th>
+        <th class="text-left">Update</th>
         </tr>
         </thead>
         <tbody class="table-hover">
@@ -285,15 +287,28 @@ else {
                     {
                       $patient = "SELECT * FROM patient_table WHERE patient_id =" . $row['patient_id'].";";
                       $details = $DBcon->query($patient);
+                      $status = $row['status'];
+                      $orderID = $row['order_id'];
+                      
+                       if($status == 'Delivery'){
+                        $update = 'Delivered'; 
+                      }
+                      
+                      else{
+                        $update = 'Delivery';
+                      }
 
                       while($row1 = $details->fetch_assoc())
                     {
 
                       echo "<tr>";
-                        echo "<td>" . $row1['patient_fname']. "</td>";
+                      echo "<form method='post' action='lib/setDelivered.php'>";
                         echo "<td>" . $row1['patient_address']. "</td>";
                         echo "<td>" . $row['price']. "</td>";
-                        echo "<td><button class='btn btn-success btn-block'>" . $row['status']. "</button></td>";
+                        echo "<td>" . $row['status']. "</td>";
+                        echo "<input type='hidden' name='orderID' value='".$row['order_id']."' />";
+                        echo "<td><button type='submit' name='setDelivered' class='btn btn-success btn-block'>$update</button></td>";
+                      echo "</form>";
                       echo "</tr>";
                     }
                     }
