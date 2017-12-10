@@ -65,10 +65,10 @@ var cityDistancesArray = [
      [59.249033,-154.335938],
      [-40.338170,171.914063]
 ];
-var totalCities = cityDistancesArray.length;
+//var totalCities = cityDistancesArray.length;
 makeCities(cityDistancesArray);
 
-console.log(totalCities);
+//console.log(totalCities);
 
 
 // City creation function
@@ -431,7 +431,7 @@ function mutate(order, mutationRate)
   // as long as the number of cities has not reached total cities
   // and the result from math random is less then mutationRate
   // then shuffle the order
-  for (var i = 0; i < totalCities; i++)
+  for (var i = 0; i < order; i++)
   {
     if (Math.random() < mutationRate)
     {
