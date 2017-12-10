@@ -164,6 +164,27 @@ else {
 
       var locations = finalArray;
 
+
+      const allPoints = locations.map(point => ({
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: point
+        }
+       }));
+
+        map.addLayer({
+            id: 'path',
+            type: 'circle',
+            source: {
+                type: 'geojson',
+                data: {
+                    type: 'FeatureCollection',
+                    features: allPoints
+                }
+            }
+       });
+
       var locationString = locations.map(function(x) {
         return x.join(',');
 
@@ -188,64 +209,11 @@ else {
             }
           },
           paint: {
-            'line-width': 2
+            'line-width': 2,
+            'line-color': '#00E5FF'
+
           }
         });
-
-        //adds start point
-        map.addLayer({
-          id: 'start',
-          type: 'circle',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: start
-              }
-            }
-          }
-        });
-
-        //adds end point
-        map.addLayer({
-          id: 'end',
-          type: 'circle',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: end
-              }
-            }
-          }
-
-        });
-
-        map.addLayer({
-          id: 'middle',
-          type: 'circle',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: middle
-              }
-            }
-          }
-
-        });
-
-        //shows insturctions
-        //https://www.mapbox.com/help/getting-started-directions-api/
-        //https://www.mapbox.com/help/how-directions-work/
-
-
       });
     }
     }
